@@ -1,0 +1,169 @@
+from __future__ import annotations
+import concurrent.futures
+import importlib.util
+import json
+import os
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from unittest import mock
+
+ROOT=Path(__file__).resolve().parents[1]
+CARD=ROOT/'scripts'/'idea_card.py'
+REPORT=ROOT/'scripts'/'report_render.py'
+sys.dont_write_bytecode=True
+class SkillScriptsTest(unittest.TestCase):
+ def setUp(self):
+  scratch=ROOT/'.test-tmp'
+  scratch.mkdir(exist_ok=True)
+  self.tmp=tempfile.TemporaryDirectory(dir=scratch)
+  self.addCleanup(self.tmp.cleanup)
+  self.base=Path(self.tmp.name)
+  self.db=self.base/'db'/'cards.json'
+  self.env=os.environ.copy()
+  self.env.update(PYTHONUTF8='1',PYTHONIOENCODING='utf-8',PYTHONDONTWRITEBYTECODE='1',EASY_RESEARCH_DB=str(self.base/'unused.json'))
+ def run_cli(self,script,*args,ok=True):
+  p=subprocess.run([sys.executable,'-X','utf8',str(script),'--db',str(self.db),*map(str,args)],cwd=ROOT,env=self.env,capture_output=True,text=True,encoding='utf8',timeout=20)
+  self.assertEqual(p.returncode,0 if ok else 2,msg=f"rc={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}")
+  self.assertNotIn('Traceback',p.stderr)
+  return p
+ def add(self,title='卡片A',**fields):
+  argv=['add','--title',title]
+  aliases={'source':'--source','problem':'--problem','current':'--current','gap':'--gap','extend':'--extend','oneline':'--oneline','risk':'--risk','validation':'--validation','tags':'--tags'}
+  for key,value in fields.items():argv += [aliases[key],value]
+  return self.run_cli(CARD,*argv)
+ def cards(self):
+  return json.loads(self.db.read_text(encoding='utf8'))
+ def test_01_template_and_documented_combine_command(self):
+  self.assertIn('- 一句话:',self.run_cli(CARD,'template').stdout)
+  self.add('A',gap='gapA',tags='red')
+  self.add('B',gap='gapB',tags='blue')
+  p=self.run_cli(CARD,'combine','--tag','red','--tag2','blue')
+  self.assertIn('c001 × c002',p.stdout)
+ def test_02_add_casefold_chinese_search_and_tag(self):
+  self.add('多语言',problem='Unicode α与中文',tags='A，B;A')
+  self.assertEqual(self.cards()[0]['标签'],'A, B')
+  self.assertIn('c001',self.run_cli(CARD,'search','UNICODE').stdout)
+  self.assertIn('c001',self.run_cli(CARD,'list','--tag','B').stdout)
+ def test_03_duplicate_is_rejected_then_opt_in(self):
+  self.add('同内容',problem='p',tags='x')
+  self.run_cli(CARD,'add','--title','同内容','--problem','p','--tags','x',ok=False)
+  self.run_cli(CARD,'add','--title','同内容','--problem','p','--tags','x','--allow-duplicate')
+  self.assertEqual(len(self.cards()),2)
+ def test_04_update_preserves_id_and_creates_backup(self):
+  self.add('原题',gap='old')
+  self.run_cli(CARD,'update','c001','--gap','new')
+  self.assertEqual(self.cards()[0]['id'],'c001')
+  self.assertEqual(self.cards()[0]['短板'],'new')
+  self.assertTrue(Path(str(self.db)+'.bak').exists())
+  self.assertEqual(json.loads(Path(str(self.db)+'.bak').read_text(encoding='utf8'))[0]['短板'],'old')
+ def test_05_delete_requires_confirmation_and_keeps_backup(self):
+  self.add('保留卡',problem='p')
+  self.run_cli(CARD,'delete','c001',ok=False)
+  self.assertEqual(len(self.cards()),1)
+  self.run_cli(CARD,'delete','c001','--yes')
+  self.assertEqual(self.cards(),[])
+  self.assertEqual(json.loads(Path(str(self.db)+'.bak').read_text(encoding='utf8'))[0]['id'],'c001')
+ def test_06_concurrent_adds_do_not_lose_updates(self):
+  (self.db.parent).mkdir(parents=True,exist_ok=True)
+  args=[]
+  for i in range(12):
+   args.append([sys.executable,'-X','utf8',str(CARD),'--db',str(self.db),'add','--title',f'parallel-{i}','--problem',f'p-{i}'])
+  with concurrent.futures.ThreadPoolExecutor(max_workers=12) as pool:
+   results=list(pool.map(lambda cmd:subprocess.run(cmd,cwd=ROOT,env=self.env,capture_output=True,text=True,encoding='utf8',timeout=30),args))
+  self.assertTrue(all(p.returncode==0 for p in results),[(p.returncode,p.stderr) for p in results])
+  cards=self.cards()
+  self.assertEqual(len(cards),12)
+  self.assertEqual(len({c['id'] for c in cards}),12)
+ def test_07_corrupt_json_is_not_overwritten(self):
+  self.db.parent.mkdir(parents=True);self.db.write_text('{broken',encoding='utf8')
+  before=self.db.read_bytes()
+  p=self.run_cli(CARD,'add','--title','new','--problem','p',ok=False)
+  self.assertIn('JSON损坏',p.stderr);self.assertEqual(self.db.read_bytes(),before)
+ def test_08_invalid_json_shapes_are_clean_errors(self):
+  for raw in ['{}','null','[1]','[{"id":2,"title":"x"}]','[{"id":"c001","title":"x","标签":[]} ]','[{"id":"c001","title":"x"},{"id":"c001","title":"y"}]']:
+   self.db.parent.mkdir(parents=True,exist_ok=True);self.db.write_text(raw,encoding='utf8')
+   self.run_cli(CARD,'list',ok=False)
+ def test_09_utf8_bom_json_and_markdown_continuation(self):
+  self.db.parent.mkdir(parents=True,exist_ok=True);self.db.write_text('\ufeff[]',encoding='utf8')
+  cardfile=self.base/'card.md'
+  cardfile.write_text('\ufeff## BOM标题\n- 问题: 第一行\n  第二行\n- 短板: gap\n',encoding='utf8')
+  self.run_cli(CARD,'add','--file',cardfile)
+  self.assertEqual(self.cards()[0]['title'],'BOM标题')
+  self.assertEqual(self.cards()[0]['问题'],'第一行\n第二行')
+ def test_10_multi_card_markdown_rejected_without_mutation(self):
+  cardfile=self.base/'two.md';cardfile.write_text('## A\n- 问题: a\n## B\n- 问题: b\n',encoding='utf8')
+  self.run_cli(CARD,'add','--file',cardfile,ok=False)
+  self.assertFalse(self.db.exists())
+ def test_11_empty_search_and_missing_input_are_clean_errors(self):
+  self.add('卡',problem='p')
+  self.run_cli(CARD,'search','   ',ok=False)
+  self.run_cli(CARD,'add','--file',self.base/'missing.md',ok=False)
+ def test_12_combine_removes_reverse_duplicates_and_reports_empty(self):
+  self.add('A',tags='shared',gap='a')
+  self.add('B',tags='shared',gap='b')
+  p=self.run_cli(CARD,'combine','--tag','shared','--tag2','shared')
+  self.assertEqual(p.stdout.count('## c'),1)
+  self.run_cli(CARD,'combine','--tag','absent','--tag2','shared',ok=False)
+ def test_13_atomic_replace_failure_preserves_original(self):
+  spec=importlib.util.spec_from_file_location('idea_card_under_test',CARD)
+  mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+  self.db.parent.mkdir(parents=True,exist_ok=True);self.db.write_text('[{"id":"c001","title":"old"}]',encoding='utf8')
+  before=self.db.read_bytes();mod.load(self.db)
+  original=mod.os.replace
+  def replace(source,target):
+   if Path(target)==self.db:raise OSError('injected replace failure')
+   return original(source,target)
+  with mock.patch.object(mod.os,'replace',side_effect=replace):
+   with self.assertRaises(OSError):mod.save(self.db,[{'id':'c001','title':'new'}])
+  self.assertEqual(self.db.read_bytes(),before)
+ def test_14_report_order_and_markdown_table_escaping(self):
+  self.add('含|管道',oneline='一行|两列\n下一行',tags='A|B')
+  out=self.base/'report.md'
+  self.run_cli(REPORT,'--title','测试','--conclusion','结论','--body','正文','--from-cards','--next-steps','行动','--appendix','检索记录','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertLess(text.index('## 候选idea一览'),text.index('## 下一步'))
+  self.assertLess(text.index('## 下一步'),text.index('## 附录：检索记录'))
+  self.assertIn(r'\|',text);self.assertIn('<br>',text)
+ def test_15_weekly_report_has_required_sections_and_dates(self):
+  self.add('A',gap='shared',tags='x',extend='later')
+  self.add('B',gap='shared',tags='y',extend='later')
+  out=self.base/'weekly.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  for term in ['按方向分布','最近更新','高频短板','交叉组合线索','待补充','c001','c002']:self.assertIn(term,text)
+ def test_16_report_cannot_overwrite_database_or_input(self):
+  self.add('card',problem='p')
+  before=self.db.read_bytes()
+  self.run_cli(REPORT,'--from-cards','--out',self.db,ok=False)
+  self.assertEqual(self.db.read_bytes(),before)
+  body=self.base/'body.md';body.write_text('body',encoding='utf8')
+  self.run_cli(REPORT,'--body-file',body,'--out',body,ok=False)
+  self.assertEqual(body.read_text(encoding='utf8'),'body')
+ def test_17_report_overwrite_requires_force(self):
+  out=self.base/'report.md';out.write_text('old',encoding='utf8')
+  self.run_cli(REPORT,'--body','new','--out',out,ok=False)
+  self.assertEqual(out.read_text(encoding='utf8'),'old')
+  self.run_cli(REPORT,'--body','new','--out',out,'--force')
+  self.assertIn('new',out.read_text(encoding='utf8'))
+ def test_18_text_with_filename_like_suffix_is_plain_text(self):
+  p=self.run_cli(REPORT,'--body','Please inspect README.md')
+  self.assertIn('Please inspect README.md',p.stdout)
+ def test_19_file_errors_and_bad_schema_have_no_traceback(self):
+  self.add('x',problem='p')
+  self.db.write_text('{"oops":1}',encoding='utf8')
+  p=self.run_cli(REPORT,'--from-cards',ok=False)
+  self.assertIn('根节点必须是数组',p.stderr)
+ def test_20_empty_report_is_marked_as_draft(self):
+  p=self.run_cli(REPORT,'--title','草稿')
+  self.assertIn('草稿提示',p.stdout)
+ def test_21_legacy_duplicate_cards_are_not_cross_combined(self):
+  self.db.parent.mkdir(parents=True,exist_ok=True)
+  common={'title':'duplicate','来源':'src','问题':'p','现有做法':'m','短板':'g','可延伸方向':'','一句话':'','标签':'red','风险':'中','最小验证':'','created':'2026-01-01','updated':'2026-01-01'}
+  self.db.write_text(json.dumps([dict(common,id='c001'),dict(common,id='c002')],ensure_ascii=False),encoding='utf8')
+  self.run_cli(CARD,'combine','--tag','red','--tag2','red',ok=False)
+  out=self.base/'weekly.md';self.run_cli(REPORT,'--weekly','--out',out)
+  self.assertIn('疑似重复卡片',out.read_text(encoding='utf8'))
+if __name__=='__main__':unittest.main(verbosity=2)

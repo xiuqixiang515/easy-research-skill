@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.easy-research/
+*.json.bak
+*.json.lock
+research/
+.test-tmp/

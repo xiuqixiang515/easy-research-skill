@@ -1,0 +1,6 @@
+interface:
+  display_name: "Easy Research"
+  short_description: "构思科研选题、核查论文证据、验证研究想法并整理素材卡片。"
+  default_prompt: "使用 $easy-research-skill 帮我把这个研究想法整理成可验证的问题。"
+policy:
+  allow_implicit_invocation: true
