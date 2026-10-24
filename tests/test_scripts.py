@@ -166,4 +166,47 @@ class SkillScriptsTest(unittest.TestCase):
   self.run_cli(CARD,'combine','--tag','red','--tag2','red',ok=False)
   out=self.base/'weekly.md';self.run_cli(REPORT,'--weekly','--out',out)
   self.assertIn('疑似重复卡片',out.read_text(encoding='utf8'))
+ def test_22_imported_markdown_risk_is_validated(self):
+   cardfile=self.base/'bad-risk.md'
+   cardfile.write_text('## 风险校验\n- 问题: synthetic\n- 风险: 极低\n',encoding='utf8')
+   p=self.run_cli(CARD,'add','--file',cardfile,ok=False)
+   self.assertIn('风险必须为',p.stderr)
+   self.assertFalse(self.db.exists())
+ def test_23_unknown_fields_are_preserved_not_dropped(self):
+   cardfile=self.base/'meta.md'
+   cardfile.write_text('## 催化\n- 问题: 选择性\n  第二行\n- 单位: mol/L\n- 重复: 3批次\n',encoding='utf8')
+   p=self.run_cli(CARD,'add','--file',cardfile)
+   self.assertIn('单位',p.stdout)
+   card=self.cards()[0]
+   self.assertEqual(card['扩展'],{'单位':'mol/L','重复':'3批次'})
+   self.assertEqual(card['问题'],'选择性\n第二行')
+   self.assertIn('单位: mol/L',self.run_cli(CARD,'show','c001').stdout)
+ def test_24_set_extra_is_persisted_and_readable_by_weekly_report(self):
+   self.add('A',problem='p',tags='x')
+   self.run_cli(CARD,'update','c001','--set-extra','温度=室温')
+   self.assertEqual(self.cards()[0]['扩展'],{'温度':'室温'})
+   out=self.base/'weekly.md'
+   self.run_cli(REPORT,'--weekly','--out',out)
+   self.assertIn('c001',out.read_text(encoding='utf8'))
+ def test_25_extras_distinguish_otherwise_identical_cards(self):
+   self.add('A',problem='p')
+   p=self.run_cli(CARD,'add','--title','A','--problem','p',ok=False)
+   self.assertIn('重复',p.stderr)
+   self.run_cli(CARD,'add','--title','A','--problem','p','--set-extra','单位=mol/L')
+   self.assertEqual(len(self.cards()),2)
+ def test_26_legacy_invalid_risk_survives_unrelated_update(self):
+   self.db.parent.mkdir(parents=True,exist_ok=True)
+   legacy={'title':'legacy','来源':'','问题':'p','现有做法':'','短板':'','可延伸方向':'','一句话':'','标签':'','风险':'极低','最小验证':'','created':'2026-01-01','updated':'2026-01-01','id':'c001'}
+   self.db.write_text(json.dumps([legacy],ensure_ascii=False),encoding='utf8')
+   self.run_cli(CARD,'update','c001','--gap','new')
+   card=self.cards()[0]
+   self.assertEqual(card['短板'],'new')
+   self.assertEqual(card['风险'],'极低')
+   p=self.run_cli(CARD,'update','c001','--risk','极低',ok=False)
+   self.assertIn('invalid choice',p.stderr)
+ def test_27_weekly_pairs_are_bounded_per_tag_combination(self):
+   for i,tag in enumerate(['red','red','red','blue','blue','blue']):self.add(f'c{i}',problem='p',tags=tag)
+   out=self.base/'weekly.md';self.run_cli(REPORT,'--weekly','--out',out)
+   text=out.read_text(encoding='utf8')
+   self.assertEqual(text.count('| blue × red |')+text.count('| red × blue |'),1)
 if __name__=='__main__':unittest.main(verbosity=2)

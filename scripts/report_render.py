@@ -42,6 +42,9 @@ def validate_cards(value) -> list[dict]:
         if not isinstance(title,str) or not title.strip(): raise ValueError(f"{ident}缺少有效标题")
         for field in FIELDS+["created","updated"]:
             if not isinstance(c.get(field,""),str): raise ValueError(f"{ident}字段“{field}”必须为文本")
+        extra=c.get("扩展",{})
+        if not isinstance(extra,dict) or any(not isinstance(k,str) or not isinstance(v,str) for k,v in extra.items()):
+            raise ValueError(f"{ident}字段“扩展”必须是从文本到文本的映射")
     return value
 
 def load_cards(db:Path)->list[dict]:
@@ -55,7 +58,9 @@ def load_cards(db:Path)->list[dict]:
 
 def content_key(card:dict)->str:
     keys=["title"]+FIELDS
-    raw=json.dumps({k:card.get(k,"") for k in keys},sort_keys=True,ensure_ascii=False,separators=(",",":"))
+    fields={k:card.get(k,"") for k in keys}
+    fields["扩展"]=card.get("扩展") or {}
+    raw=json.dumps(fields,sort_keys=True,ensure_ascii=False,separators=(",",":"))
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 def table_cell(value) -> str:
@@ -69,7 +74,28 @@ def card_table(cards:list[dict])->str:
         rows.append("| "+" | ".join(table_cell(v) for v in [c["id"],value,c.get("风险"),c.get("标签")])+" |")
     return "\n".join(rows)
 
+def cross_tag_suggestions(cards:list[dict],fingerprints:list[str])->list[tuple[str,str,dict,dict]]:
+    """每个标签组合只保留最先出现的一对样例卡片，不缓存全部卡片对。"""
+    index:dict[str,list[int]]={}
+    card_tags:list[set[str]]=[]
+    for i,c in enumerate(cards):
+        tags=split_tags(c.get("标签",""));card_tags.append(set(tags))
+        for tag in tags:index.setdefault(tag,[]).append(i)
+    suggestions=[]
+    for ta,tb in itertools.combinations(sorted(index),2):
+        group=sorted(set(index[ta])|set(index[tb]))
+        found=None
+        for i in group:
+            for j in group:
+                if j<=i or fingerprints[i]==fingerprints[j]:continue
+                if (tb in card_tags[i] and ta in card_tags[j]) or (ta in card_tags[i] and tb in card_tags[j]):
+                    found=(cards[i],cards[j]);break
+            if found:break
+        if found:suggestions.append((ta,tb,found[0],found[1]))
+    return suggestions
+
 def weekly_report(cards:list[dict])->list[str]:
+    fingerprints=[content_key(c) for c in cards]
     lines=[f"# idea素材库周报（共{len(cards)}张）","",f"*生成时间：{datetime.now().astimezone().isoformat(timespec='minutes')}*","","## 按方向分布","","| 标签 | 卡片数 | 最近更新 |","|---|---:|---|"]
     counts={}
     for c in cards:
@@ -91,18 +117,10 @@ def weekly_report(cards:list[dict])->list[str]:
             lines.append(f"| {table_cell(g)} | {len(ids)} | {', '.join(ids)} |")
     else: lines.append("| 暂无重复短板 | 0 | — |")
     lines+=["","## 交叉组合线索（仅为待核实的问题，不代表新颖性结论）","","| 标签组合 | 来源卡片 | 待核实的问题 |","|---|---|---|"]
-    suggestions={}
-    for a,b in itertools.combinations(cards,2):
-        if content_key(a)==content_key(b): continue
-        for ta in split_tags(a.get("标签","")):
-            for tb in split_tags(b.get("标签","")):
-                if ta==tb:continue
-                key=tuple(sorted((ta,tb)))
-                suggestions.setdefault(key,[]).append((a,b))
+    suggestions=cross_tag_suggestions(cards,fingerprints)
     if suggestions:
-        for (ta,tb),pairs in sorted(suggestions.items()):
-            pair=pairs[0]
-            lines.append(f"| {table_cell(ta)} × {table_cell(tb)} | {pair[0]['id']}、{pair[1]['id']} | 两方向的限制是否会在同一场景同时发生？先核验机制、相关工作和数据。 |")
+        for ta,tb,a,b in suggestions:
+            lines.append(f"| {table_cell(ta)} × {table_cell(tb)} | {a['id']}、{b['id']} | 两方向的限制是否会在同一场景同时发生？先核验机制、相关工作和数据。 |")
     else:lines.append("| 暂无跨标签配对 | — | 需要至少两张带不同标签的卡片 |")
     incomplete=[c for c in cards if not c.get("可延伸方向","").strip()]
     lines+=["","## 待补充（缺少可延伸方向）","","| 卡片 | 已记录短板 | 建议补充 |","|---|---|---|"]
@@ -110,14 +128,14 @@ def weekly_report(cards:list[dict])->list[str]:
         for c in incomplete:lines.append(f"| {c['id']} {table_cell(c['title'])} | {table_cell(c.get('短板'))} | 说明可能的后续方向或写明暂未找到 |")
     else:lines.append("| 暂无 | — | — |")
     dups={}
-    for c in cards: dups.setdefault(content_key(c),[]).append(c["id"])
+    for c,key in zip(cards,fingerprints): dups.setdefault(key,[]).append(c["id"])
     duplicate_groups=[ids for ids in dups.values() if len(ids)>1]
     lines += ["", "## 重复内容检查", "", "完全相同的卡片不会参与交叉组合；分布与数量仍按库中原始记录显示。"]
     if duplicate_groups:
         lines += ["", "发现疑似重复卡片：" + "; ".join(", ".join(ids) for ids in duplicate_groups) + "。请检查后人工更新或删除。"]
     else:
         lines += ["", "未发现内容完全相同的卡片。"]
-    lines += ["", "## 卡片一览","",""+card_table(cards) if cards else "（素材库为空）"]
+    lines += ["", "## 卡片一览", "", card_table(cards) if cards else "（素材库为空）"]
     return lines
 
 def build(args)->str:

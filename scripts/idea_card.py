@@ -16,6 +16,9 @@ from pathlib import Path
 
 DEFAULT_DB = Path(os.environ.get("EASY_RESEARCH_DB", Path.home() / ".easy-research" / "cards.json"))
 FIELDS = ["来源", "问题", "现有做法", "短板", "可延伸方向", "一句话", "标签", "风险", "最小验证"]
+EXTRA = "扩展"
+LOCK_TIMEOUT = 30.0
+LOCK_RETRY_INTERVAL = 0.05
 ALIASES = {
     "source": "来源", "problem": "问题", "current": "现有做法",
     "gap": "短板", "extend": "可延伸方向", "oneline": "一句话",
@@ -66,6 +69,9 @@ def load(db: Path) -> list[dict]:
             value = card.get(key, "")
             if not isinstance(value, str):
                 raise ValueError(f"{ident}的字段“{key}”必须是字符串")
+        extra = card.get(EXTRA, {})
+        if not isinstance(extra, dict) or any(not isinstance(k, str) or not isinstance(v, str) for k, v in extra.items()):
+            raise ValueError(f"{ident}的字段“{EXTRA}”必须是从文本到文本的映射")
     return cards
 
 @contextlib.contextmanager
@@ -73,28 +79,41 @@ def mutation_lock(db: Path):
     """Lock read-modify-write across processes on Windows and POSIX."""
     db.parent.mkdir(parents=True, exist_ok=True)
     path = Path(str(db) + ".lock")
-    with path.open("a+b") as f:
+    with _open_lock_file(path) as f:
         if os.name == "nt":
             import msvcrt
-            f.seek(0, os.SEEK_END)
-            if f.tell() == 0:
-                f.write(b"\0"); f.flush()
-            deadline = time.monotonic() + 30
+            deadline = time.monotonic() + LOCK_TIMEOUT
             while True:
                 try:
-                    f.seek(0); msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1); break
+                    f.seek(0, os.SEEK_END)
+                    if f.tell() == 0:
+                        f.write(b"\0"); f.flush()
+                    f.seek(0)
+                    msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1); break
                 except OSError:
                     if time.monotonic() >= deadline:
-                        raise TimeoutError("等待卡片库锁超时")
-                    time.sleep(0.05)
+                        raise TimeoutError("等待卡片库锁超时") from None
+                    time.sleep(LOCK_RETRY_INTERVAL)
             try: yield
             finally:
-                f.seek(0); msvcrt.locking(f.fileno(), msvcrt.LK_UNLCK, 1)
+                with contextlib.suppress(OSError):
+                    f.seek(0); msvcrt.locking(f.fileno(), msvcrt.LK_UNLCK, 1)
         else:
             import fcntl
             fcntl.flock(f.fileno(), fcntl.LOCK_EX)
             try: yield
             finally: fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+
+def _open_lock_file(path: Path):
+    """Open the lock file, retrying transient Windows sharing violations (EACCES)."""
+    deadline = time.monotonic() + LOCK_TIMEOUT
+    while True:
+        try:
+            return path.open("a+b")
+        except OSError as exc:
+            if time.monotonic() >= deadline:
+                raise TimeoutError(f"无法打开卡片库锁文件：{path}（{exc.strerror or exc}）") from None
+            time.sleep(LOCK_RETRY_INTERVAL)
 
 def _atomic_bytes(path: Path, data: bytes) -> None:
     fd, temp_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
@@ -127,8 +146,24 @@ def next_id(cards: list[dict]) -> str:
 
 def content_key(card: dict) -> str:
     fields = {k: card.get(k, "") for k in ["title"] + FIELDS}
+    fields[EXTRA] = card.get(EXTRA) or {}
     raw = json.dumps(fields, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+def check_risk(card: dict) -> None:
+    """Write-path guard: the risk field must use the documented enum, whatever its source."""
+    risk = (card.get("风险") or "").strip()
+    if risk and risk not in RISK_VALUES:
+        raise ValueError(f"风险必须为：{'、'.join(sorted(RISK_VALUES))}（当前值：{risk}）")
+
+def parse_extra(items: list[str] | None, base: dict | None = None) -> dict:
+    extra = dict(base or {})
+    for item in items or []:
+        key, sep, value = item.partition("=")
+        if not sep or not key.strip():
+            raise ValueError(f"自定义字段需要KEY=VALUE形式：{item}")
+        extra[key.strip()] = value.strip()
+    return extra
 
 def parse_card(text: str) -> dict:
     lines = text.lstrip("\ufeff").splitlines()
@@ -136,15 +171,22 @@ def parse_card(text: str) -> dict:
     if len(headings) > 1:
         raise ValueError("每次只能导入一张Markdown卡片；检测到多个二级标题")
     card = {field: "" for field in FIELDS}
+    extra: dict[str, str] = {}
     title = headings[0][1] if headings else ""
     current = None
     for line in lines:
         match = re.match(r"^\s*[-*]\s*([^:：]+)[:：]\s*(.*)$", line)
-        if match and match.group(1).strip() in card:
-            current = match.group(1).strip()
-            card[current] = match.group(2).strip()
+        if match:
+            key = match.group(1).strip()
+            if key in card:
+                current = (card, key)
+                card[key] = match.group(2).strip()
+            else:
+                current = (extra, key)
+                extra[key] = match.group(2).strip()
         elif current and line[:1].isspace() and line.strip():
-            card[current] += ("\n" if card[current] else "") + line.strip()
+            target, key = current
+            target[key] += ("\n" if target[key] else "") + line.strip()
         else:
             current = None
             if not title and line.strip() and not line.lstrip().startswith(("-", "*", "#")):
@@ -152,6 +194,8 @@ def parse_card(text: str) -> dict:
     if not title:
         raise ValueError("卡片缺少标题（Markdown格式请使用“## 标题”）")
     card["title"] = title
+    if extra:
+        card[EXTRA] = extra
     return card
 
 def add_card(args) -> None:
@@ -167,12 +211,13 @@ def add_card(args) -> None:
         if value is not None: card[field] = value
     if args.tags is not None: card["标签"] = args.tags
     if args.tag: card["标签"] = ", ".join(dict.fromkeys(tags(card.get("标签", "")) + tags(args.tag)))
-    if args.risk and args.risk not in RISK_VALUES:
-        raise ValueError(f"风险必须为：{'、'.join(sorted(RISK_VALUES))}")
+    if args.set_extra:
+        card[EXTRA] = parse_extra(args.set_extra, card.get(EXTRA))
+    check_risk(card)
     card["标签"] = ", ".join(tags(card.get("标签", "")))
     if not card.get("title","").strip():
         raise ValueError("新增卡片至少需要标题；可先用template创建卡片文件")
-    if not any(card.get(k) for k in FIELDS):
+    if not any(card.get(k) for k in FIELDS) and not card.get(EXTRA):
         raise ValueError("新增卡片至少需要一个内容字段")
     with mutation_lock(Path(args.db)):
         cards = load(Path(args.db))
@@ -183,6 +228,8 @@ def add_card(args) -> None:
         card["id"] = next_id(cards); card["created"] = stamp(); card["updated"] = card["created"]
         cards.append(card); save(Path(args.db), cards)
     print(f"[已添加] {card['id']}  {card['title']}")
+    if card.get(EXTRA):
+        print(f"[已保留自定义字段] {'、'.join(card[EXTRA])}")
 
 def update_card(args) -> None:
     updates = {}
@@ -194,6 +241,8 @@ def update_card(args) -> None:
     if args.tag is not None:
         # append after reading the current tags in the locked transaction
         updates["_append_tags"] = args.tag
+    if args.set_extra:
+        updates["_set_extra"] = args.set_extra
     if not updates: raise ValueError("update至少需要提供一个要修改的字段")
     with mutation_lock(Path(args.db)):
         cards = load(Path(args.db))
@@ -201,16 +250,22 @@ def update_card(args) -> None:
         if card is None: raise ValueError(f"未找到卡片：{args.id}")
         before = dict(card)
         append = updates.pop("_append_tags", None)
+        set_extra = updates.pop("_set_extra", None)
         card.update(updates)
         if append:
             card["标签"] = ", ".join(dict.fromkeys(tags(card.get("标签","")) + tags(append)))
+        if set_extra:
+            card[EXTRA] = parse_extra(set_extra, card.get(EXTRA))
         card["标签"] = ", ".join(tags(card.get("标签","")))
         if not card.get("title", "").strip():
             card.clear(); card.update(before)
             raise ValueError("标题不能为空")
-        if card.get("风险") and card["风险"] not in RISK_VALUES:
-            card.clear(); card.update(before)
-            raise ValueError("风险必须为：低、中、高")
+        if "风险" in updates:
+            try:
+                check_risk(card)
+            except ValueError as exc:
+                card.clear(); card.update(before)
+                raise ValueError(str(exc)) from None
         duplicate = next((c for c in cards if c is not card and content_key(c) == content_key(card)), None)
         if duplicate and not args.allow_duplicate:
             card.clear(); card.update(before)
@@ -233,6 +288,8 @@ def show_cards(cards: list[dict]) -> None:
         print(f"{c['id']} [{c.get('风险') or '未评级'}] {c['title']}")
         for field in FIELDS:
             print(f"  {field}: {c.get(field) or '—'}")
+        for key, value in (c.get(EXTRA) or {}).items():
+            print(f"  {key}: {value}")
         print()
 
 def command_list(args) -> None:
@@ -308,10 +365,10 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--db",default=str(DEFAULT_DB),help="卡片JSON路径；建议在授权的工作目录中显式指定")
     sub=p.add_subparsers(dest="cmd",required=True)
     a=sub.add_parser("add",help="新增单张卡片")
-    a.add_argument("--file");a.add_argument("--title");a.add_argument("--source");a.add_argument("--problem");a.add_argument("--current");a.add_argument("--gap");a.add_argument("--extend");a.add_argument("--oneline");a.add_argument("--risk",choices=sorted(RISK_VALUES));a.add_argument("--validation");a.add_argument("--tags");a.add_argument("--tag");a.add_argument("--allow-duplicate",action="store_true")
+    a.add_argument("--file");a.add_argument("--title");a.add_argument("--source");a.add_argument("--problem");a.add_argument("--current");a.add_argument("--gap");a.add_argument("--extend");a.add_argument("--oneline");a.add_argument("--risk",choices=sorted(RISK_VALUES));a.add_argument("--validation");a.add_argument("--tags");a.add_argument("--tag");a.add_argument("--set-extra",action="append",metavar="KEY=VALUE",help="自定义字段，可重复");a.add_argument("--allow-duplicate",action="store_true")
     a.set_defaults(func=add_card)
     u=sub.add_parser("update",help="按ID更新卡片");u.add_argument("id")
-    u.add_argument("--title");u.add_argument("--source");u.add_argument("--problem");u.add_argument("--current");u.add_argument("--gap");u.add_argument("--extend");u.add_argument("--oneline");u.add_argument("--risk",choices=sorted(RISK_VALUES));u.add_argument("--validation");u.add_argument("--tags");u.add_argument("--tag")
+    u.add_argument("--title");u.add_argument("--source");u.add_argument("--problem");u.add_argument("--current");u.add_argument("--gap");u.add_argument("--extend");u.add_argument("--oneline");u.add_argument("--risk",choices=sorted(RISK_VALUES));u.add_argument("--validation");u.add_argument("--tags");u.add_argument("--tag");u.add_argument("--set-extra",action="append",metavar="KEY=VALUE",help="自定义字段，可重复")
     u.add_argument("--allow-duplicate",action="store_true");u.set_defaults(func=update_card)
     d=sub.add_parser("delete",help="按ID删除卡片，要求显式--yes并生成备份");d.add_argument("id");d.add_argument("--yes",action="store_true");d.set_defaults(func=delete_card)
     l=sub.add_parser("list",help="列出卡片");l.add_argument("--tag");l.set_defaults(func=command_list)

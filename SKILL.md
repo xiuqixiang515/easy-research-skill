@@ -68,13 +68,16 @@ python3 scripts/idea_card.py --db ./research/cards.json search "标注贵"
 python3 scripts/idea_card.py --db ./research/cards.json show c001
 python3 scripts/idea_card.py --db ./research/cards.json combine --tag 蛋白质 --tag2 小样本
 python3 scripts/idea_card.py --db ./research/cards.json update c001 --gap "新的短板描述"
+python3 scripts/idea_card.py --db ./research/cards.json update c001 --set-extra 单位=mol/L
 python3 scripts/idea_card.py --db ./research/cards.json delete c001 --yes
 python3 scripts/idea_card.py --db ./research/cards.json stats
 python3 scripts/report_render.py --db ./research/cards.json --title "研究分析" --from-cards --out ./research/report.md
 python3 scripts/report_render.py --db ./research/cards.json --weekly --out ./research/weekly.md
 ~~~
 
-数据库修改会使用跨进程锁、原子替换，并在覆盖已有数据库前保留 .bak。新增卡默认拒绝内容完全重复；只有用户明确要保留副本时才用 --allow-duplicate。删除需显式 --yes，并自动留前一版本备份。先查看 --help，文件导入每次一张。错误信息应说明问题；失败时核对数据库和备份，不能仅凭退出状态推断成功。
+数据库修改会使用跨进程锁（锁文件被短暂占用时重试而非直接失败）、原子替换，并在覆盖已有数据库前保留 .bak。新增卡默认拒绝内容完全重复；只有用户明确要保留副本时才用 --allow-duplicate。删除需显式 --yes，并自动留前一版本备份。先查看 --help，文件导入每次一张。错误信息应说明问题；失败时核对数据库和备份，不能仅凭退出状态推断成功。
+
+导入 Markdown 卡片时，九个标准字段之外的条目（如「单位」「重复」「仪器」）会保留在卡片的「扩展」对象里，不静默丢弃，`show`/`list` 会一并显示，可用 `--set-extra KEY=VALUE` 维护。风险字段只接受低/中/高，命令行与文件导入走同一套校验：非法值直接报错且不写库，存量非法值不会被静默改写。
 
 combine 只为研究者生成不同卡片间的组合线索，不会自动证明机制、新颖性或产出完成的 idea。周报的跨标签组合也只是待核实问题。合并后仍需按模式 A/C 查证和验证。
 
