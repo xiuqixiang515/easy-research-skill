@@ -19,6 +19,13 @@ FIELDS = ["来源", "问题", "现有做法", "短板", "可延伸方向", "一�
 EXTRA = "扩展"
 LOCK_TIMEOUT = 30.0
 LOCK_RETRY_INTERVAL = 0.05
+DISCIPLINES = {"计算机", "化学", "生物", "医学", "机械", "能源", "电子信息"}
+DISCIPLINE_ALIASES = {
+    "cs": "计算机", "计算机科学": "计算机", "chemistry": "化学", "biology": "生物",
+    "medicine": "医学", "mechanical": "机械", "energy": "能源",
+    "electronics": "电子信息", "电子": "电子信息", "信息": "电子信息",
+}
+RESEARCH_TYPES = {"预测", "因果", "实验", "仿真", "理论", "描述性", "复现", "工程验证", "核算", "诊断"}
 ALIASES = {
     "source": "来源", "problem": "问题", "current": "现有做法",
     "gap": "短板", "extend": "可延伸方向", "oneline": "一句话",
@@ -34,6 +41,8 @@ TEMPLATE = """## 标题
 - 短板:
 - 可延伸方向:
 - 一句话:
+- 学科:
+- 研究类型:
 - 标签:
 - 风险: 中
 - 最小验证:
@@ -150,11 +159,37 @@ def content_key(card: dict) -> str:
     raw = json.dumps(fields, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
+def haystack(card: dict) -> str:
+    """Searchable text: standard fields plus extension keys and values."""
+    parts = [str(card.get(k, "")) for k in ["title"] + FIELDS]
+    extra = card.get(EXTRA) or {}
+    parts.extend(str(k) for k in extra)
+    parts.extend(str(v) for v in extra.values())
+    return " ".join(parts).casefold()
+
 def check_risk(card: dict) -> None:
     """Write-path guard: the risk field must use the documented enum, whatever its source."""
     risk = (card.get("风险") or "").strip()
     if risk and risk not in RISK_VALUES:
         raise ValueError(f"风险必须为：{'、'.join(sorted(RISK_VALUES))}（当前值：{risk}）")
+
+def normalize_discipline(value: str) -> str:
+    value = (value or "").strip()
+    return DISCIPLINE_ALIASES.get(value.lower(), value)
+
+def check_meta(card: dict) -> None:
+    """Validate discipline and research type stored in the extension object."""
+    extra = card.get(EXTRA) or {}
+    discipline = normalize_discipline(extra.get("学科", ""))
+    if discipline and discipline not in DISCIPLINES:
+        raise ValueError(f"学科必须为：{'、'.join(sorted(DISCIPLINES))}（当前值：{extra.get('学科')}）")
+    if discipline:
+        extra["学科"] = discipline
+    research = (extra.get("研究类型") or "").strip()
+    if research and research not in RESEARCH_TYPES:
+        raise ValueError(f"研究类型必须为：{'、'.join(sorted(RESEARCH_TYPES))}（当前值：{research}）")
+    if extra:
+        card[EXTRA] = extra
 
 def parse_extra(items: list[str] | None, base: dict | None = None) -> dict:
     extra = dict(base or {})
@@ -194,6 +229,7 @@ def parse_card(text: str) -> dict:
     if not title:
         raise ValueError("卡片缺少标题（Markdown格式请使用“## 标题”）")
     card["title"] = title
+    extra = {k: v for k, v in extra.items() if v.strip()}
     if extra:
         card[EXTRA] = extra
     return card
@@ -213,7 +249,13 @@ def add_card(args) -> None:
     if args.tag: card["标签"] = ", ".join(dict.fromkeys(tags(card.get("标签", "")) + tags(args.tag)))
     if args.set_extra:
         card[EXTRA] = parse_extra(args.set_extra, card.get(EXTRA))
+    if args.discipline or args.research_type:
+        extra = dict(card.get(EXTRA) or {})
+        if args.discipline: extra["学科"] = args.discipline
+        if args.research_type: extra["研究类型"] = args.research_type
+        card[EXTRA] = extra
     check_risk(card)
+    check_meta(card)
     card["标签"] = ", ".join(tags(card.get("标签", "")))
     if not card.get("title","").strip():
         raise ValueError("新增卡片至少需要标题；可先用template创建卡片文件")
@@ -243,7 +285,10 @@ def update_card(args) -> None:
         updates["_append_tags"] = args.tag
     if args.set_extra:
         updates["_set_extra"] = args.set_extra
-    if not updates: raise ValueError("update至少需要提供一个要修改的字段")
+    meta = {}
+    if args.discipline: meta["学科"] = args.discipline
+    if args.research_type: meta["研究类型"] = args.research_type
+    if not updates and not meta: raise ValueError("update至少需要提供一个要修改的字段")
     with mutation_lock(Path(args.db)):
         cards = load(Path(args.db))
         card = next((c for c in cards if c["id"] == args.id), None)
@@ -256,6 +301,8 @@ def update_card(args) -> None:
             card["标签"] = ", ".join(dict.fromkeys(tags(card.get("标签","")) + tags(append)))
         if set_extra:
             card[EXTRA] = parse_extra(set_extra, card.get(EXTRA))
+        if meta:
+            extra = dict(card.get(EXTRA) or {}); extra.update(meta); card[EXTRA] = extra
         card["标签"] = ", ".join(tags(card.get("标签","")))
         if not card.get("title", "").strip():
             card.clear(); card.update(before)
@@ -263,6 +310,12 @@ def update_card(args) -> None:
         if "风险" in updates:
             try:
                 check_risk(card)
+            except ValueError as exc:
+                card.clear(); card.update(before)
+                raise ValueError(str(exc)) from None
+        if meta:
+            try:
+                check_meta(card)
             except ValueError as exc:
                 card.clear(); card.update(before)
                 raise ValueError(str(exc)) from None
@@ -303,8 +356,7 @@ def command_search(args) -> None:
     keyword = args.keyword.strip()
     if not keyword: raise ValueError("搜索词不能为空；查看全部卡片请使用list")
     cards = load(Path(args.db)); needle = keyword.casefold()
-    fields = ["title"] + FIELDS
-    hits = [c for c in cards if any(needle in str(c.get(k,"")).casefold() for k in fields)]
+    hits = [c for c in cards if needle in haystack(c)]
     if hits: show_cards(hits)
     else: print(f"未找到包含“{keyword}”的卡片")
 
@@ -346,6 +398,14 @@ def command_stats(args) -> None:
         gap = c.get("短板","").strip()
         if gap: gap_counts[gap] = gap_counts.get(gap,0)+1
     print(f"卡片总数：{len(cards)}")
+    discipline_counts = {}
+    for c in cards:
+        name = (c.get(EXTRA) or {}).get("学科")
+        if name: discipline_counts[name] = discipline_counts.get(name, 0) + 1
+    if discipline_counts:
+        print("按学科：")
+        for name, n in sorted(discipline_counts.items(), key=lambda item: (-item[1], item[0])):
+            print(f"  {name}：{n}")
     fingerprints={}
     for c in cards: fingerprints.setdefault(content_key(c), []).append(c["id"])
     duplicates=[ids for ids in fingerprints.values() if len(ids)>1]
@@ -365,10 +425,10 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--db",default=str(DEFAULT_DB),help="卡片JSON路径；建议在授权的工作目录中显式指定")
     sub=p.add_subparsers(dest="cmd",required=True)
     a=sub.add_parser("add",help="新增单张卡片")
-    a.add_argument("--file");a.add_argument("--title");a.add_argument("--source");a.add_argument("--problem");a.add_argument("--current");a.add_argument("--gap");a.add_argument("--extend");a.add_argument("--oneline");a.add_argument("--risk",choices=sorted(RISK_VALUES));a.add_argument("--validation");a.add_argument("--tags");a.add_argument("--tag");a.add_argument("--set-extra",action="append",metavar="KEY=VALUE",help="自定义字段，可重复");a.add_argument("--allow-duplicate",action="store_true")
+    a.add_argument("--file");a.add_argument("--title");a.add_argument("--source");a.add_argument("--problem");a.add_argument("--current");a.add_argument("--gap");a.add_argument("--extend");a.add_argument("--oneline");a.add_argument("--risk",choices=sorted(RISK_VALUES));a.add_argument("--validation");a.add_argument("--tags");a.add_argument("--tag");a.add_argument("--set-extra",action="append",metavar="KEY=VALUE",help="自定义字段，可重复");a.add_argument("--discipline",metavar="学科",help="学科，写入扩展字段");a.add_argument("--research-type",dest="research_type",metavar="类型",help="研究类型，写入扩展字段");a.add_argument("--allow-duplicate",action="store_true")
     a.set_defaults(func=add_card)
     u=sub.add_parser("update",help="按ID更新卡片");u.add_argument("id")
-    u.add_argument("--title");u.add_argument("--source");u.add_argument("--problem");u.add_argument("--current");u.add_argument("--gap");u.add_argument("--extend");u.add_argument("--oneline");u.add_argument("--risk",choices=sorted(RISK_VALUES));u.add_argument("--validation");u.add_argument("--tags");u.add_argument("--tag");u.add_argument("--set-extra",action="append",metavar="KEY=VALUE",help="自定义字段，可重复")
+    u.add_argument("--title");u.add_argument("--source");u.add_argument("--problem");u.add_argument("--current");u.add_argument("--gap");u.add_argument("--extend");u.add_argument("--oneline");u.add_argument("--risk",choices=sorted(RISK_VALUES));u.add_argument("--validation");u.add_argument("--tags");u.add_argument("--tag");u.add_argument("--set-extra",action="append",metavar="KEY=VALUE",help="自定义字段，可重复");u.add_argument("--discipline",metavar="学科",help="学科，写入扩展字段");u.add_argument("--research-type",dest="research_type",metavar="类型",help="研究类型，写入扩展字段")
     u.add_argument("--allow-duplicate",action="store_true");u.set_defaults(func=update_card)
     d=sub.add_parser("delete",help="按ID删除卡片，要求显式--yes并生成备份");d.add_argument("id");d.add_argument("--yes",action="store_true");d.set_defaults(func=delete_card)
     l=sub.add_parser("list",help="列出卡片");l.add_argument("--tag");l.set_defaults(func=command_list)
