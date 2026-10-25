@@ -1,0 +1,128 @@
+{
+  "schema": "eval-slot-coverage/1",
+  "arm": "v1.2.0",
+  "slots_per_discipline": {
+    "computer": 6,
+    "chemistry": 7,
+    "biology": 7,
+    "medicine": 8,
+    "mechanical": 7,
+    "energy": 7,
+    "electronics": 8
+  },
+  "summary": {
+    "disciplines": 7,
+    "filled_total": 49,
+    "slots_total": 50
+  },
+  "rows": {
+    "biology": {
+      "file": "biology.md",
+      "filled": 7,
+      "total": 7,
+      "missing": [],
+      "detail": {
+        "实验单位": true,
+        "重复类型": true,
+        "批次": true,
+        "随机化盲法": true,
+        "多重比较": true,
+        "样本量": true,
+        "资源身份": true
+      }
+    },
+    "chemistry": {
+      "file": "chemistry.md",
+      "filled": 7,
+      "total": 7,
+      "missing": [],
+      "detail": {
+        "物质身份": true,
+        "纯度": true,
+        "计量定义": true,
+        "独立批次": true,
+        "空白与回收": true,
+        "条件": true,
+        "正交表征": true
+      }
+    },
+    "computer": {
+      "file": "computer.md",
+      "filled": 6,
+      "total": 6,
+      "missing": [],
+      "detail": {
+        "切分单位": true,
+        "泄漏": true,
+        "随机性": true,
+        "算力预算": true,
+        "指标口径": true,
+        "环境版本": true
+      }
+    },
+    "electronics": {
+      "file": "electronics.md",
+      "filled": 8,
+      "total": 8,
+      "missing": [],
+      "detail": {
+        "被测量定义": true,
+        "激励条件": true,
+        "公平性": true,
+        "噪声信道": true,
+        "同步前端": true,
+        "测量本底": true,
+        "重复维度": true,
+        "仿真实测": true
+      }
+    },
+    "energy": {
+      "file": "energy.md",
+      "filled": 7,
+      "total": 7,
+      "missing": [],
+      "detail": {
+        "功能单位": true,
+        "系统边界": true,
+        "时间跨度": true,
+        "初末状态": true,
+        "辅助能耗": true,
+        "因子来源": true,
+        "敏感性": true
+      }
+    },
+    "mechanical": {
+      "file": "mechanical.md",
+      "filled": 7,
+      "total": 7,
+      "missing": [],
+      "detail": {
+        "材料": true,
+        "边界": true,
+        "网格收敛": true,
+        "求解设置": true,
+        "实测校核": true,
+        "工况覆盖": true,
+        "失效模式": true
+      }
+    },
+    "medicine": {
+      "file": "medicine.md",
+      "filled": 7,
+      "total": 8,
+      "missing": [
+        "盲法"
+      ],
+      "detail": {
+        "t0": true,
+        "目标人群": true,
+        "参考标准": true,
+        "盲法": false,
+        "验证范围": true,
+        "区间": true,
+        "校准": true,
+        "事件数": true
+      }
+    }
+  }
+}

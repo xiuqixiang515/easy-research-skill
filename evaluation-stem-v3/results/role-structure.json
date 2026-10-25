@@ -1,0 +1,325 @@
+{
+  "schema": "eval-text-grades/1",
+  "scorer": "regex proxies; scorer and generator are the same model",
+  "items": {
+    "S1": "事实/推断/建议分离",
+    "S2": "新颖性状态显式",
+    "S3": "无虚构来源",
+    "S4": "输入约束保留",
+    "S5": "阈值标注待设定",
+    "S6": "保留不确定结论",
+    "S7": "最小验证≥3要素",
+    "S8": "不按占比评贡献"
+  },
+  "errors": {
+    "X1": "虚构来源",
+    "X2": "未核实新颖性断言",
+    "X3": "丢条件/单位",
+    "X4": "因果越界",
+    "X5": "假设写成事实"
+  },
+  "summary": {
+    "role": {
+      "files": 7,
+      "per_item": {
+        "S1": "7/7",
+        "S2": "7/7",
+        "S3": "7/7",
+        "S4": "7/7",
+        "S5": "7/7",
+        "S6": "7/7",
+        "S7": "7/7",
+        "S8": "4/7"
+      },
+      "per_error": {
+        "X1": "0/7",
+        "X2": "2/7",
+        "X3": "0/7",
+        "X4": "1/7",
+        "X5": "0/7"
+      },
+      "mean_chars": 5211.7
+    }
+  },
+  "rows": [
+    {
+      "chars": 4853,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": true
+      },
+      "item_hits": 8,
+      "errors": {
+        "X1": false,
+        "X2": true,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 1,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "小区",
+        "两季",
+        "n=6",
+        "批次",
+        "Western"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "biology.md",
+      "arm": "role",
+      "slug": "biology",
+      "below_min_chars": false
+    },
+    {
+      "chars": 5480,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": true
+      },
+      "item_hits": 8,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "GC-MS",
+        "老化",
+        "10 次",
+        "浸出",
+        "选择性"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "chemistry.md",
+      "arm": "role",
+      "slug": "chemistry",
+      "below_min_chars": false
+    },
+    {
+      "chars": 5019,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": false
+      },
+      "item_hits": 7,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "3090",
+        "日志",
+        "0.91",
+        "0.72",
+        "重训"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "computer.md",
+      "arm": "role",
+      "slug": "computer",
+      "below_min_chars": false
+    },
+    {
+      "chars": 5584,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": true
+      },
+      "item_hits": 8,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "FPGA",
+        "200 MHz",
+        "电源完整性",
+        "BER",
+        "眼图"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "electronics.md",
+      "arm": "role",
+      "slug": "electronics",
+      "below_min_chars": false
+    },
+    {
+      "chars": 5015,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": false
+      },
+      "item_hits": 7,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "电费",
+        "铭牌",
+        "自给率",
+        "SOC",
+        "床位"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "energy.md",
+      "arm": "role",
+      "slug": "energy",
+      "below_min_chars": false
+    },
+    {
+      "chars": 5273,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": false
+      },
+      "item_hits": 7,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": true,
+        "X5": false
+      },
+      "error_hits": 1,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "疲劳",
+        "试样",
+        "拓扑",
+        "30%",
+        "时间步"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "mechanical.md",
+      "arm": "role",
+      "slug": "mechanical",
+      "below_min_chars": false
+    },
+    {
+      "chars": 5258,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": true
+      },
+      "item_hits": 8,
+      "errors": {
+        "X1": false,
+        "X2": true,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 1,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "再入院",
+        "0.88",
+        "40",
+        "事件",
+        "倾向评分"
+      ],
+      "marker_categories": [
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "medicine.md",
+      "arm": "role",
+      "slug": "medicine",
+      "below_min_chars": false
+    }
+  ]
+}

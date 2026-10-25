@@ -1,0 +1,2628 @@
+{
+  "schema": "eval-results/2",
+  "started_at": "2026-10-25T11:27:58+08:00",
+  "git_rev": "5b83e654ce10e17634c09f540f5e6e8a7c91be05",
+  "git_describe": "v1.2.0",
+  "product_tag": "v1.2.0",
+  "product_tag_commit": "5b83e654ce10e17634c09f540f5e6e8a7c91be05",
+  "branch": "eval/stem-v3",
+  "source_root": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+  "product_hashes": {
+    "SKILL.md": "b13e6d9ea70156cc43d37d43218297e68b69e8baff9306034dca3618f103ebb0",
+    "VERSION": "1e5b51cde515396a9fa762909cf8ca6584ccc564b325d2eebeea76175fe95c4d",
+    "CHANGELOG.md": "abe60d4a3253e3af6ef8463537c210c09201bf627c904c325ea1877e1ee34630",
+    "references/idea-generation.md": "ad14cbdcbd083f77c93f954434601bc9bb0e32454da75599af7f04fcfbe1cc39",
+    "references/demystify.md": "2a9401e1dd02d83b34ed76f773b76596c2624192106a278f5496096fd15bc9be",
+    "references/sharpen.md": "b2174e23c2f3e2ce4ba63190d72e56bc88671166e84b1fc0e7cba155ec5e8c18",
+    "references/search-sources.md": "e677e17f7d2ac09b51f2556cd9038d3945feafd16e60c42b00794dab02b00ed8",
+    "references/report-template.md": "2d9f474ec969804f506d82ab7960128ba4319b7a3f283a260abaa48e4ec081bf",
+    "references/research-types.md": "4321bf42d0613bf0189047818f09ed9d9cfe8d4605d0625ef2a3daed4bbe205b",
+    "scripts/idea_card.py": "076029cd586a715bf2e0ea3d09edc394e590fcf6d88276e3f3fc370a8c4b516d",
+    "scripts/report_render.py": "118551d8f5719ad48a73be3cce3481ca1b85f07176ab068a175f227bc81b205f",
+    "references/disciplines/biology.md": "50624f753dd9ec67dc02435f3370d68d9c302e21efee7438b79bcbd39505df7f",
+    "references/disciplines/chemistry.md": "fdf67cfb7304136742fde430affbbff0f64e397c743b8b8626d7a116abf2ff25",
+    "references/disciplines/computer.md": "dd0b6fa7465c797588faeb9f4fa35f57b90facaab8b08890fdd0d880d651141c",
+    "references/disciplines/electronics.md": "990ca8f3eeec2349b082e205736536e8971d8c9035e524a7184b397eca7ab1d8",
+    "references/disciplines/energy.md": "18d45f60de7f0b0e307a5d81f9980396a1059fba0c04d10a95a6fd66c36bf192",
+    "references/disciplines/mechanical.md": "7d5683e1a2dd78bb42a7a33cd1f6d5a1f614e501fb30089c20e338d27421afa2",
+    "references/disciplines/medicine.md": "a8829723abc65c706a3b19cb7047b7a140f11b1a58d5b5d96de130f57a14a084"
+  },
+  "harness_sha256": {
+    "common.py": "af65730ca47abada8b2d313190a631e5022dc66f1cbf4900578507e456adb764",
+    "run_cli_suite.py": "31060407ea6eef91ad79e3c3583f20fd703ffa7e771d4f720a0f462c5e4c0d3a"
+  },
+  "harness_bundle_sha256": "b0f8eec80366fd0d1004e96161e673c9102206d1603b244361931872f08969b9",
+  "protocol_sha256": "bb1021f0b8d48ad4ee222efd9000ffeba6fc7d24002bc367ae2fa55beed657f8",
+  "python": "3.13.14 (main, Jun 11 2026, 04:04:46) [MSC v.1944 64 bit (AMD64)]",
+  "python_in_ci_matrix": false,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "executable": "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+  "run_label": "run1",
+  "finished_at": "2026-10-25T11:28:12+08:00",
+  "summary": {
+    "checks": 77,
+    "executions": 70,
+    "passed": 77,
+    "failed": [],
+    "source_unchanged": true,
+    "total_seconds": 13.416
+  },
+  "cases": [
+    {
+      "case": "computer.add.constraint",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "add",
+        "--title",
+        "计算机约束",
+        "--problem",
+        "F1=0.81; seed=42; split=user",
+        "--gap",
+        "用户分组",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "computer,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c001  计算机约束",
+      "stdout_sha256": "96585ce041f5a7679417153de07a90f89860a0d0b4419ffd18c32b282526f20b",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1915,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c001"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.add.method",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "add",
+        "--title",
+        "计算机方法",
+        "--problem",
+        "method baseline for computer",
+        "--gap",
+        "用户分组",
+        "--tags",
+        "computer,method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c002  计算机方法",
+      "stdout_sha256": "80c9272e61a768711ac83aec3f7c70d648eebc438c0ad6fa52c42d1572609d83",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.2501,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.add.extras",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "add",
+        "--title",
+        "计算机元数据",
+        "--problem",
+        "metadata probe for computer",
+        "--tags",
+        "computer,extras",
+        "--set-extra",
+        "单位=FLOPs",
+        "--set-extra",
+        "重复=3 seeds",
+        "--set-extra",
+        "仪器=单卡 4090"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c003  计算机元数据\n[已保留自定义字段] 单位、重复、仪器",
+      "stdout_sha256": "dfd13ae6c48d7b4958bc7b9e54028a048ebb1f34838e035e3a5418595f9b1626",
+      "stdout_lines": 2,
+      "stderr_excerpt": "",
+      "seconds": 0.2357,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c003",
+          "[已保留自定义字段]"
+        ],
+        "stderr_not_contains": [
+          "Traceback"
+        ],
+        "db_field.扩展.单位": "FLOPs",
+        "db_field.扩展.重复": "3 seeds",
+        "db_field.扩展.仪器": "单卡 4090"
+      },
+      "passed": true,
+      "notes": [],
+      "actual_extra": {
+        "单位": "FLOPs",
+        "重复": "3 seeds",
+        "仪器": "单卡 4090"
+      }
+    },
+    {
+      "case": "computer.search",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "search",
+        "用户分组"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 计算机约束\n  来源: synthetic fixture; not real evidence\n  问题: F1=0.81; seed=42; split=user\n  现有做法: —\n  短板: 用户分组\n  可延伸方向: —\n  一句话: —\n  标签: computer, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n\nc002 [未评级] 计算机方法\n  来源: —\n  问题: method baseline for computer\n  现有做法: —\n  短板: 用户分组\n  可延伸方向: —\n  一句话: —\n  标签: computer, method\n  风险: —\n  最小验证: —\n",
+      "stdout_sha256": "a93c088cd1d6568bc3547b34e25133a1d3f97f011997d9f4dadc6c2f58084d83",
+      "stdout_lines": 22,
+      "stderr_excerpt": "",
+      "seconds": 0.1949,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c001",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.show",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "show",
+        "c001"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 计算机约束\n  来源: synthetic fixture; not real evidence\n  问题: F1=0.81; seed=42; split=user\n  现有做法: —\n  短板: 用户分组\n  可延伸方向: —\n  一句话: —\n  标签: computer, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n",
+      "stdout_sha256": "9b02684609c32ec024ac080a30f60351a9739196bc18aeee3f2d04a31702f02c",
+      "stdout_lines": 11,
+      "stderr_excerpt": "",
+      "seconds": 0.216,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "F1=0.81; seed=42; split=user"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.combine",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "combine",
+        "--tag",
+        "constraint",
+        "--tag2",
+        "method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "# 交叉组合：constraint × method（1对）\n\n## c001 × c002\n- A标题：计算机约束\n- A短板：用户分组\n- B标题：计算机方法\n- B短板：用户分组\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。",
+      "stdout_sha256": "843fc0aa0be454d67e0f72546f83234a123e9a78816d7f2f300ac2e766c6ad4f",
+      "stdout_lines": 9,
+      "stderr_excerpt": "",
+      "seconds": 0.2199,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "## c001 × c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.duplicate",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "add",
+        "--title",
+        "计算机约束",
+        "--problem",
+        "F1=0.81; seed=42; split=user",
+        "--gap",
+        "用户分组",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "computer,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 2,
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_lines": 0,
+      "stderr_excerpt": "[错误] 内容与c001重复；若确需保留副本，请使用--allow-duplicate",
+      "seconds": 0.1848,
+      "expected": {
+        "exit_code": 2,
+        "stderr_contains": [
+          "重复"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.weekly1",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer-weekly-1.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer-weekly-1.md",
+      "stdout_sha256": "60f4ce9c31821db4b2d01971fcb49858d6c266f049ce8b21643a2bf0c75ba8fc",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1798,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.weekly2",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer-weekly-2.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer-weekly-2.md",
+      "stdout_sha256": "32362cfc98bf2618ad68d60da78e7af62f8e58994c1a856746335467877ede2f",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.176,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.weekly3",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer-weekly-3.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\computer-weekly-3.md",
+      "stdout_sha256": "0b0ecb3b1934c119dfe7e9a663acd40b7d552d6e67ed819a51dec4b5102c350e",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1819,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "computer.repeat_consistency",
+      "command_argv": [],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": null,
+      "stdout_excerpt": "normalized hashes: [\"25926bf2683652bbe22debfb281a6f49e2f238f047bb82c9175b47712f704e6b\", \"25926bf2683652bbe22debfb281a6f49e2f238f047bb82c9175b47712f704e6b\", \"25926bf2683652bbe22debfb281a6f49e2f238f047bb82c9175b47712f704e6b\"]",
+      "stdout_sha256": "c6a2e6720b33c22b5c20a671c426a83016254c69be9747f37551cc40cd412fb5",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.0,
+      "expected": {
+        "weeks_equal": true,
+        "sections": [
+          "按方向分布",
+          "待补充"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.add.constraint",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "add",
+        "--title",
+        "化学约束",
+        "--problem",
+        "c=0.10 mol/L; T=298 K; yield=82%; batch=A",
+        "--gap",
+        "独立批次",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "chemistry,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c001  化学约束",
+      "stdout_sha256": "f67e1c3f72df1b98fafedefceb5b18dbb9f986890135ea1f69829967b062d703",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1889,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c001"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.add.method",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "add",
+        "--title",
+        "化学方法",
+        "--problem",
+        "method baseline for chemistry",
+        "--gap",
+        "独立批次",
+        "--tags",
+        "chemistry,method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c002  化学方法",
+      "stdout_sha256": "697025320b2547fd5ffc4b33fa2f812f3b1342853b3565a8e4013e81b8a88771",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.216,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.add.extras",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "add",
+        "--title",
+        "化学元数据",
+        "--problem",
+        "metadata probe for chemistry",
+        "--tags",
+        "chemistry,extras",
+        "--set-extra",
+        "单位=mg/L",
+        "--set-extra",
+        "重复=3 独立批次",
+        "--set-extra",
+        "仪器=UV-Vis"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c003  化学元数据\n[已保留自定义字段] 单位、重复、仪器",
+      "stdout_sha256": "7b4a4c4828685dcd6cf094906f1f8f98802bb6a6323b0311c25781f01a070380",
+      "stdout_lines": 2,
+      "stderr_excerpt": "",
+      "seconds": 0.2289,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c003",
+          "[已保留自定义字段]"
+        ],
+        "stderr_not_contains": [
+          "Traceback"
+        ],
+        "db_field.扩展.单位": "mg/L",
+        "db_field.扩展.重复": "3 独立批次",
+        "db_field.扩展.仪器": "UV-Vis"
+      },
+      "passed": true,
+      "notes": [],
+      "actual_extra": {
+        "单位": "mg/L",
+        "重复": "3 独立批次",
+        "仪器": "UV-Vis"
+      }
+    },
+    {
+      "case": "chemistry.search",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "search",
+        "独立批次"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 化学约束\n  来源: synthetic fixture; not real evidence\n  问题: c=0.10 mol/L; T=298 K; yield=82%; batch=A\n  现有做法: —\n  短板: 独立批次\n  可延伸方向: —\n  一句话: —\n  标签: chemistry, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n\nc002 [未评级] 化学方法\n  来源: —\n  问题: method baseline for chemistry\n  现有做法: —\n  短板: 独立批次\n  可延伸方向: —\n  一句话: —\n  标签: chemistry, method\n  风险: —\n  最小验证: —\n\nc003 [未评级] 化学元数据\n  来源: —\n  问题: metadata probe for chemistry\n  现有做法: —\n  短板: —\n  可延伸方向: —\n  一句话: —\n  标签: chemistry, extras\n  风险: —\n  最小验证: —\n  单位: mg/L\n  重复: 3 独立批次\n  仪器: UV-Vis\n",
+      "stdout_sha256": "66d7c634dddebe639678e6a9a2aed2a2de5925b376aada281c993b2ddffb427c",
+      "stdout_lines": 36,
+      "stderr_excerpt": "",
+      "seconds": 0.1815,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c001",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.show",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "show",
+        "c001"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 化学约束\n  来源: synthetic fixture; not real evidence\n  问题: c=0.10 mol/L; T=298 K; yield=82%; batch=A\n  现有做法: —\n  短板: 独立批次\n  可延伸方向: —\n  一句话: —\n  标签: chemistry, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n",
+      "stdout_sha256": "3c89288870db94ffcbc50e2220c753d95d2d05f6ab1477c2092b97048273cad9",
+      "stdout_lines": 11,
+      "stderr_excerpt": "",
+      "seconds": 0.1752,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c=0.10 mol/L; T=298 K; yield=82%; batch=A"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.combine",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "combine",
+        "--tag",
+        "constraint",
+        "--tag2",
+        "method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "# 交叉组合：constraint × method（1对）\n\n## c001 × c002\n- A标题：化学约束\n- A短板：独立批次\n- B标题：化学方法\n- B短板：独立批次\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。",
+      "stdout_sha256": "1b11e04d05c8f4937c597719187718a2ea34dad7e20b34007e91c57d321c9682",
+      "stdout_lines": 9,
+      "stderr_excerpt": "",
+      "seconds": 0.1863,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "## c001 × c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.duplicate",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "add",
+        "--title",
+        "化学约束",
+        "--problem",
+        "c=0.10 mol/L; T=298 K; yield=82%; batch=A",
+        "--gap",
+        "独立批次",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "chemistry,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 2,
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_lines": 0,
+      "stderr_excerpt": "[错误] 内容与c001重复；若确需保留副本，请使用--allow-duplicate",
+      "seconds": 0.1778,
+      "expected": {
+        "exit_code": 2,
+        "stderr_contains": [
+          "重复"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.weekly1",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry-weekly-1.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry-weekly-1.md",
+      "stdout_sha256": "26e98908d97c964a6aa1da0865b40056328013b0abfe079a31088aa12242251e",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1841,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.weekly2",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry-weekly-2.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry-weekly-2.md",
+      "stdout_sha256": "57c3cc6a1f930b949e2c89e77178145b4bfbbd9a1ff58ba536db45e114824231",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1835,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.weekly3",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry-weekly-3.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\chemistry-weekly-3.md",
+      "stdout_sha256": "b1031d84db5bf0a9eb5445a74e39992d32596cc1f346d2e206803b94d7e37811",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1767,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "chemistry.repeat_consistency",
+      "command_argv": [],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": null,
+      "stdout_excerpt": "normalized hashes: [\"f2e2de12aa6bd3b33323fa52a8d05861b67f0419fef495528cc33fc8284fdcbc\", \"f2e2de12aa6bd3b33323fa52a8d05861b67f0419fef495528cc33fc8284fdcbc\", \"f2e2de12aa6bd3b33323fa52a8d05861b67f0419fef495528cc33fc8284fdcbc\"]",
+      "stdout_sha256": "320caa93afde3e0822fccd7eadfcdc4f0165b7679e872ad223879ff55e2fc05d",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.0,
+      "expected": {
+        "weeks_equal": true,
+        "sections": [
+          "按方向分布",
+          "待补充"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.add.constraint",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "add",
+        "--title",
+        "生物约束",
+        "--problem",
+        "n_bio=3; n_tech=2; ΔCt=-1.2; gene=TP53",
+        "--gap",
+        "生物重复",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "biology,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c001  生物约束",
+      "stdout_sha256": "6e8e440cdee5bf394c8d857bd1feddc948d312f38838ead5ddbc9fb26dfcdd46",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.2018,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c001"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.add.method",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "add",
+        "--title",
+        "生物方法",
+        "--problem",
+        "method baseline for biology",
+        "--gap",
+        "生物重复",
+        "--tags",
+        "biology,method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c002  生物方法",
+      "stdout_sha256": "13e783f9f017b3d3b0b2a4a4a523bb40944280e231adddc4d28ea2f95f4b2c62",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.2125,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.add.extras",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "add",
+        "--title",
+        "生物元数据",
+        "--problem",
+        "metadata probe for biology",
+        "--tags",
+        "biology,extras",
+        "--set-extra",
+        "重复=3 生物学 + 2 技术",
+        "--set-extra",
+        "批次=2",
+        "--set-extra",
+        "仪器=qPCR"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c003  生物元数据\n[已保留自定义字段] 重复、批次、仪器",
+      "stdout_sha256": "e5c216771d0f44a5a00e9e4d8c7874934f0452566f4eab956f750a795316ae0d",
+      "stdout_lines": 2,
+      "stderr_excerpt": "",
+      "seconds": 0.2109,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c003",
+          "[已保留自定义字段]"
+        ],
+        "stderr_not_contains": [
+          "Traceback"
+        ],
+        "db_field.扩展.重复": "3 生物学 + 2 技术",
+        "db_field.扩展.批次": "2",
+        "db_field.扩展.仪器": "qPCR"
+      },
+      "passed": true,
+      "notes": [],
+      "actual_extra": {
+        "重复": "3 生物学 + 2 技术",
+        "批次": "2",
+        "仪器": "qPCR"
+      }
+    },
+    {
+      "case": "biology.search",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "search",
+        "生物重复"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 生物约束\n  来源: synthetic fixture; not real evidence\n  问题: n_bio=3; n_tech=2; ΔCt=-1.2; gene=TP53\n  现有做法: —\n  短板: 生物重复\n  可延伸方向: —\n  一句话: —\n  标签: biology, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n\nc002 [未评级] 生物方法\n  来源: —\n  问题: method baseline for biology\n  现有做法: —\n  短板: 生物重复\n  可延伸方向: —\n  一句话: —\n  标签: biology, method\n  风险: —\n  最小验证: —\n",
+      "stdout_sha256": "3626e3ea8f615628688e0b4e984e1bc9b7eeffacfa1e608f331821457730bbc0",
+      "stdout_lines": 22,
+      "stderr_excerpt": "",
+      "seconds": 0.1771,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c001",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.show",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "show",
+        "c001"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 生物约束\n  来源: synthetic fixture; not real evidence\n  问题: n_bio=3; n_tech=2; ΔCt=-1.2; gene=TP53\n  现有做法: —\n  短板: 生物重复\n  可延伸方向: —\n  一句话: —\n  标签: biology, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n",
+      "stdout_sha256": "f579d18f60e93d1ba57fb82fb12cb2f970e62e0ac8f4f871884bf22a25e4e3c8",
+      "stdout_lines": 11,
+      "stderr_excerpt": "",
+      "seconds": 0.1798,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "n_bio=3; n_tech=2; ΔCt=-1.2; gene=TP53"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.combine",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "combine",
+        "--tag",
+        "constraint",
+        "--tag2",
+        "method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "# 交叉组合：constraint × method（1对）\n\n## c001 × c002\n- A标题：生物约束\n- A短板：生物重复\n- B标题：生物方法\n- B短板：生物重复\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。",
+      "stdout_sha256": "fccacf711425118d249c3329cdc0f08f200d5fd963546811b3bdce93a82643cd",
+      "stdout_lines": 9,
+      "stderr_excerpt": "",
+      "seconds": 0.188,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "## c001 × c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.duplicate",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "add",
+        "--title",
+        "生物约束",
+        "--problem",
+        "n_bio=3; n_tech=2; ΔCt=-1.2; gene=TP53",
+        "--gap",
+        "生物重复",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "biology,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 2,
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_lines": 0,
+      "stderr_excerpt": "[错误] 内容与c001重复；若确需保留副本，请使用--allow-duplicate",
+      "seconds": 0.1814,
+      "expected": {
+        "exit_code": 2,
+        "stderr_contains": [
+          "重复"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.weekly1",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology-weekly-1.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology-weekly-1.md",
+      "stdout_sha256": "eac883c1ba1d0bbd23655ba4eef39050e18abc522d07d0ecc75733bd59f1f17f",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1872,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.weekly2",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology-weekly-2.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology-weekly-2.md",
+      "stdout_sha256": "2cacf3c86ab64b2a798454d1c2eb7416688350c3811c20777a4ca567e20b2431",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1822,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.weekly3",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology-weekly-3.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\biology-weekly-3.md",
+      "stdout_sha256": "deef08fb47e073d720e54ccd88e1970bc8f0e4ee0815f1604ef26d713e7af7a2",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1836,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "biology.repeat_consistency",
+      "command_argv": [],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": null,
+      "stdout_excerpt": "normalized hashes: [\"a53bc5ab22b9fc1814503757fe1d59c9739ed9dfbd8157266cd93746a62d7f11\", \"a53bc5ab22b9fc1814503757fe1d59c9739ed9dfbd8157266cd93746a62d7f11\", \"a53bc5ab22b9fc1814503757fe1d59c9739ed9dfbd8157266cd93746a62d7f11\"]",
+      "stdout_sha256": "e2c2968fb2a44c31c6cf35efe1ede9079e2b8b538f786b173d6b048f553d926b",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.0,
+      "expected": {
+        "weeks_equal": true,
+        "sections": [
+          "按方向分布",
+          "待补充"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.add.constraint",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "add",
+        "--title",
+        "医学约束",
+        "--problem",
+        "synthetic only; AUC=0.81; 95% CI=[0.72,0.90]; t0=admission",
+        "--gap",
+        "时间外验证",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "medicine,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c001  医学约束",
+      "stdout_sha256": "384dd8e245efc96e2e0115fb17c124b76283afd08ce914b5c25bf09e4ee972b9",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1802,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c001"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.add.method",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "add",
+        "--title",
+        "医学方法",
+        "--problem",
+        "method baseline for medicine",
+        "--gap",
+        "时间外验证",
+        "--tags",
+        "medicine,method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c002  医学方法",
+      "stdout_sha256": "d4adee61c14b4a4ba9f0ce6895ab751287a68be4f1a85c157fdcc2474bb81790",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.2121,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.add.extras",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "add",
+        "--title",
+        "医学元数据",
+        "--problem",
+        "metadata probe for medicine",
+        "--tags",
+        "medicine,extras",
+        "--set-extra",
+        "单位=ng/mL",
+        "--set-extra",
+        "仪器=化学发光",
+        "--set-extra",
+        "重复=双孔均值"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c003  医学元数据\n[已保留自定义字段] 单位、仪器、重复",
+      "stdout_sha256": "82235c2ff8aeec30529ccb9a98f688b9ff0f74f644ef59634a40ff5ffc51cad2",
+      "stdout_lines": 2,
+      "stderr_excerpt": "",
+      "seconds": 0.2132,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c003",
+          "[已保留自定义字段]"
+        ],
+        "stderr_not_contains": [
+          "Traceback"
+        ],
+        "db_field.扩展.单位": "ng/mL",
+        "db_field.扩展.仪器": "化学发光",
+        "db_field.扩展.重复": "双孔均值"
+      },
+      "passed": true,
+      "notes": [],
+      "actual_extra": {
+        "单位": "ng/mL",
+        "仪器": "化学发光",
+        "重复": "双孔均值"
+      }
+    },
+    {
+      "case": "medicine.search",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "search",
+        "时间外验证"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 医学约束\n  来源: synthetic fixture; not real evidence\n  问题: synthetic only; AUC=0.81; 95% CI=[0.72,0.90]; t0=admission\n  现有做法: —\n  短板: 时间外验证\n  可延伸方向: —\n  一句话: —\n  标签: medicine, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n\nc002 [未评级] 医学方法\n  来源: —\n  问题: method baseline for medicine\n  现有做法: —\n  短板: 时间外验证\n  可延伸方向: —\n  一句话: —\n  标签: medicine, method\n  风险: —\n  最小验证: —\n",
+      "stdout_sha256": "527b73ee9b4001dcd7cdb91515ebc39ce76643476c0dcc863b842ab899d8be2f",
+      "stdout_lines": 22,
+      "stderr_excerpt": "",
+      "seconds": 0.1845,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c001",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.show",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "show",
+        "c001"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 医学约束\n  来源: synthetic fixture; not real evidence\n  问题: synthetic only; AUC=0.81; 95% CI=[0.72,0.90]; t0=admission\n  现有做法: —\n  短板: 时间外验证\n  可延伸方向: —\n  一句话: —\n  标签: medicine, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n",
+      "stdout_sha256": "26d5dd03691f96e45f6f8313e2a6e27a6051ccbfb1aecf0d7d5e2a16aa5f3c00",
+      "stdout_lines": 11,
+      "stderr_excerpt": "",
+      "seconds": 0.1816,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "synthetic only; AUC=0.81; 95% CI=[0.72,0.90]; t0=admission"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.combine",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "combine",
+        "--tag",
+        "constraint",
+        "--tag2",
+        "method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "# 交叉组合：constraint × method（1对）\n\n## c001 × c002\n- A标题：医学约束\n- A短板：时间外验证\n- B标题：医学方法\n- B短板：时间外验证\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。",
+      "stdout_sha256": "6935dabcb8159689f7651e33f265f37202b011283e1257bb82647bb34815f7d5",
+      "stdout_lines": 9,
+      "stderr_excerpt": "",
+      "seconds": 0.1852,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "## c001 × c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.duplicate",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "add",
+        "--title",
+        "医学约束",
+        "--problem",
+        "synthetic only; AUC=0.81; 95% CI=[0.72,0.90]; t0=admission",
+        "--gap",
+        "时间外验证",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "medicine,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 2,
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_lines": 0,
+      "stderr_excerpt": "[错误] 内容与c001重复；若确需保留副本，请使用--allow-duplicate",
+      "seconds": 0.1933,
+      "expected": {
+        "exit_code": 2,
+        "stderr_contains": [
+          "重复"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.weekly1",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine-weekly-1.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine-weekly-1.md",
+      "stdout_sha256": "a4da8f982dee4a14357c89465fdf92c80471451fd95e9a43fe1d4b52473bb9b1",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1887,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.weekly2",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine-weekly-2.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine-weekly-2.md",
+      "stdout_sha256": "c7f3bf41073b79e8732859a2f06350b61b70f1ff0b91c1bdf2313ab8f3b685a9",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.2287,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.weekly3",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine-weekly-3.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\medicine-weekly-3.md",
+      "stdout_sha256": "f3d7c797eb2cd96588bfe4bf0206ac097969770291ecc0d86c3ab2ef63296b1b",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1895,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "medicine.repeat_consistency",
+      "command_argv": [],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": null,
+      "stdout_excerpt": "normalized hashes: [\"be54e699bf49451ae697c5419a3553a7bb4d835444336e67ff84d7b67d958f6a\", \"be54e699bf49451ae697c5419a3553a7bb4d835444336e67ff84d7b67d958f6a\", \"be54e699bf49451ae697c5419a3553a7bb4d835444336e67ff84d7b67d958f6a\"]",
+      "stdout_sha256": "a8f8065e82b24fe6cf2210cade14bc90e1f535d10c71f7720f06fef271a55d0a",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.0,
+      "expected": {
+        "weeks_equal": true,
+        "sections": [
+          "按方向分布",
+          "待补充"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.add.constraint",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "add",
+        "--title",
+        "机械约束",
+        "--problem",
+        "σ=120 MPa; δ=0.20 mm; mass=0.50 kg; mesh=1 mm",
+        "--gap",
+        "网格收敛",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "mechanical,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c001  机械约束",
+      "stdout_sha256": "05c73bfb470dc12abef388af5271be75e6ce50a088869e5859fdbe416113b2b0",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1927,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c001"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.add.method",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "add",
+        "--title",
+        "机械方法",
+        "--problem",
+        "method baseline for mechanical",
+        "--gap",
+        "网格收敛",
+        "--tags",
+        "mechanical,method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c002  机械方法",
+      "stdout_sha256": "9f3df401c4cee99b1f789100d58c67724b608b3885bc79737a32338e31aa02e9",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.2211,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.add.extras",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "add",
+        "--title",
+        "机械元数据",
+        "--problem",
+        "metadata probe for mechanical",
+        "--tags",
+        "mechanical,extras",
+        "--set-extra",
+        "单位=MPa/mm",
+        "--set-extra",
+        "重复=3 根试样",
+        "--set-extra",
+        "仪器=万能试验机"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c003  机械元数据\n[已保留自定义字段] 单位、重复、仪器",
+      "stdout_sha256": "f3e215116b5619f602008b259e6133eeeafb1dc2e8f7f42ec4f8d9cbe2491f70",
+      "stdout_lines": 2,
+      "stderr_excerpt": "",
+      "seconds": 0.2106,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c003",
+          "[已保留自定义字段]"
+        ],
+        "stderr_not_contains": [
+          "Traceback"
+        ],
+        "db_field.扩展.单位": "MPa/mm",
+        "db_field.扩展.重复": "3 根试样",
+        "db_field.扩展.仪器": "万能试验机"
+      },
+      "passed": true,
+      "notes": [],
+      "actual_extra": {
+        "单位": "MPa/mm",
+        "重复": "3 根试样",
+        "仪器": "万能试验机"
+      }
+    },
+    {
+      "case": "mechanical.search",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "search",
+        "网格收敛"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 机械约束\n  来源: synthetic fixture; not real evidence\n  问题: σ=120 MPa; δ=0.20 mm; mass=0.50 kg; mesh=1 mm\n  现有做法: —\n  短板: 网格收敛\n  可延伸方向: —\n  一句话: —\n  标签: mechanical, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n\nc002 [未评级] 机械方法\n  来源: —\n  问题: method baseline for mechanical\n  现有做法: —\n  短板: 网格收敛\n  可延伸方向: —\n  一句话: —\n  标签: mechanical, method\n  风险: —\n  最小验证: —\n",
+      "stdout_sha256": "029e7a1904f3d41e820e3b2a2ac1729ae942c6604eb22acc482c5ba8b8b9f6b4",
+      "stdout_lines": 22,
+      "stderr_excerpt": "",
+      "seconds": 0.1851,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c001",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.show",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "show",
+        "c001"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 机械约束\n  来源: synthetic fixture; not real evidence\n  问题: σ=120 MPa; δ=0.20 mm; mass=0.50 kg; mesh=1 mm\n  现有做法: —\n  短板: 网格收敛\n  可延伸方向: —\n  一句话: —\n  标签: mechanical, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n",
+      "stdout_sha256": "777d7d4236ef90f06f359f49a658c32991edbbfe499f9db8b96ee98cc1694e45",
+      "stdout_lines": 11,
+      "stderr_excerpt": "",
+      "seconds": 0.1804,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "σ=120 MPa; δ=0.20 mm; mass=0.50 kg; mesh=1 mm"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.combine",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "combine",
+        "--tag",
+        "constraint",
+        "--tag2",
+        "method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "# 交叉组合：constraint × method（1对）\n\n## c001 × c002\n- A标题：机械约束\n- A短板：网格收敛\n- B标题：机械方法\n- B短板：网格收敛\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。",
+      "stdout_sha256": "feab3268fd17d83c94ec1d91e46de49640c0cbe9c718ca7323464e712a2085aa",
+      "stdout_lines": 9,
+      "stderr_excerpt": "",
+      "seconds": 0.1788,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "## c001 × c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.duplicate",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "add",
+        "--title",
+        "机械约束",
+        "--problem",
+        "σ=120 MPa; δ=0.20 mm; mass=0.50 kg; mesh=1 mm",
+        "--gap",
+        "网格收敛",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "mechanical,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 2,
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_lines": 0,
+      "stderr_excerpt": "[错误] 内容与c001重复；若确需保留副本，请使用--allow-duplicate",
+      "seconds": 0.1803,
+      "expected": {
+        "exit_code": 2,
+        "stderr_contains": [
+          "重复"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.weekly1",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical-weekly-1.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical-weekly-1.md",
+      "stdout_sha256": "5b8f59d83c0ad30d4d6302742df9c9ee981679bb7a90b4f523f0fabdfcabd2d5",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1831,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.weekly2",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical-weekly-2.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical-weekly-2.md",
+      "stdout_sha256": "b13ce0c40cb059542baebb33524e383306bc28431ba55ce5136ecd15fc99dd9e",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1766,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.weekly3",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical-weekly-3.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\mechanical-weekly-3.md",
+      "stdout_sha256": "b24b5b2e8555a8abcc8b0bb5eae317f0ff51b84daf062788eeb5adfe264a6532",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1786,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "mechanical.repeat_consistency",
+      "command_argv": [],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": null,
+      "stdout_excerpt": "normalized hashes: [\"f66ede7fbd190bb018669b6c4f977e7175fc030f38839e810d4c3fc48d3ca4b6\", \"f66ede7fbd190bb018669b6c4f977e7175fc030f38839e810d4c3fc48d3ca4b6\", \"f66ede7fbd190bb018669b6c4f977e7175fc030f38839e810d4c3fc48d3ca4b6\"]",
+      "stdout_sha256": "0dca98cd390e9b573997f29efcd6bb85a64cbf1ca89b77eeb005b623d1ef1d7c",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.0,
+      "expected": {
+        "weeks_equal": true,
+        "sections": [
+          "按方向分布",
+          "待补充"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.add.constraint",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "add",
+        "--title",
+        "能源约束",
+        "--problem",
+        "η=0.82; E=10 kWh; boundary=system; SOC0=SOC1",
+        "--gap",
+        "系统边界",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "energy,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c001  能源约束",
+      "stdout_sha256": "7d6104e7d48eadf7d917943adaea1e89c7d7222443ded3c1bf7f44ae68254d66",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1878,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c001"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.add.method",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "add",
+        "--title",
+        "能源方法",
+        "--problem",
+        "method baseline for energy",
+        "--gap",
+        "系统边界",
+        "--tags",
+        "energy,method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c002  能源方法",
+      "stdout_sha256": "8915385d9ac1b56b102677f35c560e56263ad4831de3b0d021835edb2b49341e",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.2142,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.add.extras",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "add",
+        "--title",
+        "能源元数据",
+        "--problem",
+        "metadata probe for energy",
+        "--tags",
+        "energy,extras",
+        "--set-extra",
+        "功能单位=1 t 产品",
+        "--set-extra",
+        "边界=使用阶段",
+        "--set-extra",
+        "时间跨度=1 年"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c003  能源元数据\n[已保留自定义字段] 功能单位、边界、时间跨度",
+      "stdout_sha256": "c91679ee41a547d130a2a819e84ba799d78ab5728b8f97bb073908b521ad5925",
+      "stdout_lines": 2,
+      "stderr_excerpt": "",
+      "seconds": 0.2083,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c003",
+          "[已保留自定义字段]"
+        ],
+        "stderr_not_contains": [
+          "Traceback"
+        ],
+        "db_field.扩展.功能单位": "1 t 产品",
+        "db_field.扩展.边界": "使用阶段",
+        "db_field.扩展.时间跨度": "1 年"
+      },
+      "passed": true,
+      "notes": [],
+      "actual_extra": {
+        "功能单位": "1 t 产品",
+        "边界": "使用阶段",
+        "时间跨度": "1 年"
+      }
+    },
+    {
+      "case": "energy.search",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "search",
+        "系统边界"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 能源约束\n  来源: synthetic fixture; not real evidence\n  问题: η=0.82; E=10 kWh; boundary=system; SOC0=SOC1\n  现有做法: —\n  短板: 系统边界\n  可延伸方向: —\n  一句话: —\n  标签: energy, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n\nc002 [未评级] 能源方法\n  来源: —\n  问题: method baseline for energy\n  现有做法: —\n  短板: 系统边界\n  可延伸方向: —\n  一句话: —\n  标签: energy, method\n  风险: —\n  最小验证: —\n",
+      "stdout_sha256": "d0f392c975460a19ae7fdf298bbd9ab0af97b5d78af4ba62f91d4f03ec1c9485",
+      "stdout_lines": 22,
+      "stderr_excerpt": "",
+      "seconds": 0.176,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c001",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.show",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "show",
+        "c001"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 能源约束\n  来源: synthetic fixture; not real evidence\n  问题: η=0.82; E=10 kWh; boundary=system; SOC0=SOC1\n  现有做法: —\n  短板: 系统边界\n  可延伸方向: —\n  一句话: —\n  标签: energy, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n",
+      "stdout_sha256": "d13e67ae355e16f9a96fe5b16acf8be1f3602535d74554d74f357f217148d5f8",
+      "stdout_lines": 11,
+      "stderr_excerpt": "",
+      "seconds": 0.1754,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "η=0.82; E=10 kWh; boundary=system; SOC0=SOC1"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.combine",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "combine",
+        "--tag",
+        "constraint",
+        "--tag2",
+        "method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "# 交叉组合：constraint × method（1对）\n\n## c001 × c002\n- A标题：能源约束\n- A短板：系统边界\n- B标题：能源方法\n- B短板：系统边界\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。",
+      "stdout_sha256": "fd0b3efa56d51a84d105038692967d20b7794c8c7f274cecbd06ab29313161ad",
+      "stdout_lines": 9,
+      "stderr_excerpt": "",
+      "seconds": 0.1822,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "## c001 × c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.duplicate",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "add",
+        "--title",
+        "能源约束",
+        "--problem",
+        "η=0.82; E=10 kWh; boundary=system; SOC0=SOC1",
+        "--gap",
+        "系统边界",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "energy,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 2,
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_lines": 0,
+      "stderr_excerpt": "[错误] 内容与c001重复；若确需保留副本，请使用--allow-duplicate",
+      "seconds": 0.1783,
+      "expected": {
+        "exit_code": 2,
+        "stderr_contains": [
+          "重复"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.weekly1",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy-weekly-1.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy-weekly-1.md",
+      "stdout_sha256": "d10eff6fe36ae9b60845df2a92301262498694e4334354e44ff3286f0d385a0d",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1845,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.weekly2",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy-weekly-2.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy-weekly-2.md",
+      "stdout_sha256": "11818f37df310908a5db7c563f4d52aa5b9713bf8de2cded65748eeb24468bed",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1725,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.weekly3",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy-weekly-3.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\energy-weekly-3.md",
+      "stdout_sha256": "b74d1f42fef1975966fc5b095a3e01bc54fe0184f7966feca6d1e253a7871b98",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1879,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "energy.repeat_consistency",
+      "command_argv": [],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": null,
+      "stdout_excerpt": "normalized hashes: [\"0467ba77ed59dc04cb3b88972499358887c24f1dac35ff5037b4f77001b34fd6\", \"0467ba77ed59dc04cb3b88972499358887c24f1dac35ff5037b4f77001b34fd6\", \"0467ba77ed59dc04cb3b88972499358887c24f1dac35ff5037b4f77001b34fd6\"]",
+      "stdout_sha256": "2411b80ab0b2b3e493e85d99632ba535e4df00c0d8b0f288f7de0f7238d842b4",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.0,
+      "expected": {
+        "weeks_equal": true,
+        "sections": [
+          "按方向分布",
+          "待补充"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.add.constraint",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "add",
+        "--title",
+        "电子信息约束",
+        "--problem",
+        "SNR=10 dB; fs=20 MHz; BW=5 MHz; BER=1e-3",
+        "--gap",
+        "采样条件",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "electronics,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c001  电子信息约束",
+      "stdout_sha256": "891ed0ff5c0b51d5050a2898bfbf8a14de57e783fc7e96c97a03faa2eaad1973",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.185,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c001"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.add.method",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "add",
+        "--title",
+        "电子信息方法",
+        "--problem",
+        "method baseline for electronics",
+        "--gap",
+        "采样条件",
+        "--tags",
+        "electronics,method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c002  电子信息方法",
+      "stdout_sha256": "ab6b1ed0d92b2ad65ae70e16308699da486c675b0a2eac5f940aed125efe79da",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.2116,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已添加]",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.add.extras",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "add",
+        "--title",
+        "电子信息元数据",
+        "--problem",
+        "metadata probe for electronics",
+        "--tags",
+        "electronics,extras",
+        "--set-extra",
+        "单位=bit; dBFS",
+        "--set-extra",
+        "重复=5 次上电",
+        "--set-extra",
+        "仪器=示波器 1 GHz"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已添加] c003  电子信息元数据\n[已保留自定义字段] 单位、重复、仪器",
+      "stdout_sha256": "c53dd2b332768e0a22bc9538ff3cfd3315929ea02122c39f858f78959c2c77c4",
+      "stdout_lines": 2,
+      "stderr_excerpt": "",
+      "seconds": 0.2118,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c003",
+          "[已保留自定义字段]"
+        ],
+        "stderr_not_contains": [
+          "Traceback"
+        ],
+        "db_field.扩展.单位": "bit; dBFS",
+        "db_field.扩展.重复": "5 次上电",
+        "db_field.扩展.仪器": "示波器 1 GHz"
+      },
+      "passed": true,
+      "notes": [],
+      "actual_extra": {
+        "单位": "bit; dBFS",
+        "重复": "5 次上电",
+        "仪器": "示波器 1 GHz"
+      }
+    },
+    {
+      "case": "electronics.search",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "search",
+        "采样条件"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 电子信息约束\n  来源: synthetic fixture; not real evidence\n  问题: SNR=10 dB; fs=20 MHz; BW=5 MHz; BER=1e-3\n  现有做法: —\n  短板: 采样条件\n  可延伸方向: —\n  一句话: —\n  标签: electronics, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n\nc002 [未评级] 电子信息方法\n  来源: —\n  问题: method baseline for electronics\n  现有做法: —\n  短板: 采样条件\n  可延伸方向: —\n  一句话: —\n  标签: electronics, method\n  风险: —\n  最小验证: —\n",
+      "stdout_sha256": "c08cc836e7fd4574b14dda23a4353526c84c3806376fef72ad09ff5366cfd8b7",
+      "stdout_lines": 22,
+      "stderr_excerpt": "",
+      "seconds": 0.1898,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "c001",
+          "c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.show",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "show",
+        "c001"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "c001 [未评级] 电子信息约束\n  来源: synthetic fixture; not real evidence\n  问题: SNR=10 dB; fs=20 MHz; BW=5 MHz; BER=1e-3\n  现有做法: —\n  短板: 采样条件\n  可延伸方向: —\n  一句话: —\n  标签: electronics, constraint\n  风险: —\n  最小验证: units retained; expert review pending\n",
+      "stdout_sha256": "77643ce1781c188e055e5d2d8eeff44a3bce7edfc5f3c143e0b0d2c8e14ef06c",
+      "stdout_lines": 11,
+      "stderr_excerpt": "",
+      "seconds": 0.175,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "SNR=10 dB; fs=20 MHz; BW=5 MHz; BER=1e-3"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.combine",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "combine",
+        "--tag",
+        "constraint",
+        "--tag2",
+        "method"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "# 交叉组合：constraint × method（1对）\n\n## c001 × c002\n- A标题：电子信息约束\n- A短板：采样条件\n- B标题：电子信息方法\n- B短板：采样条件\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。",
+      "stdout_sha256": "ebf57183905bc140a3ce095f405a64c8436c0381de787e719fd30523b41382a6",
+      "stdout_lines": 9,
+      "stderr_excerpt": "",
+      "seconds": 0.1752,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "## c001 × c002"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.duplicate",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\idea_card.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "add",
+        "--title",
+        "电子信息约束",
+        "--problem",
+        "SNR=10 dB; fs=20 MHz; BW=5 MHz; BER=1e-3",
+        "--gap",
+        "采样条件",
+        "--source",
+        "synthetic fixture; not real evidence",
+        "--validation",
+        "units retained; expert review pending",
+        "--tags",
+        "electronics,constraint"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 2,
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_lines": 0,
+      "stderr_excerpt": "[错误] 内容与c001重复；若确需保留副本，请使用--allow-duplicate",
+      "seconds": 0.1762,
+      "expected": {
+        "exit_code": 2,
+        "stderr_contains": [
+          "重复"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.weekly1",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics-weekly-1.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics-weekly-1.md",
+      "stdout_sha256": "35470f20f3d6b5983b958d675cd452fb7f58ecaf3e8429444ff8625cdad03e19",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1851,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.weekly2",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics-weekly-2.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics-weekly-2.md",
+      "stdout_sha256": "ec64c377b059a04f730fa19a14d88072032d4fad771b5b3b124886e8cd6e638c",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1833,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.weekly3",
+      "command_argv": [
+        "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\scripts\\report_render.py",
+        "--db",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics.json",
+        "--weekly",
+        "--out",
+        "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics-weekly-3.md",
+        "--force"
+      ],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": 0,
+      "stdout_excerpt": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3\\evaluation-stem-v3\\temp-data\\run1\\electronics-weekly-3.md",
+      "stdout_sha256": "9c87fb7c5104e64a761fb17f2f39af0eacf2a931e9434ee7c4428c88ea68c1f5",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.1772,
+      "expected": {
+        "exit_code": 0,
+        "stdout_contains": [
+          "[已生成]"
+        ],
+        "db_unchanged": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "case": "electronics.repeat_consistency",
+      "command_argv": [],
+      "cwd": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v3",
+      "exit_code": null,
+      "stdout_excerpt": "normalized hashes: [\"cdabb771d5c4ff44a574a86a6e18175caeeeda7b8a7025aa1e47b9086f74989a\", \"cdabb771d5c4ff44a574a86a6e18175caeeeda7b8a7025aa1e47b9086f74989a\", \"cdabb771d5c4ff44a574a86a6e18175caeeeda7b8a7025aa1e47b9086f74989a\"]",
+      "stdout_sha256": "3aedce75000507604d97009da9c5d2eeca516a13faaba200706319d650030fd9",
+      "stdout_lines": 1,
+      "stderr_excerpt": "",
+      "seconds": 0.0,
+      "expected": {
+        "weeks_equal": true,
+        "sections": [
+          "按方向分布",
+          "待补充"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    }
+  ]
+}
