@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """S2: build a library containing five contradictory pairs and see if the tool reports any conflict."""
 from __future__ import annotations
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -19,7 +20,11 @@ MONTHS = ["2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "202
 
 
 def main() -> int:
-    source = C.DEFAULT_SOURCE
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--source-root", default=str(C.DEFAULT_SOURCE))
+    ap.add_argument("--out", default=str(C.EVAL_DIR / "results" / "conflict.json"))
+    args = ap.parse_args()
+    source = Path(args.source_root).resolve()
     work = C.TEMP / "conflict"
     work.mkdir(parents=True, exist_ok=True)
     db = work / "cards.json"
@@ -79,7 +84,7 @@ def main() -> int:
         "verdict": "tool_has_conflict_awareness" if total else "tool_reports_no_conflict",
         "outputs_excerpt": {k: v.strip()[:500] for k, v in outputs.items()},
     }
-    C.write_json(C.EVAL_DIR / "results" / "conflict.json", payload)
+    C.write_json(Path(args.out), payload)
     print(json.dumps({"pairs": len(PAIRS), "marker_hits": hits, "verdict": payload["verdict"]}, ensure_ascii=False))
     return 0
 
