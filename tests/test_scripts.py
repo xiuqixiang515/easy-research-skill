@@ -297,4 +297,46 @@ class SkillScriptsTest(unittest.TestCase):
   self.assertIn('甲',out);self.assertNotIn('乙',out)
   p=self.run_cli(CARD,'list','--research-type','玄学',ok=False)
   self.assertIn('研究类型必须为',p.stderr)
+ def test_36_record_type_is_supported(self):
+  self.run_cli(CARD,'add','--title','记录','--problem','p','--research-type','记录')
+  self.assertIn('记录：1',self.run_cli(CARD,'stats').stdout)
+  self.assertIn('c001',self.run_cli(CARD,'list','--research-type','记录').stdout)
+ def test_37_valid_units_are_accepted(self):
+  for i,unit in enumerate(['mol/L','MPa/mm','dBFS','bit; dBFS']):
+   self.run_cli(CARD,'add','--title',f'u{i}','--problem','p','--set-extra',f'单位={unit}')
+  self.assertIn('卡片总数：4',self.run_cli(CARD,'stats').stdout)
+ def test_38_chinese_unit_is_rejected(self):
+  p=self.run_cli(CARD,'add','--title','x','--problem','p','--set-extra','单位=个/批',ok=False)
+  self.assertIn('单位不应包含中文',p.stderr)
+  self.assertFalse(self.db.exists())
+ def test_39_unparsable_unit_is_rejected(self):
+  p=self.run_cli(CARD,'add','--title','x','--problem','p','--set-extra','单位=about 3 grams',ok=False)
+  self.assertIn('单位格式无法识别',p.stderr)
+  self.assertFalse(self.db.exists())
+ def test_40_bad_unit_update_rolls_back(self):
+  self.run_cli(CARD,'add','--title','ok','--problem','p','--set-extra','单位=mol/L')
+  p=self.run_cli(CARD,'update','c001','--set-extra','单位=个/批',ok=False)
+  self.assertIn('单位不应包含中文',p.stderr)
+  self.assertEqual(self.cards()[0]['扩展']['单位'],'mol/L')
+ def test_36_record_type_is_supported(self):
+  self.run_cli(CARD,'add','--title','记录','--problem','p','--research-type','记录')
+  self.assertIn('记录：1',self.run_cli(CARD,'stats').stdout)
+  self.assertIn('c001',self.run_cli(CARD,'list','--research-type','记录').stdout)
+ def test_37_valid_units_are_accepted(self):
+  for i,unit in enumerate(['mol/L','MPa/mm','dBFS','bit; dBFS']):
+   self.run_cli(CARD,'add','--title',f'u{i}','--problem','p','--set-extra',f'单位={unit}')
+  self.assertIn('卡片总数：4',self.run_cli(CARD,'stats').stdout)
+ def test_38_chinese_unit_is_rejected(self):
+  p=self.run_cli(CARD,'add','--title','x','--problem','p','--set-extra','单位=个/批',ok=False)
+  self.assertIn('单位不应包含中文',p.stderr)
+  self.assertFalse(self.db.exists())
+ def test_39_unparsable_unit_is_rejected(self):
+  p=self.run_cli(CARD,'add','--title','x','--problem','p','--set-extra','单位=about 3 grams',ok=False)
+  self.assertIn('单位格式无法识别',p.stderr)
+  self.assertFalse(self.db.exists())
+ def test_40_bad_unit_update_rolls_back(self):
+  self.run_cli(CARD,'add','--title','ok','--problem','p','--set-extra','单位=mol/L')
+  p=self.run_cli(CARD,'update','c001','--set-extra','单位=个/批',ok=False)
+  self.assertIn('单位不应包含中文',p.stderr)
+  self.assertEqual(self.cards()[0]['扩展']['单位'],'mol/L')
 if __name__=='__main__':unittest.main(verbosity=2)
