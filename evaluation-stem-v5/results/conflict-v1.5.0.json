@@ -3,16 +3,16 @@
   "cards": 20,
   "contradictory_pairs": 5,
   "marker_hits": {
-    "冲突": 0,
+    "冲突": 1,
     "矛盾": 0,
     "不一致": 0,
     "抵触": 0,
-    "口径冲突": 0
+    "口径冲突": 1
   },
-  "total_marker_hits": 0,
-  "verdict": "tool_reports_no_conflict",
+  "total_marker_hits": 2,
+  "verdict": "tool_has_conflict_awareness",
   "outputs_excerpt": {
-    "weekly": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v5\\evaluation-stem-v5\\temp-data\\conflict\\w.md",
+    "weekly": "[已生成] C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v5\\evaluation-stem-v5\\temp-data\\conflict\\w.md\n# idea素材库周报（共20张）\n\n*生成时间：2026-10-25T14:17+08:00*\n\n## 按方向分布\n\n| 标签 | 卡片数 | 最近更新 |\n|---|---:|---|\n| conflict | 10 | 2026-07-05T09:00:00+08:00 |\n| neutral | 10 | 2026-09-12T09:00:00+08:00 |\n| synthetic | 10 | 2026-07-05T09:00:00+08:00 |\n\n## 高频短板（完全相同文本出现至少2次）\n\n| 短板 | 次数 | 卡片 |\n|---|---:|---|\n| 口径未统一 | 10 | c001, c002, c003, c004, c005, c006, c007, c008, c009, c010 |\n\n## 交叉组合线索（仅为待",
     "stats": "卡片总数：20\n按学科：\n  医学：6\n  能源：4\n按研究类型：\n  预测：6\n  核算：4\n按标签：\n  conflict：10\n  neutral：10\n  synthetic：10\n重复短板（按文本完全匹配）：\n  口径未统一：10",
     "list": "c001 [中] 同一栋楼的功能单位：kWh/m2/a\n  来源: synthetic conflict fixture\n  问题: 同一栋楼的功能单位（取值 kWh/m2/a）\n  现有做法: —\n  短板: 口径未统一\n  可延伸方向: —\n  一句话: —\n  标签: conflict, synthetic\n  风险: 中\n  最小验证: —\n  学科: 能源\n  研究类型: 核算\n  功能单位: kWh/m2/a\n\nc002 [中] 同一栋楼的功能单位：kWh/床/a\n  来源: synthetic conflict fixture\n  问题: 同一栋楼的功能单位（取值 kWh/床/a）\n  现有做法: —\n  短板: 口径未统一\n  可延伸方向: —\n  一句话: —\n  标签: conflict, synthetic\n  风险: 中\n  最小验证: —\n  学科: 能源\n  研究类型: 核算\n  功能单位: kWh/床/a\n\nc003 [中] 同一改造的边界：使用阶段\n  来源: synthetic conflict fixture\n  问题: 同一改造的边界（取值 使用阶",
     "combine": "# 交叉组合：conflict × neutral（100对）\n\n## c001 × c011\n- A标题：同一栋楼的功能单位：kWh/m2/a\n- A短板：口径未统一\n- B标题：中性记录 1\n- B短板：待补充\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。\n\n## c001 × c012\n- A标题：同一栋楼的功能单位：kWh/m2/a\n- A短板：口径未统一\n- B标题：中性记录 2\n- B短板：待补充\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。\n\n## c001 × c013\n- A标题：同一栋楼的功能单位：kWh/m2/a\n- A短板：口径未统一\n- B标题：中性记录 3\n- B短板：待补充\n- 组合问题：两项限制会不会在同一场景同时发生？\n- 待验证：说明合并后机制、差异及可推翻实验。\n\n## c001 × c014\n- A标题：同一栋楼的功能单位：kWh/m2/a\n- A短板：口径未统一\n- B标题：中性记录 4\n- B短板：待补充\n- 组合问题：两项限制会不会在同一"

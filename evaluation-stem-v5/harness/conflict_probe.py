@@ -71,6 +71,10 @@ def main() -> int:
     ]:
         obs = C.run_cmd(source, script, ["--db", str(db), *argv], guard)
         outputs[name] = obs["stdout"] + obs["stderr"]
+        if name == "weekly":
+            weekly_file = work / "w.md"
+            # 周报正文写在文件里，只看 stdout 会漏掉整份内容
+            outputs[name] += weekly_file.read_text(encoding="utf-8") if weekly_file.is_file() else ""
 
     markers = ["冲突", "矛盾", "不一致", "抵触", "口径冲突"]
     hits = {m: sum(out.count(m) for out in outputs.values()) for m in markers}
