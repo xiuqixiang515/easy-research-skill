@@ -14,6 +14,7 @@ from pathlib import Path
 
 DEFAULT_DB = Path(os.environ.get("EASY_RESEARCH_DB", Path.home() / ".easy-research" / "cards.json"))
 FIELDS = ["来源", "问题", "现有做法", "短板", "可延伸方向", "一句话", "标签", "风险", "最小验证"]
+EXTRA = "扩展"
 
 def split_tags(raw: str) -> list[str]:
     return list(dict.fromkeys(t.strip() for t in re.split(r"[,，、;；\s]+", raw or "") if t.strip()))
@@ -106,6 +107,35 @@ def cross_tag_suggestions(cards:list[dict],fingerprints:list[str])->list[tuple[s
         if found:suggestions.append((ta,tb,found[0],found[1]))
     return suggestions
 
+CONFLICT_KEYS=["功能单位","边界","t0","时间跨度","重复","判据","单位"]
+
+def conflict_rows(cards:list[dict], limit:int=200)->tuple:
+    """逐对比较同一学科、标签有交集、关键口径字段取值不同的卡片。返回 (rows, truncated)。"""
+    with_discipline=[c for c in cards if (c.get(EXTRA) or {}).get("学科")]
+    if len(with_discipline)<2: return [], False
+    index={}
+    for c in with_discipline:
+        for tag in split_tags(c.get("标签","")):
+            index.setdefault(tag,[]).append(c)
+    pairs=set()
+    for ids in index.values():
+        for a,b in itertools.combinations(ids,2):
+            pairs.add((a["id"],b["id"]) if a["id"]<b["id"] else (b["id"],a["id"]))
+    by_id={c["id"]:c for c in with_discipline}
+    rows=[]
+    for left_id,right_id in sorted(pairs):
+        left,right=by_id[left_id],by_id[right_id]
+        left_extra=left.get(EXTRA) or {}; right_extra=right.get(EXTRA) or {}
+        if left_extra.get("学科")!=right_extra.get("学科"): continue
+        shared=set(split_tags(left.get("标签",""))) & set(split_tags(right.get("标签","")))
+        for key in CONFLICT_KEYS:
+            va=(left_extra.get(key) or "").strip(); vb=(right_extra.get(key) or "").strip()
+            if not va or not vb or va==vb: continue
+            if len(rows)>=limit: return rows, True
+            rows.append({"学科":left_extra["学科"],"键":key,"卡片":f"{left_id} / {right_id}",
+                         "取值":f"{va} / {vb}","共同标签":"、".join(sorted(shared))})
+    return rows, False
+
 def weekly_report(cards:list[dict])->list[str]:
     fingerprints=[content_key(c) for c in cards]
     lines=[f"# idea素材库周报（共{len(cards)}张）","",f"*生成时间：{datetime.now().astimezone().isoformat(timespec='minutes')}*","","## 按方向分布","","| 标签 | 卡片数 | 最近更新 |","|---|---:|---|"]
@@ -147,6 +177,16 @@ def weekly_report(cards:list[dict])->list[str]:
         lines += ["", "发现疑似重复卡片：" + "; ".join(", ".join(ids) for ids in duplicate_groups) + "。请检查后人工更新或删除。"]
     else:
         lines += ["", "未发现内容完全相同的卡片。"]
+    conflicts, conflict_truncated=conflict_rows(cards)
+    lines += ["", "## 口径冲突（同一学科、标签有交集，仅提示并存，不判断对错）", ""]
+    if conflicts:
+        lines += ["| 学科 | 字段 | 涉及卡片 | 并存取值 | 共同标签 |", "|---|---|---|---|---|"]
+        for row in conflicts:
+            lines.append(f"| {table_cell(row['学科'])} | {table_cell(row['键'])} | {table_cell(row['卡片'])} | {table_cell(row['取值'])} | {table_cell(row['共同标签'])} |")
+        if conflict_truncated: lines.append("\n（已达 200 条上限，其余未列出）")
+        lines += ["", "以上为同一口径的两种写法，可能有一方已作废；请人工确认后再统一。"]
+    else:
+        lines.append("未发现并存口径。")
     lines += ["", "## 卡片一览", "", card_table(cards) if cards else "（素材库为空）"]
     return lines
 

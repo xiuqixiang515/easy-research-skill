@@ -357,4 +357,44 @@ class SkillScriptsTest(unittest.TestCase):
   text=out.read_text(encoding='utf8')
   self.assertIn('c002、c003',text)
   self.assertNotIn('c001、c002',text)
+ def test_42_conflicting_units_are_reported(self):
+  self.run_cli(CARD,'add','--title','楼A评估','--problem','p','--tags','楼A, 节能','--discipline','能源','--set-extra','功能单位=kWh/m2/a')
+  self.run_cli(CARD,'add','--title','楼A复核','--problem','q','--tags','楼A, 节能','--discipline','能源','--set-extra','功能单位=kWh/床/a')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('口径冲突',text)
+  self.assertIn('kWh/m2/a / kWh/床/a',text)
+ def test_43_same_values_are_not_reported(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--tags','楼A','--discipline','能源','--set-extra','功能单位=kWh/m2/a')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--tags','楼A','--discipline','能源','--set-extra','功能单位=kWh/m2/a')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  self.assertIn('未发现并存口径',out.read_text(encoding='utf8'))
+ def test_44_different_projects_are_not_paired(self):
+  self.run_cli(CARD,'add','--title','楼A','--problem','p','--tags','楼A','--discipline','能源','--set-extra','边界=使用阶段')
+  self.run_cli(CARD,'add','--title','楼B','--problem','q','--tags','楼B','--discipline','能源','--set-extra','边界=全生命周期')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  self.assertIn('未发现并存口径',out.read_text(encoding='utf8'))
+ def test_42_conflicting_units_are_reported(self):
+  self.run_cli(CARD,'add','--title','楼A评估','--problem','p','--tags','楼A, 节能','--discipline','能源','--set-extra','功能单位=kWh/m2/a')
+  self.run_cli(CARD,'add','--title','楼A复核','--problem','q','--tags','楼A, 节能','--discipline','能源','--set-extra','功能单位=kWh/床/a')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('口径冲突',text)
+  self.assertIn('kWh/m2/a / kWh/床/a',text)
+ def test_43_same_values_are_not_reported(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--tags','楼A','--discipline','能源','--set-extra','功能单位=kWh/m2/a')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--tags','楼A','--discipline','能源','--set-extra','功能单位=kWh/m2/a')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  self.assertIn('未发现并存口径',out.read_text(encoding='utf8'))
+ def test_44_different_projects_are_not_paired(self):
+  self.run_cli(CARD,'add','--title','楼A','--problem','p','--tags','楼A','--discipline','能源','--set-extra','边界=使用阶段')
+  self.run_cli(CARD,'add','--title','楼B','--problem','q','--tags','楼B','--discipline','能源','--set-extra','边界=全生命周期')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  self.assertIn('未发现并存口径',out.read_text(encoding='utf8'))
 if __name__=='__main__':unittest.main(verbosity=2)
