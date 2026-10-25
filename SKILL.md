@@ -32,7 +32,7 @@ description: 科研构思与论文拆解助手，支持选题生成、论文贡�
 | 能源 | references/disciplines/energy.md | 功能单位、边界、碳排、储能 |
 | 电子信息 | references/disciplines/electronics.md | 带宽、采样、信噪比、板级测量 |
 
-研究类型见 references/research-types.md（预测 / 因果 / 实验 / 仿真 / 理论 / 描述性 / 复现 / 工程验证），按其"必需槽位"补齐，按其"越界"检查结论。
+研究类型见 references/research-types.md（预测 / 因果 / 实验 / 仿真 / 理论 / 描述性 / 复现 / 工程验证 / 核算 / 诊断），按其“必需槽位”补齐，按其“越界”检查结论。
 
 规则：
 
