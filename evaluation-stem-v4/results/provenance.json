@@ -19,7 +19,7 @@
     {
       "name": "writes confined to eval dir",
       "ok": true,
-      "detail": "1 entries"
+      "detail": "0 entries"
     },
     {
       "name": "harness_bundle_sha256",
@@ -57,9 +57,7 @@
     "references/disciplines/mechanical.md": "7d5683e1a2dd78bb42a7a33cd1f6d5a1f614e501fb30089c20e338d27421afa2",
     "references/disciplines/medicine.md": "a8829723abc65c706a3b19cb7047b7a140f11b1a58d5b5d96de130f57a14a084"
   },
-  "status_entries": [
-    "?? evaluation-stem-v4/"
-  ],
+  "status_entries": [],
   "harness_sha256": {
     "bench_scaling.py": "6d04e636f28319e31573babf65c9bce5bca31379a1f29819d13204e0d197d0c6",
     "common.py": "af65730ca47abada8b2d313190a631e5022dc66f1cbf4900578507e456adb764",
