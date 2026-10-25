@@ -1,0 +1,213 @@
+{
+ "schema": "eval-tuning-summary/1",
+ "runs_total": 416,
+ "grid_configs": 81,
+ "best_train_macro_f1": 0.85,
+ "plateau_size": 24,
+ "plateau": [
+  {
+   "theta": 0.35,
+   "min_cards": 3,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.35,
+   "min_cards": 3,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.35,
+   "min_cards": 5,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.35,
+   "min_cards": 5,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.35,
+   "min_cards": 8,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.35,
+   "min_cards": 8,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.4,
+   "min_cards": 3,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.4,
+   "min_cards": 3,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.4,
+   "min_cards": 5,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.4,
+   "min_cards": 5,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.4,
+   "min_cards": 8,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.4,
+   "min_cards": 8,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.45,
+   "min_cards": 3,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.45,
+   "min_cards": 3,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.45,
+   "min_cards": 5,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.45,
+   "min_cards": 5,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.45,
+   "min_cards": 8,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.45,
+   "min_cards": 8,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.5,
+   "min_cards": 3,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.5,
+   "min_cards": 3,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.5,
+   "min_cards": 5,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.5,
+   "min_cards": 5,
+   "max_signatures": 2
+  },
+  {
+   "theta": 0.5,
+   "min_cards": 8,
+   "max_signatures": 1
+  },
+  {
+   "theta": 0.5,
+   "min_cards": 8,
+   "max_signatures": 2
+  }
+ ],
+ "theta_curve": {
+  "0.20": [
+   0.6,
+   0.7
+  ],
+  "0.25": [
+   0.6,
+   0.7
+  ],
+  "0.30": [
+   0.6,
+   0.7
+  ],
+  "0.35": [
+   0.7,
+   0.85
+  ],
+  "0.40": [
+   0.7,
+   0.85
+  ],
+  "0.45": [
+   0.7,
+   0.85
+  ],
+  "0.50": [
+   0.7,
+   0.85
+  ],
+  "0.55": [
+   0.5125,
+   0.6625
+  ],
+  "0.60": [
+   0.5125,
+   0.6625
+  ]
+ },
+ "chosen": {
+  "theta": 0.4,
+  "min_cards": 5,
+  "max_signatures": 2
+ },
+ "current": {
+  "theta": 0.4,
+  "min_cards": 5,
+  "max_signatures": 2
+ },
+ "changed": false,
+ "selection": {
+  "rule": "train F1 within 0.02 of best, then max val F1, tie: precision, then closest to current params",
+  "precision_floor_met": true,
+  "val_precision": 0.8621,
+  "val_f1": 0.9259,
+  "stress_ambiguous": {
+   "tp": 150,
+   "fp": 72,
+   "fn": 0,
+   "p": 0.6757,
+   "r": 1.0,
+   "f1": 0.8065,
+   "flagged": 222
+  }
+ },
+ "test": {
+  "F4_tiny": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "p": 1.0,
+   "r": 1.0,
+   "f1": 1.0,
+   "flagged": 2
+  },
+  "F5_cross": {
+   "tp": 50,
+   "fp": 0,
+   "fn": 0,
+   "p": 1.0,
+   "r": 1.0,
+   "f1": 1.0,
+   "flagged": 50
+  }
+ }
+}
