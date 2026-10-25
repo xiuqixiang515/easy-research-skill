@@ -1,0 +1,297 @@
+{
+  "schema": "eval-arms/1",
+  "note": "S4 excluded: no shared keyword list across seven different B1 tasks",
+  "skill": {
+    "S1": "6/7",
+    "S2": "6/7",
+    "S3": "7/7",
+    "S5": "4/7",
+    "S6": "6/7",
+    "S7": "1/7",
+    "S8": "7/7"
+  },
+  "control": {
+    "S1": "0/7",
+    "S2": "0/7",
+    "S3": "7/7",
+    "S5": "5/7",
+    "S6": "3/7",
+    "S7": "0/7",
+    "S8": "7/7"
+  },
+  "skill_errors": {
+    "X1": "0/7",
+    "X2": "0/7",
+    "X3": "0/7",
+    "X4": "0/7",
+    "X5": "0/7"
+  },
+  "control_errors": {
+    "X1": "0/7",
+    "X2": "0/7",
+    "X3": "0/7",
+    "X4": "0/7",
+    "X5": "0/7"
+  },
+  "rows": [
+    {
+      "slug": "computer",
+      "skill_chars": 819,
+      "control_chars": 258,
+      "skill_items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": true
+      },
+      "control_items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "skill_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "control_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      }
+    },
+    {
+      "slug": "chemistry",
+      "skill_chars": 812,
+      "control_chars": 221,
+      "skill_items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S5": true,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "control_items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "skill_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "control_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      }
+    },
+    {
+      "slug": "biology",
+      "skill_chars": 684,
+      "control_chars": 199,
+      "skill_items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S5": true,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "control_items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "skill_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "control_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      }
+    },
+    {
+      "slug": "medicine",
+      "skill_chars": 638,
+      "control_chars": 238,
+      "skill_items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "control_items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S5": true,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "skill_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "control_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      }
+    },
+    {
+      "slug": "mechanical",
+      "skill_chars": 722,
+      "control_chars": 209,
+      "skill_items": {
+        "S1": true,
+        "S2": false,
+        "S3": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "control_items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "skill_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "control_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      }
+    },
+    {
+      "slug": "energy",
+      "skill_chars": 673,
+      "control_chars": 215,
+      "skill_items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "control_items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "skill_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "control_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      }
+    },
+    {
+      "slug": "electronics",
+      "skill_chars": 840,
+      "control_chars": 242,
+      "skill_items": {
+        "S1": false,
+        "S2": true,
+        "S3": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "control_items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "skill_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "control_errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      }
+    }
+  ]
+}
