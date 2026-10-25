@@ -120,8 +120,16 @@ def _generic_tags(cards:list[dict])->tuple:
         totals[discipline]=totals.get(discipline,0)+1
         for tag in split_tags(c.get("标签","")):
             counts[(discipline,tag)]=counts.get((discipline,tag),0)+1
+    # 若同一学科里所有卡片标签组合几乎一致，标签本身没有区分力，剔除通用标签只会漏报
+    signatures={}
+    for c in cards:
+        discipline=(c.get(EXTRA) or {}).get("学科")
+        if not discipline: continue
+        signatures.setdefault(discipline,set()).add(tuple(sorted(split_tags(c.get("标签","")))))
     generic={}
     for (discipline,tag),n in counts.items():
+        if len(signatures.get(discipline,()))<=2:
+            continue
         if totals[discipline]>=GENERIC_MIN_CARDS and n/totals[discipline]>=GENERIC_TAG_SHARE:
             generic.setdefault(discipline,set()).add(tag)
     return generic,totals
