@@ -104,46 +104,29 @@ def cross_tag_suggestions(cards:list[dict],fingerprints:list[str])->list[tuple[s
 
 
 CONFLICT_KEYS=["功能单位","边界","t0","时间跨度","初末状态","重复","判据","单位","验证范围","切分","种子","样本量"]
-GENERIC_TAG_SHARE=0.4
-GENERIC_MIN_CARDS=5
-
-def _generic_tags(cards:list[dict])->tuple:
-    """学科内出现频率过高的标签（如“节能”“预测”）不具区分力，不应用来判定“同一件事”。"""
-    counts={}; totals={}; signatures={}
-    for c in cards:
-        discipline=(c.get(EXTRA) or {}).get("学科")
-        if not discipline: continue
-        totals[discipline]=totals.get(discipline,0)+1
-        tags=split_tags(c.get("标签",""))
-        signatures.setdefault(discipline,set()).add(tuple(sorted(tags)))
-        for tag in tags:
-            counts[(discipline,tag)]=counts.get((discipline,tag),0)+1
-    generic={}
-    for (discipline,tag),n in counts.items():
-        if len(signatures.get(discipline,()))<=2:  # 标签组合几乎一致时，标签本身无区分力
-            continue
-        if totals[discipline]>=GENERIC_MIN_CARDS and n/totals[discipline]>=GENERIC_TAG_SHARE:
-            generic.setdefault(discipline,set()).add(tag)
-    return generic,totals
+# 性能护栏（不是判定规则）：一个标签出现在超过这么多张卡上时，不拿它建配对索引，避免全库两两配对。
+PAIR_TAG_MAX=100
 
 def conflict_rows(cards:list[dict], limit:int=200)->tuple:
-    """同一项目/同一事项、关键口径字段取值不同，才记一条并存口径。
+    """同一项目/同一事项、关键口径字段取值不同 → 报并存口径。
 
-    判定顺序：两张卡都有「项目」时以项目为准；否则用共同标签判定，并剔除学科内的通用标签。
+    判定只有两条：
+    1. 两张卡都填了「项目」：只比同项目；
+    2. 否则：有共同标签就比。
+    不判断哪个标签“通用”——缺「项目」时的噪声交给用户去填「项目」解决，而不是用频率阈值去猜。
     """
     with_discipline=[c for c in cards if (c.get(EXTRA) or {}).get("学科")]
     if len(with_discipline)<2: return [], False
-    generic,_=_generic_tags(cards)
     pairs=set()
     def add_pair(a,b):
         pairs.add((a["id"],b["id"]) if a["id"]<b["id"] else (b["id"],a["id"]))
-    index={}
+    buckets={}
     for c in with_discipline:
         discipline=(c.get(EXTRA) or {}).get("学科")
         for tag in split_tags(c.get("标签","")):
-            if tag in generic.get(discipline,set()): continue  # 通用标签会造成全量两两配对
-            index.setdefault((discipline,tag),[]).append(c)
-    for ids in index.values():
+            buckets.setdefault((discipline,tag),[]).append(c)
+    for ids in buckets.values():
+        if len(ids)>PAIR_TAG_MAX: continue
         for a,b in itertools.combinations(ids,2): add_pair(a,b)
     by_project={}
     for c in with_discipline:
@@ -162,9 +145,7 @@ def conflict_rows(cards:list[dict], limit:int=200)->tuple:
         if left_project and right_project:
             if left_project!=right_project: continue
         else:
-            shared=set(split_tags(left.get("标签",""))) & set(split_tags(right.get("标签","")))
-            shared-=generic.get(left_extra["学科"],set())
-            if not shared: continue
+            if not (set(split_tags(left.get("标签",""))) & set(split_tags(right.get("标签","")))): continue
         for key in CONFLICT_KEYS:
             va=(left_extra.get(key) or "").strip(); vb=(right_extra.get(key) or "").strip()
             if not va or not vb or va==vb: continue
@@ -215,7 +196,7 @@ def weekly_report(cards:list[dict])->list[str]:
     else:
         lines += ["", "未发现内容完全相同的卡片。"]
     conflicts, conflict_truncated=conflict_rows(cards)
-    lines += ["", "## 口径冲突（同一学科、标签有交集，仅提示并存，不判断对错）", ""]
+    lines += ["", "## 口径冲突（同一项目或标签有交集，仅提示并存，不判断对错）", ""]
     if conflicts:
         lines += ["| 学科 | 项目 | 字段 | 涉及卡片 | 并存取值 |", "|---|---|---|---|---|"]
         for row in conflicts:
