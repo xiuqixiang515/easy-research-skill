@@ -1,0 +1,187 @@
+{
+  "schema": "eval-conflict-bench/1",
+  "cards_per_project": 10,
+  "projects": 12,
+  "variants": {
+    "with_project_field": {
+      "cards": 120,
+      "gold_pairs": 150,
+      "rules": {
+        "v0": {
+          "tp": 150,
+          "fp": 1925,
+          "fn": 0,
+          "precision": 0.0723,
+          "recall": 1.0,
+          "f1": 0.1348
+        },
+        "v1": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v2": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v3": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v1_theta20": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 150,
+          "precision": 1.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "v1_theta30": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v1_theta40": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v1_theta50": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v1_theta60": {
+          "tp": 150,
+          "fp": 1100,
+          "fn": 0,
+          "precision": 0.12,
+          "recall": 1.0,
+          "f1": 0.2143
+        }
+      }
+    },
+    "without_project_field": {
+      "cards": 120,
+      "gold_pairs": 150,
+      "rules": {
+        "v0": {
+          "tp": 150,
+          "fp": 1925,
+          "fn": 0,
+          "precision": 0.0723,
+          "recall": 1.0,
+          "f1": 0.1348
+        },
+        "v1": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v2": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v3": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v1_theta20": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 150,
+          "precision": 1.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "v1_theta30": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v1_theta40": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v1_theta50": {
+          "tp": 150,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "v1_theta60": {
+          "tp": 150,
+          "fp": 1100,
+          "fn": 0,
+          "precision": 0.12,
+          "recall": 1.0,
+          "f1": 0.2143
+        }
+      }
+    }
+  },
+  "e2e": {
+    "with_project_field": {
+      "rc": 0,
+      "elapsed_s": 0.159,
+      "flagged": 150,
+      "tp": 150,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "without_project_field": {
+      "rc": 0,
+      "elapsed_s": 0.157,
+      "flagged": 150,
+      "tp": 150,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  }
+}
