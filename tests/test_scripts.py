@@ -339,4 +339,22 @@ class SkillScriptsTest(unittest.TestCase):
   p=self.run_cli(CARD,'update','c001','--set-extra','单位=个/批',ok=False)
   self.assertIn('单位不应包含中文',p.stderr)
   self.assertEqual(self.cards()[0]['扩展']['单位'],'mol/L')
+ def test_41_cards_carrying_both_tags_are_not_paired_with_themselves(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--tags','x, y')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--tags','x')
+  self.run_cli(CARD,'add','--title','丙','--problem','r','--tags','y')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('c002、c003',text)
+  self.assertNotIn('c001、c002',text)
+ def test_41_cards_carrying_both_tags_are_not_paired_with_themselves(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--tags','x, y')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--tags','x')
+  self.run_cli(CARD,'add','--title','丙','--problem','r','--tags','y')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('c002、c003',text)
+  self.assertNotIn('c001、c002',text)
 if __name__=='__main__':unittest.main(verbosity=2)
