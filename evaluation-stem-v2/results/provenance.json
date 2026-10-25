@@ -19,7 +19,7 @@
     {
       "name": "writes confined to eval dir",
       "ok": true,
-      "detail": "2 entries"
+      "detail": "0 entries"
     },
     {
       "name": "harness_bundle_sha256",
@@ -49,10 +49,7 @@
     "scripts/idea_card.py": "d608ff7ec3e02706144b66961bd39e19298015cea763ee139e85721154a6d67c",
     "scripts/report_render.py": "36a088152f35fad0b9e1139c3fa259d4d8d0de5a8e7144553971c7fb43eb014a"
   },
-  "status_entries": [
-    " M evaluation-stem-v2/harness/verify_provenance.py",
-    "?? evaluation-stem-v2/results/provenance.json"
-  ],
+  "status_entries": [],
   "harness_sha256": {
     "bench_scaling.py": "6d04e636f28319e31573babf65c9bce5bca31379a1f29819d13204e0d197d0c6",
     "common.py": "8ab88dabc2a2cfd5c9da5629b1a621e1efe98a4ca6bec1a91c067b293fbd3e9b",
