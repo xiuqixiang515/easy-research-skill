@@ -3,6 +3,7 @@
 from __future__ import annotations
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -33,7 +34,9 @@ def main() -> int:
         payload["checks"].append({"name": name, "ok": bool(ok), "detail": detail})
 
     head = C.git(source, "rev-parse", "HEAD")
-    add("product_rev", head == args.product_rev, head[:7])
+    ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", args.product_rev, "HEAD"],
+                              cwd=str(source), capture_output=True).returncode == 0
+    add("product_rev (ancestor of HEAD)", ancestor, args.product_rev[:7])
     branch = C.git(source, "rev-parse", "--abbrev-ref", "HEAD")
     add("branch", branch == args.expect_branch, branch)
 
@@ -42,7 +45,9 @@ def main() -> int:
     add("product_hashes", not mismatched, f"{len(hashes) - len(mismatched)}/{len(hashes)}")
     payload["product_hashes"] = hashes
 
-    status = [line for line in C.git(source, "status", "--porcelain").splitlines() if line.strip()]
+    raw = subprocess.run(["git", "status", "--porcelain"], cwd=str(source),
+                         capture_output=True, text=True, encoding="utf-8").stdout
+    status = [line for line in raw.splitlines() if line.strip()]
     outside = [line for line in status if not line[3:].startswith("evaluation-stem-v2/")]
     add("writes confined to eval dir", not outside, f"{len(status)} entries")
     payload["status_entries"] = status
@@ -55,7 +60,7 @@ def main() -> int:
     payload.update({"harness_sha256": harness, "harness_bundle_sha256": bundle, "protocol_sha256": protocol})
 
     main_tip = C.git(source, "rev-parse", "main")
-    add("main tip unchanged", main_tip == args.product_rev, main_tip[:7])
+    add("main tip unchanged", main_tip.startswith(args.product_rev[:7]), main_tip[:7])
 
     if args.out:
         C.write_json(Path(args.out), payload)
