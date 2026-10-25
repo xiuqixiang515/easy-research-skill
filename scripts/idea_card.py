@@ -349,6 +349,12 @@ def command_list(args) -> None:
     cards = load(Path(args.db))
     if args.tag:
         wanted = set(tags(args.tag)); cards = [c for c in cards if wanted & set(tags(c.get("标签","")))]
+    research = getattr(args, "research_type", None)
+    if research:
+        research = research.strip()
+        if research not in RESEARCH_TYPES:
+            raise ValueError(f"研究类型必须为：{'、'.join(sorted(RESEARCH_TYPES))}（当前值：{research}）")
+        cards = [c for c in cards if (c.get(EXTRA) or {}).get("研究类型") == research]
     if cards: show_cards(cards)
     else: print("（没有匹配的卡片）")
 
@@ -406,6 +412,14 @@ def command_stats(args) -> None:
         print("按学科：")
         for name, n in sorted(discipline_counts.items(), key=lambda item: (-item[1], item[0])):
             print(f"  {name}：{n}")
+    type_counts = {}
+    for c in cards:
+        name = (c.get(EXTRA) or {}).get("研究类型")
+        if name: type_counts[name] = type_counts.get(name, 0) + 1
+    if type_counts:
+        print("按研究类型：")
+        for name, n in sorted(type_counts.items(), key=lambda item: (-item[1], item[0])):
+            print(f"  {name}：{n}")
     fingerprints={}
     for c in cards: fingerprints.setdefault(content_key(c), []).append(c["id"])
     duplicates=[ids for ids in fingerprints.values() if len(ids)>1]
@@ -431,7 +445,7 @@ def parser() -> argparse.ArgumentParser:
     u.add_argument("--title");u.add_argument("--source");u.add_argument("--problem");u.add_argument("--current");u.add_argument("--gap");u.add_argument("--extend");u.add_argument("--oneline");u.add_argument("--risk",choices=sorted(RISK_VALUES));u.add_argument("--validation");u.add_argument("--tags");u.add_argument("--tag");u.add_argument("--set-extra",action="append",metavar="KEY=VALUE",help="自定义字段，可重复");u.add_argument("--discipline",metavar="学科",help="学科，写入扩展字段");u.add_argument("--research-type",dest="research_type",metavar="类型",help="研究类型，写入扩展字段")
     u.add_argument("--allow-duplicate",action="store_true");u.set_defaults(func=update_card)
     d=sub.add_parser("delete",help="按ID删除卡片，要求显式--yes并生成备份");d.add_argument("id");d.add_argument("--yes",action="store_true");d.set_defaults(func=delete_card)
-    l=sub.add_parser("list",help="列出卡片");l.add_argument("--tag");l.set_defaults(func=command_list)
+    l=sub.add_parser("list",help="列出卡片");l.add_argument("--tag");l.add_argument("--research-type",dest="research_type",metavar="类型",help="按研究类型筛选");l.set_defaults(func=command_list)
     s=sub.add_parser("search",help="按卡片字段全文检索");s.add_argument("keyword");s.set_defaults(func=command_search)
     sh=sub.add_parser("show",help="按ID或标题查看");sh.add_argument("id");sh.set_defaults(func=command_show)
     c=sub.add_parser("combine",help="配对两组标签卡片供研究者继续判断");c.add_argument("--tag",required=True);c.add_argument("--tag2",required=True);c.set_defaults(func=command_combine)
