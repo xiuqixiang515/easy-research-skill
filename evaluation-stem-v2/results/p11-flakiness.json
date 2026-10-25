@@ -1,0 +1,293 @@
+{
+  "schema": "eval-p11-flakiness/1",
+  "repetitions": 6,
+  "note": "each repetition runs three internal attempts of 16 concurrent adds",
+  "sessions": [
+    {
+      "session": "session-1",
+      "context": "与 bench/探针并跑，机器有并发负载",
+      "repetitions_per_version": 5,
+      "rows": [
+        {
+          "version": "v1.1.1",
+          "repetition": 1,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 2,
+          "attempts_all_ok": "2/3",
+          "passed": false,
+          "cards_per_attempt": [
+            16,
+            15,
+            16
+          ],
+          "error_examples": [
+            "[错误] [WinError 5] 拒绝访问。: 'C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-24\\\\new-chat-2\\\\er-eval-v2\\\\evaluation-ste"
+          ]
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 3,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 4,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 5,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 1,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 2,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 3,
+          "attempts_all_ok": "2/3",
+          "passed": false,
+          "cards_per_attempt": [
+            15,
+            16,
+            16
+          ],
+          "error_examples": [
+            "[错误] [Errno 13] Permission denied: 'C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-24\\\\new-chat-2\\\\er-eval-v2\\\\eval"
+          ]
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 4,
+          "attempts_all_ok": "2/3",
+          "passed": false,
+          "cards_per_attempt": [
+            15,
+            16,
+            16
+          ],
+          "error_examples": [
+            "[错误] [Errno 13] Permission denied: 'C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-24\\\\new-chat-2\\\\er-eval-v2\\\\eval"
+          ]
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 5,
+          "attempts_all_ok": "2/3",
+          "passed": false,
+          "cards_per_attempt": [
+            15,
+            16,
+            16
+          ],
+          "error_examples": [
+            "[错误] [Errno 13] Permission denied: 'C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-24\\\\new-chat-2\\\\er-eval-v2\\\\eval"
+          ]
+        }
+      ]
+    },
+    {
+      "session": "session-2",
+      "context": "空载单跑",
+      "repetitions_per_version": 6,
+      "rows": [
+        {
+          "version": "v1.1.1",
+          "repetition": 1,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 2,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 3,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 4,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 5,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.1",
+          "repetition": 6,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 1,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 2,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 3,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 4,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 5,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        },
+        {
+          "version": "v1.1.0",
+          "repetition": 6,
+          "attempts_all_ok": "3/3",
+          "passed": true,
+          "cards_per_attempt": [
+            16,
+            16,
+            16
+          ],
+          "error_examples": []
+        }
+      ]
+    }
+  ]
+}

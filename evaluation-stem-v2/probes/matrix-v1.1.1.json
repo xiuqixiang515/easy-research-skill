@@ -1,0 +1,570 @@
+{
+  "schema": "eval-results/2",
+  "started_at": "2026-10-25T09:49:06+08:00",
+  "git_rev": "49790ecb288bc20ef1ef27317e20be86f3cdcc02",
+  "git_describe": "v1.1.1-1-g49790ec",
+  "product_tag": "v1.1.1",
+  "product_tag_commit": "b4173dd7f3a0d1ed9fcaf5799a5c4b74d69c25f6",
+  "branch": "eval/stem-v2",
+  "source_root": "C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-chat-2\\er-eval-v2",
+  "product_hashes": {
+    "SKILL.md": "d7ff5f9162c7053f66e6cc38a076909e604d9c59149a727ffc57ba8eba008d88",
+    "VERSION": "cc52f678848b814373757b460383bf61960e4943c203735adde0a350b3e50989",
+    "CHANGELOG.md": "8adf8d1eb10b289d007d5cee797b63898873947c04a062d7bfdd5c1d19810feb",
+    "references/idea-generation.md": "bf7be90531e4c7549fbbb025c3b641058ca4ff40746631a56c6e6d060cfd3174",
+    "references/demystify.md": "9e174ad1d0a272bb25565d558bd6844ed967bc0e16b40385e19b404df27c97c6",
+    "references/sharpen.md": "50f76dcadc64440c49be1e04db151d93c1ae462bb12da3e2171dc2f2b04ae0a0",
+    "references/search-sources.md": "a191cb613805705e2a7e346a2667d99aef9127c225f88faf59504897e0fb0eaf",
+    "references/report-template.md": "a3aa93177fa865b8215702c30361d2288bceec4ad24c9d9c85f4ce82b0bbc65a",
+    "scripts/idea_card.py": "d608ff7ec3e02706144b66961bd39e19298015cea763ee139e85721154a6d67c",
+    "scripts/report_render.py": "36a088152f35fad0b9e1139c3fa259d4d8d0de5a8e7144553971c7fb43eb014a"
+  },
+  "harness_sha256": {
+    "common.py": "8ab88dabc2a2cfd5c9da5629b1a621e1efe98a4ca6bec1a91c067b293fbd3e9b",
+    "run_probes.py": "4d73aeed1c9464383a4edf6a7d1e723de6d97b2599d77f929002bebbef73e7c8"
+  },
+  "harness_bundle_sha256": "7c02046e70672513f8a4a3a2ef0c06a089abec9cc0976844c36f91776169d12b",
+  "protocol_sha256": "7a395e184ae8ee2c2e196824fd658607bdc4a4b9451ef707dd7912db80b22cf7",
+  "python": "3.13.14 (main, Jun 11 2026, 04:04:46) [MSC v.1944 64 bit (AMD64)]",
+  "python_in_ci_matrix": false,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "executable": "C:\\Users\\Administrator\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+  "version_label": "v1.1.1",
+  "finished_at": "2026-10-25T09:49:06+08:00",
+  "summary": {
+    "probes": 20,
+    "passed": 20,
+    "failed": []
+  },
+  "probes": [
+    {
+      "id": "P01",
+      "title": "Markdown 非法风险被拒绝",
+      "note": "v1.1.0 红 / v1.1.1 绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "exit_code==2",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "stderr 指出枚举",
+          "passed": true,
+          "expected": "风险必须为",
+          "actual": "[错误] 风险必须为：中、低、高（当前值：极低）"
+        },
+        {
+          "name": "未创建数据库",
+          "passed": true,
+          "expected": false,
+          "actual": false
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P02",
+      "title": "未知字段进入扩展对象",
+      "note": "v1.1.0 红 / v1.1.1 绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "exit_code==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "扩展.单位 保留",
+          "passed": true,
+          "expected": "mol/L",
+          "actual": "mol/L"
+        },
+        {
+          "name": "show 可见单位",
+          "passed": true,
+          "expected": true,
+          "actual": true
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P03",
+      "title": "未知字段续行保留",
+      "note": "v1.1.0 红 / v1.1.1 绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "exit_code==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "题目续行保留",
+          "passed": true,
+          "expected": "第一行\\n第二行",
+          "actual": "第一行\n第二行"
+        },
+        {
+          "name": "扩展续行保留",
+          "passed": true,
+          "expected": "mg/L",
+          "actual": "mg/L"
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P04",
+      "title": "cli --set-extra 可读写",
+      "note": "v1.1.0 无此参数",
+      "passed": true,
+      "checks": [
+        {
+          "name": "add rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "update rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "两个键都在",
+          "passed": true,
+          "expected": "两个键",
+          "actual": {
+            "温度": "25C",
+            "湿度": "40%"
+          }
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P05",
+      "title": "仅扩展不同的卡片不判重",
+      "note": "v1.1.0 红 / v1.1.1 绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "第一张成功",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "扩展不同不判重",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "共 2 张卡",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P06",
+      "title": "存量非法风险不被无关更新改写",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "update rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "短板已更新",
+          "passed": true,
+          "expected": "new",
+          "actual": "new"
+        },
+        {
+          "name": "风险未被改写",
+          "passed": true,
+          "expected": "极低",
+          "actual": "极低"
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P07",
+      "title": "cli --risk 非法值被 argparse 拒绝",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "rc==2",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "argparse 拒绝",
+          "passed": true,
+          "expected": "invalid choice",
+          "actual": "usage: idea_card.py add [-h] [--file FILE] [--title TITLE] [--source SOURCE]\n   "
+        },
+        {
+          "name": "无 Traceback",
+          "passed": true,
+          "expected": true,
+          "actual": false
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P08",
+      "title": "BOM 的 JSON 与 Markdown 可读",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "BOM 库可读",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "BOM 卡可导入",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "标题正确",
+          "passed": true,
+          "expected": "BOM 标题",
+          "actual": "BOM 标题"
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P09",
+      "title": "损坏 JSON 不覆盖原库",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "rc==2",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "提示 JSON 损坏",
+          "passed": true,
+          "expected": "JSON损坏",
+          "actual": "[错误] 卡片库JSON损坏（第1行第2列）：C:\\Users\\Administrator\\Documents\\Codex\\2026-10-24\\new-cha"
+        },
+        {
+          "name": "库未改变",
+          "passed": true,
+          "expected": "be302461cda285db3ed2d45fb767b23e08ca8808b35a638009937df22b332d73",
+          "actual": "be302461cda285db3ed2d45fb767b23e08ca8808b35a638009937df22b332d73"
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P10",
+      "title": "多卡 Markdown 被拒绝且不建库",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "rc==2",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "未建库",
+          "passed": true,
+          "expected": false,
+          "actual": false
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P11",
+      "title": "16 进程并发 add 不丢卡",
+      "note": "v1.1.0 flaky / v1.1.1 绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "三次全部 16 卡",
+          "passed": true,
+          "expected": "3/3",
+          "actual": "3/3"
+        },
+        {
+          "name": "失败形态已记录",
+          "passed": true,
+          "expected": "记录",
+          "actual": "[]"
+        }
+      ],
+      "extra": [
+        {
+          "attempt": 1,
+          "all_ok": true,
+          "cards": 16,
+          "unique_ids": 16,
+          "errors": []
+        },
+        {
+          "attempt": 2,
+          "all_ok": true,
+          "cards": 16,
+          "unique_ids": 16,
+          "errors": []
+        },
+        {
+          "attempt": 3,
+          "all_ok": true,
+          "cards": 16,
+          "unique_ids": 16,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "id": "P12",
+      "title": "报告不得覆盖数据库",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "rc==2",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "拒绝写入",
+          "passed": true,
+          "expected": "拒绝",
+          "actual": "[错误] 输出路径与数据库或输入文件相同，已拒绝写入"
+        },
+        {
+          "name": "库未改变",
+          "passed": true,
+          "expected": "25ff93ee70f5c89de812bdad8109338fbbdbe2855f6d232f8b749ab4771c483c",
+          "actual": "25ff93ee70f5c89de812bdad8109338fbbdbe2855f6d232f8b749ab4771c483c"
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P13",
+      "title": "中文与空格路径可用",
+      "note": "v1.1.0 未测 / v1.1.1 绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "add rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "list 命中",
+          "passed": true,
+          "expected": true,
+          "actual": true
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P14",
+      "title": "空库周报含卡片一览标题",
+      "note": "v1.1.0 红 / v1.1.1 绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "含卡片一览标题",
+          "passed": true,
+          "expected": true,
+          "actual": true
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P15",
+      "title": "同标签组合只输出一行",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "组合行数==1",
+          "passed": true,
+          "expected": 1,
+          "actual": 1
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P16",
+      "title": "退出码契约与文档一致",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "list 空库 rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "stats 空库 rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "report 缺库 rc==2",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "add 缺文件 rc==2",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "均无 Traceback",
+          "passed": true,
+          "expected": true,
+          "actual": "有"
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P17",
+      "title": "模板往返无损",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "模板可打印",
+          "passed": true,
+          "expected": true,
+          "actual": 0
+        },
+        {
+          "name": "回灌 rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "标题与风险正确",
+          "passed": true,
+          "expected": "标题/中",
+          "actual": "标题/中"
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P18",
+      "title": "Unicode 大小写折叠检索",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "rc==0",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "命中 c001",
+          "passed": true,
+          "expected": true,
+          "actual": true
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P19",
+      "title": "combine 排除自组合与完全重复",
+      "note": "两版均绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "rc==2",
+          "passed": true,
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "无可用组合",
+          "passed": true,
+          "expected": "没有可组合",
+          "actual": "[错误] 没有可组合的不同卡片（2张与2张命中，已排除自组合）"
+        }
+      ],
+      "extra": null
+    },
+    {
+      "id": "P20",
+      "title": "2000 张卡片周报 30 秒内完成",
+      "note": "v1.1.0 超时 / v1.1.1 绿",
+      "passed": true,
+      "checks": [
+        {
+          "name": "30 秒内完成",
+          "passed": true,
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "耗时记录",
+          "passed": true,
+          "expected": "<30s",
+          "actual": "0.1683s"
+        }
+      ],
+      "extra": null
+    }
+  ]
+}

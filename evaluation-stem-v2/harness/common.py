@@ -159,11 +159,14 @@ def record(case: str, observed: dict, expected: dict, passed: bool, notes: list[
 def envelope(source: Path, harness_names: list[str], protocol_sha: str, extra: dict | None = None) -> dict:
     harness = {name: sha_file(HARNESS_DIR / name) for name in harness_names if (HARNESS_DIR / name).is_file()}
     bundle = sha_text(json.dumps(harness, sort_keys=True))
+    tag = git(source, "describe", "--tags", "--abbrev=0", "--match", "v*")
     body = {
         "schema": SCHEMA,
         "started_at": now_iso(),
         "git_rev": git(source, "rev-parse", "HEAD"),
         "git_describe": git(source, "describe", "--tags", "--always"),
+        "product_tag": tag,
+        "product_tag_commit": git(source, "rev-list", "-n", "1", tag) if tag else "",
         "branch": git(source, "rev-parse", "--abbrev-ref", "HEAD"),
         "source_root": str(source),
         "product_hashes": product_hashes(source),
@@ -201,12 +204,11 @@ def require_branch(source: Path, expect: str) -> None:
 
 
 def guard_paths(source: Path, base: Path) -> None:
-    """Refuse to write anywhere outside the evaluation directory or inside product source."""
+    """Allow writes only inside <source>/evaluation-stem-v2/ (never into product files)."""
     src = source.resolve()
     dst = base.resolve()
-    if dst == src or src in dst.parents:
-        raise SystemExit(f"refusing to write into product source: {dst}")
-    if EVAL_DIR.parent.resolve() != src and dst != EVAL_DIR.resolve() and EVAL_DIR.resolve() not in dst.parents:
+    eval_dir = (src / "evaluation-stem-v2").resolve()
+    if dst != eval_dir and eval_dir not in dst.parents:
         raise SystemExit(f"refusing to write outside evaluation dir: {dst}")
 
 
@@ -218,4 +220,16 @@ def ensure_fresh(path: Path) -> None:
 def normalize_weekly(text: str) -> str:
     import re
 
-    return re.sub(r"^\*生成时间：.*\*$", "*生成时间：<normalized>*", text, flags=re.MULTILINE)
+    text = re.sub(r"^\*生成时间：.*\*$", "*生成时间：<normalized>*", text, flags=re.MULTILINE)
+    return re.sub(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?(?:[+-]\d{2}:\d{2})?", "<timestamp>", text)
+
+
+def normalize_output(text: str, work: Path | None = None) -> str:
+    """Strip volatile parts (timestamps, run-specific paths) before cross-run hashing."""
+    import re
+
+    text = re.sub(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?(?:[+-]\d{2}:\d{2})?", "<timestamp>", text)
+    if work is not None:
+        for variant in {str(work), str(work).replace("\\", "/")}:
+            text = text.replace(variant, "<work>")
+    return text

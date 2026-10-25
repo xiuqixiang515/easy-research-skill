@@ -68,7 +68,9 @@ def main() -> int:
             db_before = C.sha_file(db) if (need_db_state and db.exists()) else None
             observed = C.run_cmd(source, script, base + argv, guard_db)
             ok, notes = C.evaluate(observed, expected, db if need_db_state else None, db_before)
-            records.append(C.record(f"{slug}.{label}", observed, expected, ok, notes))
+            rec = C.record(f"{slug}.{label}", observed, expected, ok, notes)
+            rec["stdout_sha256"] = C.sha_text(C.normalize_output(observed["stdout"], work))
+            records.append(rec)
             return observed
 
         case("add.constraint", "idea_card.py",

@@ -1,0 +1,942 @@
+{
+  "schema": "eval-compare/1",
+  "mode": "runs",
+  "summary": {
+    "runs": [
+      "run1",
+      "run2",
+      "run3"
+    ],
+    "cases": 77,
+    "stable_pass": 77,
+    "flaky": [],
+    "consistently_failed": [],
+    "output_hash_mismatch": []
+  },
+  "rows": [
+    {
+      "case": "biology.add.constraint",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1358,
+      "spread_ratio": 0.049
+    },
+    {
+      "case": "biology.add.extras",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1464,
+      "spread_ratio": 0.008
+    },
+    {
+      "case": "biology.add.method",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1484,
+      "spread_ratio": 0.024
+    },
+    {
+      "case": "biology.combine",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1366,
+      "spread_ratio": 0.036
+    },
+    {
+      "case": "biology.duplicate",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1313,
+      "spread_ratio": 0.02
+    },
+    {
+      "case": "biology.repeat_consistency",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": null,
+      "spread_ratio": null
+    },
+    {
+      "case": "biology.search",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1364,
+      "spread_ratio": 0.029
+    },
+    {
+      "case": "biology.show",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1331,
+      "spread_ratio": 0.02
+    },
+    {
+      "case": "biology.weekly1",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1345,
+      "spread_ratio": 0.048
+    },
+    {
+      "case": "biology.weekly2",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1339,
+      "spread_ratio": 0.01
+    },
+    {
+      "case": "biology.weekly3",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1321,
+      "spread_ratio": 0.016
+    },
+    {
+      "case": "chemistry.add.constraint",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1373,
+      "spread_ratio": 0.025
+    },
+    {
+      "case": "chemistry.add.extras",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1484,
+      "spread_ratio": 0.009
+    },
+    {
+      "case": "chemistry.add.method",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1511,
+      "spread_ratio": 0.048
+    },
+    {
+      "case": "chemistry.combine",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1343,
+      "spread_ratio": 0.009
+    },
+    {
+      "case": "chemistry.duplicate",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1337,
+      "spread_ratio": 0.048
+    },
+    {
+      "case": "chemistry.repeat_consistency",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": null,
+      "spread_ratio": null
+    },
+    {
+      "case": "chemistry.search",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1344,
+      "spread_ratio": 0.261
+    },
+    {
+      "case": "chemistry.show",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.133,
+      "spread_ratio": 0.05
+    },
+    {
+      "case": "chemistry.weekly1",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1344,
+      "spread_ratio": 0.026
+    },
+    {
+      "case": "chemistry.weekly2",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1349,
+      "spread_ratio": 0.028
+    },
+    {
+      "case": "chemistry.weekly3",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1311,
+      "spread_ratio": 0.044
+    },
+    {
+      "case": "computer.add.constraint",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1405,
+      "spread_ratio": 0.014
+    },
+    {
+      "case": "computer.add.extras",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1485,
+      "spread_ratio": 0.066
+    },
+    {
+      "case": "computer.add.method",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1524,
+      "spread_ratio": 0.03
+    },
+    {
+      "case": "computer.combine",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1361,
+      "spread_ratio": 0.043
+    },
+    {
+      "case": "computer.duplicate",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1352,
+      "spread_ratio": 0.046
+    },
+    {
+      "case": "computer.repeat_consistency",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": null,
+      "spread_ratio": null
+    },
+    {
+      "case": "computer.search",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1366,
+      "spread_ratio": 0.017
+    },
+    {
+      "case": "computer.show",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1387,
+      "spread_ratio": 0.042
+    },
+    {
+      "case": "computer.weekly1",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1377,
+      "spread_ratio": 0.013
+    },
+    {
+      "case": "computer.weekly2",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1365,
+      "spread_ratio": 0.04
+    },
+    {
+      "case": "computer.weekly3",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1349,
+      "spread_ratio": 0.05
+    },
+    {
+      "case": "electronics.add.constraint",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1394,
+      "spread_ratio": 0.024
+    },
+    {
+      "case": "electronics.add.extras",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1524,
+      "spread_ratio": 0.048
+    },
+    {
+      "case": "electronics.add.method",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1481,
+      "spread_ratio": 0.026
+    },
+    {
+      "case": "electronics.combine",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1352,
+      "spread_ratio": 0.029
+    },
+    {
+      "case": "electronics.duplicate",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1304,
+      "spread_ratio": 0.027
+    },
+    {
+      "case": "electronics.repeat_consistency",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": null,
+      "spread_ratio": null
+    },
+    {
+      "case": "electronics.search",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1355,
+      "spread_ratio": 0.004
+    },
+    {
+      "case": "electronics.show",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1384,
+      "spread_ratio": 0.035
+    },
+    {
+      "case": "electronics.weekly1",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1353,
+      "spread_ratio": 0.007
+    },
+    {
+      "case": "electronics.weekly2",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1357,
+      "spread_ratio": 0.024
+    },
+    {
+      "case": "electronics.weekly3",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1365,
+      "spread_ratio": 0.017
+    },
+    {
+      "case": "energy.add.constraint",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1414,
+      "spread_ratio": 0.026
+    },
+    {
+      "case": "energy.add.extras",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1487,
+      "spread_ratio": 0.048
+    },
+    {
+      "case": "energy.add.method",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1503,
+      "spread_ratio": 0.021
+    },
+    {
+      "case": "energy.combine",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1381,
+      "spread_ratio": 0.046
+    },
+    {
+      "case": "energy.duplicate",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1312,
+      "spread_ratio": 0.009
+    },
+    {
+      "case": "energy.repeat_consistency",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": null,
+      "spread_ratio": null
+    },
+    {
+      "case": "energy.search",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1364,
+      "spread_ratio": 0.034
+    },
+    {
+      "case": "energy.show",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.138,
+      "spread_ratio": 0.037
+    },
+    {
+      "case": "energy.weekly1",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1359,
+      "spread_ratio": 0.039
+    },
+    {
+      "case": "energy.weekly2",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1375,
+      "spread_ratio": 0.027
+    },
+    {
+      "case": "energy.weekly3",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1388,
+      "spread_ratio": 0.055
+    },
+    {
+      "case": "mechanical.add.constraint",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1356,
+      "spread_ratio": 0.058
+    },
+    {
+      "case": "mechanical.add.extras",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1486,
+      "spread_ratio": 0.07
+    },
+    {
+      "case": "mechanical.add.method",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1469,
+      "spread_ratio": 0.028
+    },
+    {
+      "case": "mechanical.combine",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1365,
+      "spread_ratio": 0.055
+    },
+    {
+      "case": "mechanical.duplicate",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1337,
+      "spread_ratio": 0.049
+    },
+    {
+      "case": "mechanical.repeat_consistency",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": null,
+      "spread_ratio": null
+    },
+    {
+      "case": "mechanical.search",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1343,
+      "spread_ratio": 0.05
+    },
+    {
+      "case": "mechanical.show",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1367,
+      "spread_ratio": 0.045
+    },
+    {
+      "case": "mechanical.weekly1",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.136,
+      "spread_ratio": 0.015
+    },
+    {
+      "case": "mechanical.weekly2",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1378,
+      "spread_ratio": 0.062
+    },
+    {
+      "case": "mechanical.weekly3",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1381,
+      "spread_ratio": 0.062
+    },
+    {
+      "case": "medicine.add.constraint",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1356,
+      "spread_ratio": 0.041
+    },
+    {
+      "case": "medicine.add.extras",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1469,
+      "spread_ratio": 0.016
+    },
+    {
+      "case": "medicine.add.method",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1462,
+      "spread_ratio": 0.022
+    },
+    {
+      "case": "medicine.combine",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1354,
+      "spread_ratio": 0.021
+    },
+    {
+      "case": "medicine.duplicate",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.132,
+      "spread_ratio": 0.02
+    },
+    {
+      "case": "medicine.repeat_consistency",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": null,
+      "spread_ratio": null
+    },
+    {
+      "case": "medicine.search",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1393,
+      "spread_ratio": 0.029
+    },
+    {
+      "case": "medicine.show",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1333,
+      "spread_ratio": 0.015
+    },
+    {
+      "case": "medicine.weekly1",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1349,
+      "spread_ratio": 0.044
+    },
+    {
+      "case": "medicine.weekly2",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1365,
+      "spread_ratio": 0.033
+    },
+    {
+      "case": "medicine.weekly3",
+      "status": "stable_pass",
+      "passed_by_run": {
+        "run1": true,
+        "run2": true,
+        "run3": true
+      },
+      "output_hash_identical": true,
+      "median_seconds": 0.1375,
+      "spread_ratio": 0.017
+    }
+  ]
+}

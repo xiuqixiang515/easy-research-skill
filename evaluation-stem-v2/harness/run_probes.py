@@ -208,7 +208,7 @@ def p11(run, d: Path):
         stored = cards(db)
         results.append({"attempt": attempt + 1, "all_ok": ok, "cards": len(stored),
                         "unique_ids": len({c["id"] for c in stored}),
-                        "errors": [p.stderr.strip()[:120] for p in outs if p.returncode != 0][:3]})
+                        "errors": [p.stderr.strip()[:400] for p in outs if p.returncode != 0][:3]})
     good = [r for r in results if r["all_ok"] and r["cards"] == 16 and r["unique_ids"] == 16]
     return [
         chk("三次全部 16 卡", len(good) == 3, "3/3", f"{len(good)}/3"),
