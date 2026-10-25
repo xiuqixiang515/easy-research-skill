@@ -48,7 +48,14 @@ def main() -> int:
     raw = subprocess.run(["git", "status", "--porcelain"], cwd=str(source),
                          capture_output=True, text=True, encoding="utf-8").stdout
     status = [line for line in raw.splitlines() if line.strip()]
-    outside = [line for line in status if not line[3:].startswith("evaluation-stem-v2/")]
+    own_out = ""
+    if args.out:
+        try:
+            own_out = Path(args.out).resolve().relative_to(source).as_posix()
+        except ValueError:
+            own_out = ""
+    status = [line for line in status if line[3:].strip() != own_out]
+    outside = [line for line in status if not line[3:].strip().startswith("evaluation-stem-")]
     add("writes confined to eval dir", not outside, f"{len(status)} entries")
     payload["status_entries"] = status
 

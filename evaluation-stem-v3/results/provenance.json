@@ -18,13 +18,13 @@
     },
     {
       "name": "writes confined to eval dir",
-      "ok": false,
+      "ok": true,
       "detail": "1 entries"
     },
     {
       "name": "harness_bundle_sha256",
       "ok": true,
-      "detail": "b8a68a78c31c"
+      "detail": "dab77663f905"
     },
     {
       "name": "protocol_sha256",
@@ -58,7 +58,7 @@
     "references/disciplines/medicine.md": "a8829723abc65c706a3b19cb7047b7a140f11b1a58d5b5d96de130f57a14a084"
   },
   "status_entries": [
-    " D evaluation-stem-v3/results/text-grades.json"
+    " M evaluation-stem-v3/harness/verify_provenance.py"
   ],
   "harness_sha256": {
     "bench_scaling.py": "6d04e636f28319e31573babf65c9bce5bca31379a1f29819d13204e0d197d0c6",
@@ -68,8 +68,8 @@
     "run_cli_suite.py": "31060407ea6eef91ad79e3c3583f20fd703ffa7e771d4f720a0f462c5e4c0d3a",
     "run_probes.py": "4d16efbfe30db334dccddd1fbea4a53af94eb0dc5d880983814ca34949bd9baf",
     "slot_coverage.py": "a55881309c81603b635d08682917875617f7dd1edf2319582041e7764b874ec0",
-    "verify_provenance.py": "685669799f87d9f3716c36f2284439204c03d2bf1bd831e07f94ad0378295613"
+    "verify_provenance.py": "e479fb00fae13734a09fdf3e6f01250a60d012b8de8f12c298852bcd3a554e9c"
   },
-  "harness_bundle_sha256": "b8a68a78c31c6ab31c7e73560f8ed416e1e6278ab79880be0adcc9b3c20691da",
+  "harness_bundle_sha256": "dab77663f905de6e7aee8cc5302725d108798654115f8d8eb96b7b09a6b9342c",
   "protocol_sha256": "bb1021f0b8d48ad4ee222efd9000ffeba6fc7d24002bc367ae2fa55beed657f8"
 }
