@@ -1,0 +1,79 @@
+{
+  "schema": "eval-provenance/1",
+  "checks": [
+    {
+      "name": "product_rev (ancestor of HEAD)",
+      "ok": true,
+      "detail": "f4f0dc6"
+    },
+    {
+      "name": "branch",
+      "ok": true,
+      "detail": "eval/stem-v5"
+    },
+    {
+      "name": "product_hashes",
+      "ok": true,
+      "detail": "18/18"
+    },
+    {
+      "name": "writes confined to eval dir",
+      "ok": true,
+      "detail": "1 entries"
+    },
+    {
+      "name": "harness_bundle_sha256",
+      "ok": true,
+      "detail": "99c53ed82a34"
+    },
+    {
+      "name": "protocol_sha256",
+      "ok": true,
+      "detail": "ab7ed2930441"
+    },
+    {
+      "name": "main tip unchanged",
+      "ok": true,
+      "detail": "f4f0dc6"
+    }
+  ],
+  "product_hashes": {
+    "SKILL.md": "596ae6013a413382fa7a9d205a9339ebd560741451406ef749b058c342728321",
+    "VERSION": "7d072b48526b023950e4c48db01e8c273554a6401119f5691e7589ba9bc65d9d",
+    "CHANGELOG.md": "27ce49d9af289ee96b8904548250714643e740785ef1a0bb9efca4caac9cacad",
+    "references/idea-generation.md": "ad14cbdcbd083f77c93f954434601bc9bb0e32454da75599af7f04fcfbe1cc39",
+    "references/demystify.md": "09e341df5363991337ae2802e669a230f4fc16f7caee1fc182b810b7ef73191e",
+    "references/sharpen.md": "b2174e23c2f3e2ce4ba63190d72e56bc88671166e84b1fc0e7cba155ec5e8c18",
+    "references/search-sources.md": "e677e17f7d2ac09b51f2556cd9038d3945feafd16e60c42b00794dab02b00ed8",
+    "references/report-template.md": "2d9f474ec969804f506d82ab7960128ba4319b7a3f283a260abaa48e4ec081bf",
+    "references/research-types.md": "a302dc2fb23d4d52a9247af812c17f523469a24a3bf2fcec7a4abb4df96053ea",
+    "scripts/idea_card.py": "9fffa9bb7444f1a5ed54632f23c62083f4b7a7960790688b93ad3d1a06e50c8e",
+    "scripts/report_render.py": "a37e0fee3f545d7891d999599243deeff3366b3a08e3b0a8dce56a14327dfefd",
+    "references/disciplines/biology.md": "780eba5bbfd4ee3b1d5025c37285e811fd5ddc0463c3307c2e726b309ff7d940",
+    "references/disciplines/chemistry.md": "fdf67cfb7304136742fde430affbbff0f64e397c743b8b8626d7a116abf2ff25",
+    "references/disciplines/computer.md": "dd0b6fa7465c797588faeb9f4fa35f57b90facaab8b08890fdd0d880d651141c",
+    "references/disciplines/electronics.md": "990ca8f3eeec2349b082e205736536e8971d8c9035e524a7184b397eca7ab1d8",
+    "references/disciplines/energy.md": "44a00fefcd4a34de882f3227b9e767e9294a13a4ffe844a2cd6a6fa4380f60cb",
+    "references/disciplines/mechanical.md": "ff730a095166b7bad91e4f0902ce4344265526a5cdfc53aa94f6e2cdedb618ae",
+    "references/disciplines/medicine.md": "fd229452b3e72d2441599a87f978cce4087834fea421d1caaaa8950d63910415"
+  },
+  "status_entries": [
+    "?? evaluation-stem-v5/"
+  ],
+  "harness_sha256": {
+    "bench_scaling.py": "6d04e636f28319e31573babf65c9bce5bca31379a1f29819d13204e0d197d0c6",
+    "common.py": "af65730ca47abada8b2d313190a631e5022dc66f1cbf4900578507e456adb764",
+    "compare_arms.py": "550ecc11ef67e9f51c05acc8ec2506f375e9342d6f643d6567a163cc7c3fc9d4",
+    "compare_runs.py": "6c08169a88ddb75b72c660c036760804f6e1b4258d63b1a10fcd7f2e26363151",
+    "conflict_probe.py": "07947a3418fab49fb352092a2e741c8e02a14bf89754052c93398b0c4858f606",
+    "drift_scan.py": "905142f3d3b87240575709ca52b17686faee71afaa9b7082d4c09b871fe30016",
+    "grade_text.py": "4e5a2b1ec8acc05656503f0b829508ed95c04ceede97538e298e5583deb9e02a",
+    "numeric_scan.py": "478a9480e18766ca443eaca5b906363b9b94c2885042b0b116ac25687159b262",
+    "run_cli_suite.py": "31060407ea6eef91ad79e3c3583f20fd703ffa7e771d4f720a0f462c5e4c0d3a",
+    "run_probes.py": "4d16efbfe30db334dccddd1fbea4a53af94eb0dc5d880983814ca34949bd9baf",
+    "slot_coverage.py": "a55881309c81603b635d08682917875617f7dd1edf2319582041e7764b874ec0",
+    "verify_provenance.py": "e479fb00fae13734a09fdf3e6f01250a60d012b8de8f12c298852bcd3a554e9c"
+  },
+  "harness_bundle_sha256": "99c53ed82a34601c61148cfad79608136f0f228300082ed595424207205ac82a",
+  "protocol_sha256": "ab7ed2930441c4952d4c720aa8aa9a89d8d3790c92932bb28e651c5ec8e3b9b0"
+}
