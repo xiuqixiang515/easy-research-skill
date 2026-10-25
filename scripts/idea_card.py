@@ -25,7 +25,7 @@ DISCIPLINE_ALIASES = {
     "medicine": "医学", "mechanical": "机械", "energy": "能源",
     "electronics": "电子信息", "电子": "电子信息", "信息": "电子信息",
 }
-RESEARCH_TYPES = {"预测", "因果", "实验", "仿真", "理论", "描述性", "复现", "工程验证", "核算", "诊断"}
+RESEARCH_TYPES = {"预测", "因果", "实验", "仿真", "理论", "描述性", "复现", "工程验证", "核算", "诊断", "记录"}
 ALIASES = {
     "source": "来源", "problem": "问题", "current": "现有做法",
     "gap": "短板", "extend": "可延伸方向", "oneline": "一句话",
@@ -177,6 +177,23 @@ def normalize_discipline(value: str) -> str:
     value = (value or "").strip()
     return DISCIPLINE_ALIASES.get(value.lower(), value)
 
+UNIT_ATOM = re.compile(r"^[A-Za-zμ°%‰][A-Za-z0-9^*·\-/]*$")
+UNIT_ALLOW = {"wt%", "vol%", "equiv", "dBFS", "dBm", "FLOPs", "tCO2e", "kWh", "MWh", "GWh", "ppm", "ppb", "at%"}
+
+def check_units(card: dict) -> None:
+    """Structural check only: reject Chinese text and unparsable atoms, not dimensional correctness."""
+    value = ((card.get(EXTRA) or {}).get("单位") or "").strip()
+    if not value:
+        return
+    if len(value) > 40:
+        raise ValueError(f"单位过长（≤40 字符）：{value}")
+    if re.search(r"[\u4e00-\u9fff]", value):
+        raise ValueError("单位不应包含中文；请写符号形式（如 mol/L、MPa、dBFS），说明性文字放到「问题」或「最小验证」")
+    atoms = [a for a in re.split(r"[\s,;，；、]+", value) if a]
+    bad = [a for a in atoms if not (UNIT_ATOM.match(a) or a in UNIT_ALLOW)]
+    if bad:
+        raise ValueError(f"单位格式无法识别：{'、'.join(bad)}；示例：mol/L、MPa/mm、dBFS、kWh/t")
+
 def check_meta(card: dict) -> None:
     """Validate discipline and research type stored in the extension object."""
     extra = card.get(EXTRA) or {}
@@ -256,6 +273,7 @@ def add_card(args) -> None:
         card[EXTRA] = extra
     check_risk(card)
     check_meta(card)
+    check_units(card)
     card["标签"] = ", ".join(tags(card.get("标签", "")))
     if not card.get("title","").strip():
         raise ValueError("新增卡片至少需要标题；可先用template创建卡片文件")
@@ -313,9 +331,10 @@ def update_card(args) -> None:
             except ValueError as exc:
                 card.clear(); card.update(before)
                 raise ValueError(str(exc)) from None
-        if meta:
+        if meta or set_extra:
             try:
                 check_meta(card)
+                check_units(card)
             except ValueError as exc:
                 card.clear(); card.update(before)
                 raise ValueError(str(exc)) from None
