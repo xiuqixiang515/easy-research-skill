@@ -58,7 +58,7 @@
     "references/disciplines/medicine.md": "a8829723abc65c706a3b19cb7047b7a140f11b1a58d5b5d96de130f57a14a084"
   },
   "status_entries": [
-    "?? evaluation-stem-v3/"
+    " D evaluation-stem-v3/results/text-grades.json"
   ],
   "harness_sha256": {
     "bench_scaling.py": "6d04e636f28319e31573babf65c9bce5bca31379a1f29819d13204e0d197d0c6",
