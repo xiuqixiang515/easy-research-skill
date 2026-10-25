@@ -447,4 +447,20 @@ class SkillScriptsTest(unittest.TestCase):
   text=out.read_text(encoding='utf8')
   self.assertIn('kWh/m2/a / kWh/m2/月',text)
   self.assertNotIn('kWh/床/a',text)
+ def test_48_identical_tag_sets_do_not_disable_detection(self):
+  for i in range(6):
+   t0='出院日' if i<3 else '出院后30天'
+   self.run_cli(CARD,'add','--title',f'卡{i}','--problem','p','--tags','预测, 队列','--discipline','医学','--set-extra','t0='+t0)
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('出院日 / 出院后30天',text)
+ def test_48_identical_tag_sets_do_not_disable_detection(self):
+  for i in range(6):
+   t0='出院日' if i<3 else '出院后30天'
+   self.run_cli(CARD,'add','--title',f'卡{i}','--problem','p','--tags','预测, 队列','--discipline','医学','--set-extra','t0='+t0)
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('出院日 / 出院后30天',text)
 if __name__=='__main__':unittest.main(verbosity=2)
