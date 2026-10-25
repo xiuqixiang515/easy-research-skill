@@ -269,4 +269,32 @@ class SkillScriptsTest(unittest.TestCase):
   self.run_cli(REPORT,'--title','t','--from-cards','--out',out)
   text=out.read_text(encoding='utf8')
   self.assertIn('学科/类型',text);self.assertIn('能源/核算',text)
+ def test_34_stats_groups_by_research_type(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--research-type','诊断')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--research-type','复现')
+  out=self.run_cli(CARD,'stats').stdout
+  self.assertIn('按研究类型',out)
+  self.assertIn('诊断：1',out)
+  self.assertIn('复现：1',out)
+ def test_35_list_filters_by_research_type(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--research-type','诊断')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--research-type','复现')
+  out=self.run_cli(CARD,'list','--research-type','诊断').stdout
+  self.assertIn('甲',out);self.assertNotIn('乙',out)
+  p=self.run_cli(CARD,'list','--research-type','玄学',ok=False)
+  self.assertIn('研究类型必须为',p.stderr)
+ def test_34_stats_groups_by_research_type(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--research-type','诊断')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--research-type','复现')
+  out=self.run_cli(CARD,'stats').stdout
+  self.assertIn('按研究类型',out)
+  self.assertIn('诊断：1',out)
+  self.assertIn('复现：1',out)
+ def test_35_list_filters_by_research_type(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--research-type','诊断')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--research-type','复现')
+  out=self.run_cli(CARD,'list','--research-type','诊断').stdout
+  self.assertIn('甲',out);self.assertNotIn('乙',out)
+  p=self.run_cli(CARD,'list','--research-type','玄学',ok=False)
+  self.assertIn('研究类型必须为',p.stderr)
 if __name__=='__main__':unittest.main(verbosity=2)
