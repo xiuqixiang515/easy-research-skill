@@ -85,7 +85,7 @@ def card_table(cards:list[dict])->str:
     return "\n".join(rows)
 
 def cross_tag_suggestions(cards:list[dict],fingerprints:list[str])->list[tuple[str,str,dict,dict]]:
-    """每个标签组合只保留最先出现的一对样例卡片，不缓存全部卡片对。"""
+    """每个标签组合只保留一对样例卡片；同时带两个标签的卡片不参与（它本身已是组合）。"""
     index:dict[str,list[int]]={}
     card_tags:list[set[str]]=[]
     for i,c in enumerate(cards):
@@ -93,19 +93,15 @@ def cross_tag_suggestions(cards:list[dict],fingerprints:list[str])->list[tuple[s
         for tag in tags:index.setdefault(tag,[]).append(i)
     suggestions=[]
     for ta,tb in itertools.combinations(sorted(index),2):
-        group=sorted(set(index[ta])|set(index[tb]))
-        found=None
-        for i in group:
-            # 一张卡同时带两个标签时，它本身已是组合，再配对等于自己和自己组合
-            if ta in card_tags[i] and tb in card_tags[i]:continue
-            for j in group:
-                if j<=i or fingerprints[i]==fingerprints[j]:continue
-                if ta in card_tags[j] and tb in card_tags[j]:continue
-                if (tb in card_tags[i] and ta in card_tags[j]) or (ta in card_tags[i] and tb in card_tags[j]):
-                    found=(cards[i],cards[j]);break
-            if found:break
-        if found:suggestions.append((ta,tb,found[0],found[1]))
+        left=[i for i in index[ta] if tb not in card_tags[i] and ta in card_tags[i]]
+        right=[i for i in index[tb] if ta not in card_tags[i] and tb in card_tags[i]]
+        if not left or not right: continue
+        i,j=left[0],right[0]
+        if fingerprints[i]==fingerprints[j]: continue
+        suggestions.append((ta,tb,cards[i],cards[j]))
+        if len(suggestions)>=50: break
     return suggestions
+
 
 CONFLICT_KEYS=["功能单位","边界","t0","时间跨度","初末状态","重复","判据","单位","验证范围","切分","种子","样本量"]
 GENERIC_TAG_SHARE=0.4
@@ -113,22 +109,18 @@ GENERIC_MIN_CARDS=5
 
 def _generic_tags(cards:list[dict])->tuple:
     """学科内出现频率过高的标签（如“节能”“预测”）不具区分力，不应用来判定“同一件事”。"""
-    counts={}; totals={}
+    counts={}; totals={}; signatures={}
     for c in cards:
         discipline=(c.get(EXTRA) or {}).get("学科")
         if not discipline: continue
         totals[discipline]=totals.get(discipline,0)+1
-        for tag in split_tags(c.get("标签","")):
+        tags=split_tags(c.get("标签",""))
+        signatures.setdefault(discipline,set()).add(tuple(sorted(tags)))
+        for tag in tags:
             counts[(discipline,tag)]=counts.get((discipline,tag),0)+1
-    # 若同一学科里所有卡片标签组合几乎一致，标签本身没有区分力，剔除通用标签只会漏报
-    signatures={}
-    for c in cards:
-        discipline=(c.get(EXTRA) or {}).get("学科")
-        if not discipline: continue
-        signatures.setdefault(discipline,set()).add(tuple(sorted(split_tags(c.get("标签","")))))
     generic={}
     for (discipline,tag),n in counts.items():
-        if len(signatures.get(discipline,()))<=2:
+        if len(signatures.get(discipline,()))<=2:  # 标签组合几乎一致时，标签本身无区分力
             continue
         if totals[discipline]>=GENERIC_MIN_CARDS and n/totals[discipline]>=GENERIC_TAG_SHARE:
             generic.setdefault(discipline,set()).add(tag)
@@ -137,7 +129,7 @@ def _generic_tags(cards:list[dict])->tuple:
 def conflict_rows(cards:list[dict], limit:int=200)->tuple:
     """同一项目/同一事项、关键口径字段取值不同，才记一条并存口径。
 
-    判定顺序：两张卡都有「项目」时以项目为准；否则用“共同标签”判定，并剔除学科内的通用标签。
+    判定顺序：两张卡都有「项目」时以项目为准；否则用共同标签判定，并剔除学科内的通用标签。
     """
     with_discipline=[c for c in cards if (c.get(EXTRA) or {}).get("学科")]
     if len(with_discipline)<2: return [], False
@@ -147,8 +139,10 @@ def conflict_rows(cards:list[dict], limit:int=200)->tuple:
         pairs.add((a["id"],b["id"]) if a["id"]<b["id"] else (b["id"],a["id"]))
     index={}
     for c in with_discipline:
+        discipline=(c.get(EXTRA) or {}).get("学科")
         for tag in split_tags(c.get("标签","")):
-            index.setdefault(tag,[]).append(c)
+            if tag in generic.get(discipline,set()): continue  # 通用标签会造成全量两两配对
+            index.setdefault((discipline,tag),[]).append(c)
     for ids in index.values():
         for a,b in itertools.combinations(ids,2): add_pair(a,b)
     by_project={}
