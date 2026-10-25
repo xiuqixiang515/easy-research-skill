@@ -1,0 +1,193 @@
+{
+  "schema": "eval-stability/1",
+  "summary": {
+    "files": 7,
+    "mean_min_jaccard": 0.888,
+    "files_with_identical_error_sets": 7,
+    "note": "same-model, same-session generation; similarity is inflated and does not test sampling stability"
+  },
+  "rows": [
+    {
+      "slug": "biology",
+      "runs": 3,
+      "item_sets": [
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S8"
+      ],
+      "jaccard_pairs": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min_jaccard": 1.0,
+      "error_sets": [
+        "X3",
+        "X3",
+        "X3"
+      ],
+      "errors_identical": true,
+      "item_hits": [
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "slug": "chemistry",
+      "runs": 3,
+      "item_sets": [
+        "S1|S2|S3|S5|S6|S8",
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S8"
+      ],
+      "jaccard_pairs": [
+        0.833,
+        0.833,
+        1.0
+      ],
+      "min_jaccard": 0.833,
+      "error_sets": [
+        "X3",
+        "X3",
+        "X3"
+      ],
+      "errors_identical": true,
+      "item_hits": [
+        6,
+        5,
+        5
+      ]
+    },
+    {
+      "slug": "computer",
+      "runs": 3,
+      "item_sets": [
+        "S1|S2|S3|S5|S7|S8",
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S8"
+      ],
+      "jaccard_pairs": [
+        0.833,
+        0.833,
+        1.0
+      ],
+      "min_jaccard": 0.833,
+      "error_sets": [
+        "X3",
+        "X3",
+        "X3"
+      ],
+      "errors_identical": true,
+      "item_hits": [
+        6,
+        5,
+        5
+      ]
+    },
+    {
+      "slug": "electronics",
+      "runs": 3,
+      "item_sets": [
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S8"
+      ],
+      "jaccard_pairs": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min_jaccard": 1.0,
+      "error_sets": [
+        "X3",
+        "X3",
+        "X3"
+      ],
+      "errors_identical": true,
+      "item_hits": [
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "slug": "energy",
+      "runs": 3,
+      "item_sets": [
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S7|S8",
+        "S1|S2|S3|S5|S7|S8"
+      ],
+      "jaccard_pairs": [
+        0.833,
+        0.833,
+        1.0
+      ],
+      "min_jaccard": 0.833,
+      "error_sets": [
+        "X3",
+        "X3",
+        "X3"
+      ],
+      "errors_identical": true,
+      "item_hits": [
+        5,
+        6,
+        6
+      ]
+    },
+    {
+      "slug": "mechanical",
+      "runs": 3,
+      "item_sets": [
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S8",
+        "S1|S2|S3|S5|S8"
+      ],
+      "jaccard_pairs": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min_jaccard": 1.0,
+      "error_sets": [
+        "X3",
+        "X3",
+        "X3"
+      ],
+      "errors_identical": true,
+      "item_hits": [
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "slug": "medicine",
+      "runs": 3,
+      "item_sets": [
+        "S1|S2|S3|S5|S7|S8",
+        "S1|S2|S3|S5|S6|S8",
+        "S1|S2|S3|S5|S8"
+      ],
+      "jaccard_pairs": [
+        0.714,
+        0.833,
+        0.833
+      ],
+      "min_jaccard": 0.714,
+      "error_sets": [
+        "X3",
+        "X3",
+        "X3"
+      ],
+      "errors_identical": true,
+      "item_hits": [
+        6,
+        6,
+        5
+      ]
+    }
+  ]
+}

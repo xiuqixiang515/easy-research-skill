@@ -104,7 +104,7 @@ def main() -> int:
     root = Path(args.dir)
     rows = []
     for path in sorted(root.glob(args.pattern)):
-        if path.name.startswith("_"):
+        if not re.match(r"^(C0|C1|S)-", path.name):
             continue
         text = path.read_text(encoding="utf-8-sig").strip()
         slug = path.stem.split("-", 1)[1] if "-" in path.stem else "unknown"

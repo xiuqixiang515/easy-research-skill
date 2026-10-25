@@ -1,0 +1,726 @@
+{
+  "schema": "eval-text-grades/1",
+  "scorer": "regex proxies; scorer and generator are the same model",
+  "items": {
+    "S1": "事实/推断/建议分离",
+    "S2": "新颖性状态显式",
+    "S3": "无虚构来源",
+    "S4": "输入约束保留",
+    "S5": "阈值标注待设定",
+    "S6": "保留不确定结论",
+    "S7": "最小验证≥3要素",
+    "S8": "不按占比评贡献"
+  },
+  "errors": {
+    "X1": "虚构来源",
+    "X2": "未核实新颖性断言",
+    "X3": "丢条件/单位",
+    "X4": "因果越界",
+    "X5": "假设写成事实"
+  },
+  "summary": {
+    "C0": {
+      "files": 7,
+      "per_item": {
+        "S1": "0/7",
+        "S2": "0/7",
+        "S3": "7/7",
+        "S4": "6/7",
+        "S5": "1/7",
+        "S6": "5/7",
+        "S7": "1/7",
+        "S8": "6/7"
+      },
+      "per_error": {
+        "X1": "0/7",
+        "X2": "0/7",
+        "X3": "1/7",
+        "X4": "0/7",
+        "X5": "0/7"
+      },
+      "mean_chars": 192.9
+    },
+    "C1": {
+      "files": 3,
+      "per_item": {
+        "S1": "3/3",
+        "S2": "0/3",
+        "S3": "3/3",
+        "S4": "3/3",
+        "S5": "0/3",
+        "S6": "3/3",
+        "S7": "0/3",
+        "S8": "3/3"
+      },
+      "per_error": {
+        "X1": "0/3",
+        "X2": "0/3",
+        "X3": "0/3",
+        "X4": "0/3",
+        "X5": "0/3"
+      },
+      "mean_chars": 142.7
+    },
+    "S": {
+      "files": 7,
+      "per_item": {
+        "S1": "7/7",
+        "S2": "7/7",
+        "S3": "7/7",
+        "S4": "7/7",
+        "S5": "7/7",
+        "S6": "4/7",
+        "S7": "1/7",
+        "S8": "7/7"
+      },
+      "per_error": {
+        "X1": "0/7",
+        "X2": "0/7",
+        "X3": "0/7",
+        "X4": "0/7",
+        "X5": "0/7"
+      },
+      "mean_chars": 196.7
+    }
+  },
+  "rows": [
+    {
+      "chars": 175,
+      "items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 4,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "n=3",
+        "重复",
+        "参考基因",
+        "校正",
+        "调控网络"
+      ],
+      "marker_categories": [
+        "inference"
+      ],
+      "file": "C0-biology.md",
+      "arm": "C0",
+      "slug": "biology",
+      "below_min_chars": false
+    },
+    {
+      "chars": 208,
+      "items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 4,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "98%",
+        "单批次",
+        "LOD",
+        "回收率",
+        "空白"
+      ],
+      "marker_categories": [],
+      "file": "C0-chemistry.md",
+      "arm": "C0",
+      "slug": "chemistry",
+      "below_min_chars": false
+    },
+    {
+      "chars": 234,
+      "items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 4,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "0.4",
+        "官方划分",
+        "测试集",
+        "随机种子",
+        "算力"
+      ],
+      "marker_categories": [
+        "advice"
+      ],
+      "file": "C0-computer.md",
+      "arm": "C0",
+      "slug": "computer",
+      "below_min_chars": false
+    },
+    {
+      "chars": 188,
+      "items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S4": false,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 3,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": true,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 1,
+      "keyword_ratio": 0.6,
+      "keywords_hit": [
+        "单板",
+        "频点",
+        "不确定度"
+      ],
+      "marker_categories": [],
+      "file": "C0-electronics.md",
+      "arm": "C0",
+      "slug": "electronics",
+      "below_min_chars": false
+    },
+    {
+      "chars": 194,
+      "items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": false,
+        "S6": false,
+        "S7": false,
+        "S8": false
+      },
+      "item_hits": 2,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "35%",
+        "使用阶段",
+        "电网因子",
+        "功能单位",
+        "辅助能耗"
+      ],
+      "marker_categories": [],
+      "file": "C0-energy.md",
+      "arm": "C0",
+      "slug": "energy",
+      "below_min_chars": false
+    },
+    {
+      "chars": 178,
+      "items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 4,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 0.8,
+      "keywords_hit": [
+        "4%",
+        "网格",
+        "固支",
+        "名义值"
+      ],
+      "marker_categories": [],
+      "file": "C0-mechanical.md",
+      "arm": "C0",
+      "slug": "mechanical",
+      "below_min_chars": false
+    },
+    {
+      "chars": 173,
+      "items": {
+        "S1": false,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": false,
+        "S6": true,
+        "S7": true,
+        "S8": true
+      },
+      "item_hits": 5,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "92%",
+        "88%",
+        "健康对照",
+        "盲法",
+        "置信区间"
+      ],
+      "marker_categories": [
+        "advice"
+      ],
+      "file": "C0-medicine.md",
+      "arm": "C0",
+      "slug": "medicine",
+      "below_min_chars": false
+    },
+    {
+      "chars": 158,
+      "items": {
+        "S1": true,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 5,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "98%",
+        "单批次",
+        "LOD",
+        "回收率",
+        "空白"
+      ],
+      "marker_categories": [
+        "inference",
+        "advice"
+      ],
+      "file": "C1-chemistry.md",
+      "arm": "C1",
+      "slug": "chemistry",
+      "below_min_chars": false
+    },
+    {
+      "chars": 147,
+      "items": {
+        "S1": true,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 5,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 0.8,
+      "keywords_hit": [
+        "0.4",
+        "官方划分",
+        "测试集",
+        "算力"
+      ],
+      "marker_categories": [
+        "inference",
+        "advice"
+      ],
+      "file": "C1-computer.md",
+      "arm": "C1",
+      "slug": "computer",
+      "below_min_chars": false
+    },
+    {
+      "chars": 123,
+      "items": {
+        "S1": true,
+        "S2": false,
+        "S3": true,
+        "S4": true,
+        "S5": false,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 5,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 0.8,
+      "keywords_hit": [
+        "92%",
+        "88%",
+        "健康对照",
+        "盲法"
+      ],
+      "marker_categories": [
+        "inference",
+        "advice"
+      ],
+      "file": "C1-medicine.md",
+      "arm": "C1",
+      "slug": "medicine",
+      "below_min_chars": false
+    },
+    {
+      "chars": 206,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 6,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "n=3",
+        "重复",
+        "参考基因",
+        "校正",
+        "调控网络"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "S-biology.md",
+      "arm": "S",
+      "slug": "biology",
+      "below_min_chars": false
+    },
+    {
+      "chars": 222,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 6,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "98%",
+        "单批次",
+        "LOD",
+        "回收率",
+        "空白"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "S-chemistry.md",
+      "arm": "S",
+      "slug": "chemistry",
+      "below_min_chars": false
+    },
+    {
+      "chars": 221,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 7,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 0.8,
+      "keywords_hit": [
+        "0.4",
+        "官方划分",
+        "测试集",
+        "算力"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "S-computer.md",
+      "arm": "S",
+      "slug": "computer",
+      "below_min_chars": false
+    },
+    {
+      "chars": 195,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 7,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "9.1",
+        "9.8",
+        "单板",
+        "频点",
+        "不确定度"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "S-electronics.md",
+      "arm": "S",
+      "slug": "electronics",
+      "below_min_chars": false
+    },
+    {
+      "chars": 184,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": false,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 6,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "35%",
+        "使用阶段",
+        "电网因子",
+        "功能单位",
+        "辅助能耗"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "S-energy.md",
+      "arm": "S",
+      "slug": "energy",
+      "below_min_chars": false
+    },
+    {
+      "chars": 167,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": false,
+        "S8": true
+      },
+      "item_hits": 7,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 1.0,
+      "keywords_hit": [
+        "4%",
+        "单工况",
+        "网格",
+        "固支",
+        "名义值"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "S-mechanical.md",
+      "arm": "S",
+      "slug": "mechanical",
+      "below_min_chars": false
+    },
+    {
+      "chars": 182,
+      "items": {
+        "S1": true,
+        "S2": true,
+        "S3": true,
+        "S4": true,
+        "S5": true,
+        "S6": true,
+        "S7": true,
+        "S8": true
+      },
+      "item_hits": 8,
+      "errors": {
+        "X1": false,
+        "X2": false,
+        "X3": false,
+        "X4": false,
+        "X5": false
+      },
+      "error_hits": 0,
+      "keyword_ratio": 0.8,
+      "keywords_hit": [
+        "92%",
+        "88%",
+        "健康对照",
+        "盲法"
+      ],
+      "marker_categories": [
+        "fact",
+        "inference",
+        "advice",
+        "unverified"
+      ],
+      "file": "S-medicine.md",
+      "arm": "S",
+      "slug": "medicine",
+      "below_min_chars": false
+    }
+  ]
+}
