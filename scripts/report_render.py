@@ -107,33 +107,68 @@ def cross_tag_suggestions(cards:list[dict],fingerprints:list[str])->list[tuple[s
         if found:suggestions.append((ta,tb,found[0],found[1]))
     return suggestions
 
-CONFLICT_KEYS=["功能单位","边界","t0","时间跨度","重复","判据","单位"]
+CONFLICT_KEYS=["功能单位","边界","t0","时间跨度","初末状态","重复","判据","单位","验证范围","切分","种子","样本量"]
+GENERIC_TAG_SHARE=0.4
+GENERIC_MIN_CARDS=5
+
+def _generic_tags(cards:list[dict])->tuple:
+    """学科内出现频率过高的标签（如“节能”“预测”）不具区分力，不应用来判定“同一件事”。"""
+    counts={}; totals={}
+    for c in cards:
+        discipline=(c.get(EXTRA) or {}).get("学科")
+        if not discipline: continue
+        totals[discipline]=totals.get(discipline,0)+1
+        for tag in split_tags(c.get("标签","")):
+            counts[(discipline,tag)]=counts.get((discipline,tag),0)+1
+    generic={}
+    for (discipline,tag),n in counts.items():
+        if totals[discipline]>=GENERIC_MIN_CARDS and n/totals[discipline]>=GENERIC_TAG_SHARE:
+            generic.setdefault(discipline,set()).add(tag)
+    return generic,totals
 
 def conflict_rows(cards:list[dict], limit:int=200)->tuple:
-    """逐对比较同一学科、标签有交集、关键口径字段取值不同的卡片。返回 (rows, truncated)。"""
+    """同一项目/同一事项、关键口径字段取值不同，才记一条并存口径。
+
+    判定顺序：两张卡都有「项目」时以项目为准；否则用“共同标签”判定，并剔除学科内的通用标签。
+    """
     with_discipline=[c for c in cards if (c.get(EXTRA) or {}).get("学科")]
     if len(with_discipline)<2: return [], False
+    generic,_=_generic_tags(cards)
+    pairs=set()
+    def add_pair(a,b):
+        pairs.add((a["id"],b["id"]) if a["id"]<b["id"] else (b["id"],a["id"]))
     index={}
     for c in with_discipline:
         for tag in split_tags(c.get("标签","")):
             index.setdefault(tag,[]).append(c)
-    pairs=set()
     for ids in index.values():
-        for a,b in itertools.combinations(ids,2):
-            pairs.add((a["id"],b["id"]) if a["id"]<b["id"] else (b["id"],a["id"]))
+        for a,b in itertools.combinations(ids,2): add_pair(a,b)
+    by_project={}
+    for c in with_discipline:
+        extra=c.get(EXTRA) or {}
+        if extra.get("项目"):
+            by_project.setdefault((extra["学科"],extra["项目"]),[]).append(c)
+    for ids in by_project.values():
+        for a,b in itertools.combinations(ids,2): add_pair(a,b)
     by_id={c["id"]:c for c in with_discipline}
     rows=[]
     for left_id,right_id in sorted(pairs):
         left,right=by_id[left_id],by_id[right_id]
         left_extra=left.get(EXTRA) or {}; right_extra=right.get(EXTRA) or {}
         if left_extra.get("学科")!=right_extra.get("学科"): continue
-        shared=set(split_tags(left.get("标签",""))) & set(split_tags(right.get("标签","")))
+        left_project=left_extra.get("项目"); right_project=right_extra.get("项目")
+        if left_project and right_project:
+            if left_project!=right_project: continue
+        else:
+            shared=set(split_tags(left.get("标签",""))) & set(split_tags(right.get("标签","")))
+            shared-=generic.get(left_extra["学科"],set())
+            if not shared: continue
         for key in CONFLICT_KEYS:
             va=(left_extra.get(key) or "").strip(); vb=(right_extra.get(key) or "").strip()
             if not va or not vb or va==vb: continue
             if len(rows)>=limit: return rows, True
             rows.append({"学科":left_extra["学科"],"键":key,"卡片":f"{left_id} / {right_id}",
-                         "取值":f"{va} / {vb}","共同标签":"、".join(sorted(shared))})
+                         "取值":f"{va} / {vb}","项目":left_project or "（未填项目）"})
     return rows, False
 
 def weekly_report(cards:list[dict])->list[str]:
@@ -180,11 +215,11 @@ def weekly_report(cards:list[dict])->list[str]:
     conflicts, conflict_truncated=conflict_rows(cards)
     lines += ["", "## 口径冲突（同一学科、标签有交集，仅提示并存，不判断对错）", ""]
     if conflicts:
-        lines += ["| 学科 | 字段 | 涉及卡片 | 并存取值 | 共同标签 |", "|---|---|---|---|---|"]
+        lines += ["| 学科 | 项目 | 字段 | 涉及卡片 | 并存取值 |", "|---|---|---|---|---|"]
         for row in conflicts:
-            lines.append(f"| {table_cell(row['学科'])} | {table_cell(row['键'])} | {table_cell(row['卡片'])} | {table_cell(row['取值'])} | {table_cell(row['共同标签'])} |")
+            lines.append(f"| {table_cell(row['学科'])} | {table_cell(row['项目'])} | {table_cell(row['键'])} | {table_cell(row['卡片'])} | {table_cell(row['取值'])} |")
         if conflict_truncated: lines.append("\n（已达 200 条上限，其余未列出）")
-        lines += ["", "以上为同一口径的两种写法，可能有一方已作废；请人工确认后再统一。"]
+        lines += ["", "以上为同一口径的两种写法，可能有一方已作废；请人工确认后再统一。填了「项目」的卡片只与同项目比较。"]
     else:
         lines.append("未发现并存口径。")
     lines += ["", "## 卡片一览", "", card_table(cards) if cards else "（素材库为空）"]

@@ -397,4 +397,54 @@ class SkillScriptsTest(unittest.TestCase):
   out=self.base/'w.md'
   self.run_cli(REPORT,'--weekly','--out',out)
   self.assertIn('未发现并存口径',out.read_text(encoding='utf8'))
+ def test_45_same_project_without_shared_tags_is_compared(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--tags','方向A','--discipline','能源','--set-extra','项目=楼A','--set-extra','功能单位=kWh/m2/a')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--tags','方向B','--discipline','能源','--set-extra','项目=楼A','--set-extra','功能单位=kWh/m2/月')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('kWh/m2/a / kWh/m2/月',text)
+  self.assertIn('楼A',text)
+ def test_46_different_projects_are_not_compared(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--tags','节能','--discipline','能源','--set-extra','项目=楼A','--set-extra','边界=使用阶段')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--tags','节能','--discipline','能源','--set-extra','项目=楼B','--set-extra','边界=全生命周期')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  self.assertIn('未发现并存口径',out.read_text(encoding='utf8'))
+ def test_47_umbrella_tag_does_not_merge_projects(self):
+  for project,unit in (('甲项目','kWh/m2/a'),('乙项目','kWh/床/a'),('丙项目','kWh/a'),('丁项目','kWh/t')):
+   for i in range(3):
+    if project=='甲项目' and i==2: unit_value='kWh/m2/月'
+    else: unit_value=unit
+    self.run_cli(CARD,'add','--title',f'{project}-{i}','--problem','p','--tags',f'{project}, 节能','--discipline','能源','--set-extra','功能单位='+unit_value)
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('kWh/m2/a / kWh/m2/月',text)
+  self.assertNotIn('kWh/床/a',text)
+ def test_45_same_project_without_shared_tags_is_compared(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--tags','方向A','--discipline','能源','--set-extra','项目=楼A','--set-extra','功能单位=kWh/m2/a')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--tags','方向B','--discipline','能源','--set-extra','项目=楼A','--set-extra','功能单位=kWh/m2/月')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('kWh/m2/a / kWh/m2/月',text)
+  self.assertIn('楼A',text)
+ def test_46_different_projects_are_not_compared(self):
+  self.run_cli(CARD,'add','--title','甲','--problem','p','--tags','节能','--discipline','能源','--set-extra','项目=楼A','--set-extra','边界=使用阶段')
+  self.run_cli(CARD,'add','--title','乙','--problem','q','--tags','节能','--discipline','能源','--set-extra','项目=楼B','--set-extra','边界=全生命周期')
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  self.assertIn('未发现并存口径',out.read_text(encoding='utf8'))
+ def test_47_umbrella_tag_does_not_merge_projects(self):
+  for project,unit in (('甲项目','kWh/m2/a'),('乙项目','kWh/床/a'),('丙项目','kWh/a'),('丁项目','kWh/t')):
+   for i in range(3):
+    if project=='甲项目' and i==2: unit_value='kWh/m2/月'
+    else: unit_value=unit
+    self.run_cli(CARD,'add','--title',f'{project}-{i}','--problem','p','--tags',f'{project}, 节能','--discipline','能源','--set-extra','功能单位='+unit_value)
+  out=self.base/'w.md'
+  self.run_cli(REPORT,'--weekly','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('kWh/m2/a / kWh/m2/月',text)
+  self.assertNotIn('kWh/床/a',text)
 if __name__=='__main__':unittest.main(verbosity=2)
