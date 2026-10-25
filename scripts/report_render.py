@@ -95,8 +95,11 @@ def cross_tag_suggestions(cards:list[dict],fingerprints:list[str])->list[tuple[s
         group=sorted(set(index[ta])|set(index[tb]))
         found=None
         for i in group:
+            # 一张卡同时带两个标签时，它本身已是组合，再配对等于自己和自己组合
+            if ta in card_tags[i] and tb in card_tags[i]:continue
             for j in group:
                 if j<=i or fingerprints[i]==fingerprints[j]:continue
+                if ta in card_tags[j] and tb in card_tags[j]:continue
                 if (tb in card_tags[i] and ta in card_tags[j]) or (ta in card_tags[i] and tb in card_tags[j]):
                     found=(cards[i],cards[j]);break
             if found:break
