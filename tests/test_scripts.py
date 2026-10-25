@@ -209,4 +209,64 @@ class SkillScriptsTest(unittest.TestCase):
    out=self.base/'weekly.md';self.run_cli(REPORT,'--weekly','--out',out)
    text=out.read_text(encoding='utf8')
    self.assertEqual(text.count('| blue × red |')+text.count('| red × blue |'),1)
+ def test_28_discipline_and_type_are_stored_and_normalized(self):
+  self.run_cli(CARD,'add','--title','卡','--problem','p','--discipline','cs','--research-type','复现')
+  card=self.cards()[0]
+  self.assertEqual(card['扩展']['学科'],'计算机')
+  self.assertEqual(card['扩展']['研究类型'],'复现')
+  self.assertIn('学科: 计算机',self.run_cli(CARD,'show','c001').stdout)
+ def test_29_invalid_discipline_is_rejected(self):
+  p=self.run_cli(CARD,'add','--title','卡','--problem','p','--discipline','天文',ok=False)
+  self.assertIn('学科必须为',p.stderr)
+  self.assertFalse(self.db.exists())
+ def test_30_invalid_research_type_is_rejected(self):
+  p=self.run_cli(CARD,'add','--title','卡','--problem','p','--research-type','玄学',ok=False)
+  self.assertIn('研究类型必须为',p.stderr)
+  self.assertFalse(self.db.exists())
+ def test_31_search_covers_extension_values(self):
+  self.run_cli(CARD,'add','--title','浓度','--problem','p','--set-extra','单位=mol/L')
+  self.assertIn('c001',self.run_cli(CARD,'search','mol/L').stdout)
+  self.assertIn('c001',self.run_cli(CARD,'search','单位').stdout)
+ def test_32_template_has_meta_lines_and_import_keeps_them_clean(self):
+  tpl=self.run_cli(CARD,'template').stdout
+  self.assertIn('- 学科:',tpl);self.assertIn('- 研究类型:',tpl)
+  cardfile=self.base/'tpl.md';cardfile.write_text(tpl,encoding='utf8')
+  self.run_cli(CARD,'add','--file',cardfile)
+  self.assertNotIn('扩展',self.cards()[0])
+ def test_33_report_table_shows_discipline_column_when_present(self):
+  self.run_cli(CARD,'add','--title','卡','--problem','p','--discipline','能源','--research-type','核算')
+  out=self.base/'r.md'
+  self.run_cli(REPORT,'--title','t','--from-cards','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('学科/类型',text);self.assertIn('能源/核算',text)
+ def test_28_discipline_and_type_are_stored_and_normalized(self):
+  self.run_cli(CARD,'add','--title','卡','--problem','p','--discipline','cs','--research-type','复现')
+  card=self.cards()[0]
+  self.assertEqual(card['扩展']['学科'],'计算机')
+  self.assertEqual(card['扩展']['研究类型'],'复现')
+  self.assertIn('学科: 计算机',self.run_cli(CARD,'show','c001').stdout)
+ def test_29_invalid_discipline_is_rejected(self):
+  p=self.run_cli(CARD,'add','--title','卡','--problem','p','--discipline','天文',ok=False)
+  self.assertIn('学科必须为',p.stderr)
+  self.assertFalse(self.db.exists())
+ def test_30_invalid_research_type_is_rejected(self):
+  p=self.run_cli(CARD,'add','--title','卡','--problem','p','--research-type','玄学',ok=False)
+  self.assertIn('研究类型必须为',p.stderr)
+  self.assertFalse(self.db.exists())
+ def test_31_search_covers_extension_values(self):
+  self.run_cli(CARD,'add','--title','浓度','--problem','p','--set-extra','单位=mol/L')
+  self.assertIn('c001',self.run_cli(CARD,'search','mol/L').stdout)
+  self.assertIn('c001',self.run_cli(CARD,'search','单位').stdout)
+ def test_32_template_has_meta_lines_and_import_keeps_them_clean(self):
+  tpl=self.run_cli(CARD,'template').stdout
+  self.assertIn('- 学科:',tpl);self.assertIn('- 研究类型:',tpl)
+  cardfile=self.base/'tpl.md';cardfile.write_text(tpl,encoding='utf8')
+  self.run_cli(CARD,'add','--file',cardfile)
+  self.assertNotIn('扩展',self.cards()[0])
+ def test_33_report_table_shows_discipline_column_when_present(self):
+  self.run_cli(CARD,'add','--title','卡','--problem','p','--discipline','能源','--research-type','核算')
+  out=self.base/'r.md'
+  self.run_cli(REPORT,'--title','t','--from-cards','--out',out)
+  text=out.read_text(encoding='utf8')
+  self.assertIn('学科/类型',text);self.assertIn('能源/核算',text)
 if __name__=='__main__':unittest.main(verbosity=2)

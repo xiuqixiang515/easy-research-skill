@@ -68,10 +68,19 @@ def table_cell(value) -> str:
     return text.replace("\\","\\\\").replace("|",r"\|").replace("\n","<br>")
 
 def card_table(cards:list[dict])->str:
-    rows=["| ID | 标题/一句话 | 风险 | 标签 |","|---|---|---|---|"]
+    has_meta=any((c.get("扩展") or {}).get("学科") or (c.get("扩展") or {}).get("研究类型") for c in cards)
+    if has_meta:
+        rows=["| ID | 标题/一句话 | 风险 | 学科/类型 | 标签 |","|---|---|---|---|---|"]
+    else:
+        rows=["| ID | 标题/一句话 | 风险 | 标签 |","|---|---|---|---|"]
     for c in cards:
         value=c.get("一句话","").strip() or c["title"]
-        rows.append("| "+" | ".join(table_cell(v) for v in [c["id"],value,c.get("风险"),c.get("标签")])+" |")
+        cells=[c["id"],value,c.get("风险")]
+        if has_meta:
+            extra=c.get("扩展") or {}
+            cells.append("/".join(x for x in [extra.get("学科"),extra.get("研究类型")] if x))
+        cells.append(c.get("标签"))
+        rows.append("| "+" | ".join(table_cell(v) for v in cells)+" |")
     return "\n".join(rows)
 
 def cross_tag_suggestions(cards:list[dict],fingerprints:list[str])->list[tuple[str,str,dict,dict]]:
